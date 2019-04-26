@@ -27,7 +27,7 @@ test_script:
   - ps: npm install --save-dev -g mocha
   - ps: npm install --save-dev -g spectron
   - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; mocha tests/spectron/conf/configure.js
-  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; set HTML_REPORT_PATH=test-reports/spectron ; "mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1 --repo
+  - ps: "set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; set HTML_REPORT_PATH=test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1 --repo
 rter-options reportDir=test-reports/spectron > test-reports/spectron/report.txt"
 
 artifacts:
