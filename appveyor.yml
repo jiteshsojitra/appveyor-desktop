@@ -19,8 +19,7 @@ install:
   - ps: Start-Sleep -Seconds 10
   - ps: cd C:\users\appveyor\Desktop
   - ps: dir
-  - ps: cd C:\users\Administrator\Desktop
-  - ps: dir
+  - ps: whoami
  
 test_script:
   - node --version
