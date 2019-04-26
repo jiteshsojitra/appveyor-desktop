@@ -27,12 +27,12 @@ test_script:
   - ps: npm install --save-dev -g mocha
   - ps: npm install --save-dev -g spectron
   - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; mocha tests/spectron/conf/configure.js
-  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; set HTML_REPORT_PATH=test-reports/spectron ; mocha --recursive tests\spectron\tests\mail --retries 1 --repo
-rter-options reportDir=test-reports/spectron > test-reports/spectron/report.txt
+  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; set HTML_REPORT_PATH=test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1 --repo
+rter-options "reportDir=test-reports/spectron > test-reports/spectron/report.txt"
 
 artifacts:
-  - path: 'test-reports'
-    name: 'report.txt'
+  - path: test-reports
+    name: report.txt
    
 on_finish:
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
