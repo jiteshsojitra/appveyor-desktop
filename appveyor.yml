@@ -15,7 +15,7 @@ init:
 install:
   - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
   - ps: dir
-  - ps: start "" /wait "Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe" /S
+  - ps: Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe" /install /quiet
   - ps: cd C:\users\appveyor\Desktop
   - ps: dir
 
