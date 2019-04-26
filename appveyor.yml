@@ -21,8 +21,9 @@ install:
   - ps: Start-Sleep -Seconds 10
   - ps: cd C:\users\appveyor\Desktop
   - ps: dir
-  - ps: whoami
- 
+  - ps: cd %AppData%
+  - ps: dir
+
 test_script:
   - node --version
   - npm --version  
