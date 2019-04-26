@@ -19,11 +19,6 @@
     "Jitesh Sojitra <jiteshsojitra@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "linters": {
       "*.{js,graphql}": [
