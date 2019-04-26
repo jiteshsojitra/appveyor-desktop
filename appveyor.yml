@@ -21,7 +21,9 @@ install:
   - ps: Start-Sleep -Seconds 10
   - ps: cd C:\users\appveyor\Desktop
   - ps: dir
-  - ps: $env:APPDATA
+  - ps: $appDataPath = ($env:APPDATA)
+  - ps: cd $env:APPDATA
+  - ps: dir 
 
 test_script:
   - node --version
