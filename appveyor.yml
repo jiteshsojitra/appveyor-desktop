@@ -6,6 +6,7 @@ image:
 platform: x64
 
 environment:
+  WORK_PATH: C:\projects\appveyor-desktop
   MSVC_DEFAULT_OPTIONS: ON
   nodejs_version: "11.0.0"
   APPVEYOR_RDP_PASSWORD: Test@123
@@ -15,18 +16,22 @@ init:
   - ps: Install-Product node $env:nodejs_version
 
 install:
+  - ps: cd C:\Users\appveyor\Desktop
   - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
 
-test_script:
-  - node --version
-  - npm --version  
-  - mocha --version  
-  - chai --version  
-
 build_script:
-  - cmd: cd C:\projects\appveyor-desktop  
   - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru  
+
+test_script:
+  - ps: cd C:\projects\appveyor-desktop  
+  - ps: npm install --save-dev -g mocha
+  - ps: npm install --save-dev -g spectron
+  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; mocha tests/spectron/conf/configure.js
+  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; set HTML_REPORT_PATH=test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f 'Smoke' --retries 1 --repo
+rter-options reportDir=test-reports/spectron > test-reports/spectron/report.txt
   
+artifacts:
+  - path: test-reports
+
 on_finish:
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
- 
