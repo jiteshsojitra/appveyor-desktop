@@ -31,8 +31,8 @@ test_script:
 rter-options reportDir=test-reports/spectron > test-reports/spectron/report.txt
   
 artifacts:
-  - path: test-reports
-    name: report.txt
+  - path: 'test-reports'
+    name: 'report.txt'
 
 on_finish:
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
