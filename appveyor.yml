@@ -14,16 +14,15 @@ init:
 
 install:
   - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
-  - ps: dir
+  - cmd: npm install
+  - cmd: cd C:\tools\vcpkg
+  - cmd: git pull
+  - cmd: vcpkg install --recurse --triplet %VCPKG_ARCH% x64-windows boost-system boost-filesystem ccd eigen3 fcl
+  - cmd: vcpkg integrate install    
   - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru
-  - ps: $script:exitCode = (Start-Process -FilePath .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759 /S -NoNewWindow -Passthru -Wait).ExitCode
-  - ps: echo $script:exitCode
   - ps: Start-Sleep -Seconds 10
-  - ps: cd C:\users\appveyor\Desktop
-  - ps: dir
-  - ps: $appDataPath = ($env:APPDATA)
   - ps: cd $env:APPDATA
-  - ps: dir 
+  - ps: dir   
 
 test_script:
   - node --version
