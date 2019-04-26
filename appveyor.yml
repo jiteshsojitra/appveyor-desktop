@@ -17,16 +17,10 @@ init:
 install:
   - ps: Start-Process 'Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S' -PassThru
   - ps: Install-Product node $env:nodejs_version
-  - cmd: npm install
-  - cmd: cd C:\tools\vcpkg
-  - cmd: git pull
-  - cmd: vcpkg install --recurse --triplet %VCPKG_ARCH% x64-windows boost-system boost-filesystem ccd eigen3 fcl
-  - cmd: vcpkg integrate install
-  - cmd: cd "%APPVEYOR_BUILD_FOLDER%"
   
 test_script:
   - node --version
   - npm --version  
 
 build_script:
-  - cmd: mkdir build && cd build  
+  - cmd: mkdir build && cd build
