@@ -1,7 +1,6 @@
 version: "{build}"
 
 image:
-  - Ubuntu
   - Visual Studio 2017
 
 platform: x64
