@@ -16,11 +16,6 @@ init:
 
 install:
   - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
-  - cmd: cd C:\projects\appveyor-desktop  
-  - cmd: .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S
-  - ps: Start-Sleep -Seconds 15
-  - ps: cd $env:APPDATA
-  - ps: dir   
 
 test_script:
   - node --version
@@ -29,7 +24,12 @@ test_script:
   - chai --version  
 
 build_script:
-  - cmd: mkdir build && cd build
+  - cmd: cd C:\projects\appveyor-desktop  
+  - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru  
+  - cmd: .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S
+  - ps: Start-Sleep -Seconds 15
+  - ps: cd $env:APPDATA
+  - ps: dir   
   
 on_finish:
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
