@@ -1,0 +1,7 @@
+#import "../fragments/message.graphql"
+
+mutation addMessage($message: AddMsgInput!) {
+	addMessage(message: $message){
+		...messageFields
+	}
+}

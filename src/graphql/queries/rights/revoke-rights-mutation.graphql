@@ -1,0 +1,8 @@
+mutation revokeRights($input: RevokeRightsInput!) {
+	revokeRights(input: $input) {
+		access {
+			right
+			address
+		}
+	}
+}

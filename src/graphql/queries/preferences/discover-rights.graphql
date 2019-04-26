@@ -1,0 +1,15 @@
+
+query DiscoverRights {
+	discoverRights {
+		targets {
+			right
+			target {
+				displayName
+				email {
+					emailAddress
+				}
+				type
+			}
+		}
+	}
+}

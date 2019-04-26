@@ -1,0 +1,50 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.button {
+	font-family: @branding-font-family-regular;
+	font-weight: regular;
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+	padding: 0 14px;
+	height: @toolbar-height - 1px;
+	background: rgba(0, 0, 0, 0);
+	border: 0;
+	text-decoration: none;
+	font-size: 100%;
+	color: @text-color;
+	white-space: nowrap;
+	transition: all 200ms ease;
+	appearance: none;
+	user-select: none;
+	cursor: pointer;
+	overflow: hidden;
+
+	&:hover {
+		color: @brand-primary;
+	}
+
+	&:disabled {
+		opacity: 0.4;
+		cursor: default;
+		&:hover {
+			color: @text-color;
+		}
+	}
+
+	> .icon {
+		color: @brand-primary;
+		position: relative;
+		vertical-align: middle;
+		display: inline-block;
+		line-height: 1;
+	}
+
+	&.monotone > .icon {
+		color: inherit;
+	}
+
+	> .icon + .text {
+		margin-left: 6px;
+	}
+}

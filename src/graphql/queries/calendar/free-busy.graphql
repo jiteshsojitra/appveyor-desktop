@@ -1,0 +1,25 @@
+query FreeBusy($names: [String!]!, $start: Float, $end: Float) {
+	freeBusy(names: $names, start: $start, end: $end) {
+		id
+		free {
+			start
+			end
+		}
+		tentative {
+			start
+			end
+		}
+		busy {
+			start
+			end
+		}
+		unavailable {
+			start
+			end
+		}
+		nodata {
+			start
+			end
+		}
+	}
+}

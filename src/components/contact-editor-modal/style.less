@@ -1,0 +1,85 @@
+@import '~@zimbra/x-ui/helpers.less';
+@import (reference) '../modal-dialog/style.less';
+
+.backdrop {
+	.backdrop();
+}
+
+.modalContactEditor {
+	.dialog();
+	width: 608px;
+	height: 420px;
+
+	@media (max-width: 608px) {
+		width: 100%;
+	}
+	@media (max-height: 420px) {
+		height: 100%;
+	}
+
+	.inner {
+		background: @body-bg;
+		border-radius: 3px;
+		width: 100%;
+		height: 100%;
+		box-shadow: 0 4px 6px rgba(0,0,0,.36);
+		cursor: default;
+		animation: dialogOpen ease 250ms forwards 1;
+		@keyframes dialogOpen {
+			0% {
+				transform: translate3d(0, 150%, 0);
+			}
+		}
+	}
+
+	.header {
+		box-sizing: border-box;
+		height: 70px;
+		border-bottom: 1px solid #ccc;
+		background: none;
+
+		h2 {
+			padding: 16px 24px 0;
+			font-weight: @headings-font-weight;
+		}
+
+		.description {
+			margin: 0;
+			padding: 0 24px;
+			text-align: left;
+			font-size: 13px;
+		}
+	}
+
+	.content {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		top: 70px;
+		bottom: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.editor {
+		padding: 0;
+		.fill();
+		.scroll();
+
+		form {
+			padding: 8px 8px 0;
+		}
+	}
+
+	.footer {
+		position: relative;
+		width: 100%;
+		height: 74px;
+		flex-basis: 74px;
+		line-height: 74px;
+		padding: 0 24px;
+		background: #fff;
+		border-top: 1px solid #ccc;
+		overflow: hidden;
+	}
+}

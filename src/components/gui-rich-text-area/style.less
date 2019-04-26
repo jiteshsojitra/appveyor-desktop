@@ -1,0 +1,31 @@
+.relative {
+	position: relative;
+	overflow: auto;
+	width: 100%;
+	flex-direction: column;
+	display: flex;
+	flex: 1 0 auto;
+}
+
+.toolbarWrapper {
+	width: 100%;
+}
+
+rich-text-area {
+	display: block;
+	padding: 10px;
+	overflow: auto;
+	border: none;
+	outline: none;
+	contain: content;
+	cursor: text;
+
+	&[data-empty]:not(:focus):before {
+		content: attr(placeholder);
+		opacity: 0.8;
+	}
+}
+
+.attachmentsWrapper {
+	padding: 0px 16px 40px 16px;
+}

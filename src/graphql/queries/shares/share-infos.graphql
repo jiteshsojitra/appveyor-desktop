@@ -1,0 +1,27 @@
+query ShareInfoQuery(
+	$internal: Boolean,
+	$includeSelf: Boolean,
+	$grantee: Grantee,
+	$owner: Owner
+) {
+		shareInfo(
+			internal: $internal,
+			includeSelf: $includeSelf,
+			grantee: $grantee,
+			owner: $owner
+		){
+			ownerId
+			ownerEmail
+			ownerName
+			folderId
+			folderUuid
+			folderPath
+			view
+			rights
+			granteeType
+			granteeId
+			granteeName
+			granteeDisplayName
+			mid
+	}
+}

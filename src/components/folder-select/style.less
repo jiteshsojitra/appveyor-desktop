@@ -1,0 +1,16 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+a.disableHover:not(.disabled):hover {
+	background: none;
+}
+
+a.selected:not(.disabled),
+a.selected:not(.disabled):hover {
+	background: fade(@brand-primary, 15%);
+}
+
+.folderGroup {
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 300px;
+}

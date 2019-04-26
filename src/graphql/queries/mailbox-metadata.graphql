@@ -1,0 +1,32 @@
+query getMailboxMetadata($section: String = "zwc:implicit") {
+	getMailboxMetadata(section: $section) {
+		meta {
+			section
+			_attrs {
+				zimbraPrefCustomFolderTreeOpen
+				zimbraPrefFoldersExpanded
+				zimbraPrefFolderTreeSash
+				zimbraPrefGenerateLinkPreviews
+				zimbraPrefSMIMEDefaultSetting
+				zimbraPrefSMIMELastOperation
+				zimbraPrefGroupByList
+				zimbraPrefMessageListDensity
+				zimbraPrefMultitasking
+				zimbraPrefReadingPaneSashHorizontal
+				zimbraPrefReadingPaneSashVertical
+				zimbraPrefSmartFolderTreeOpen
+				zimbraPrefUndoSendEnabled
+				zimbraPrefUndoSendTimeout
+				zimbraPrefContactSourceFolderID
+				archivedFolder
+			}
+		}
+	}
+}
+
+mutation setMailboxMetadata(
+	$section: String = "zwc:implicit"
+	$attrs: MailboxMetadataSectionAttrsInput!
+) {
+	setMailboxMetadata(section: $section, attrs: $attrs)
+}

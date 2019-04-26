@@ -1,0 +1,17 @@
+@import '~@zimbra/x-ui/helpers.less';
+@import '~@zimbra/x-ui/refs.less';
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: @font-family-base;
+}
+
+input[type="text"],
+input[type="email"] {
+	&:invalid {
+		box-shadow: none;
+	}
+}

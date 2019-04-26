@@ -1,0 +1,20 @@
+@import '../../style/helpers.less';
+
+.sidebarHeader {
+	display: block;
+	@media(min-width: @screen-sm-max) {
+		padding: 1px @spacing-md 0;
+	}
+	& > * {
+		font-weight: bold;
+	}
+	span {
+		margin-bottom: 4px;
+		color: #000;
+	}
+}
+
+.sidebarWrapper {
+	flex: 1;
+	.scroll();
+}

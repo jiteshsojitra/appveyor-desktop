@@ -1,0 +1,129 @@
+@import '~@zimbra/x-ui/helpers.less';
+@import '../../style.less';
+@import '../../../settings-modal/style.less';
+
+@spacing-custom: @spacing-md - @spacing-xs; // 12px
+
+.filterModalInner {
+	@media (min-width: @screen-sm-max) {
+		width: 770px;
+		height: auto;
+	}
+}
+
+@media (max-width: @screen-sm-max) {
+	.title {
+		font-size: @font-size-large;
+		color: @gray-base;
+	}
+
+	.rulePrompt {
+		font-weight: 500;
+	}
+}
+
+.filterModalContent {
+
+	@media (max-width: @screen-sm-max){
+		padding: @spacing-md;
+		overflow: auto;
+	}
+
+	.subsection {
+		margin-bottom: @spacing-md;
+
+		@media (max-width: @screen-sm-max) {
+			margin-bottom: @spacing-xs;
+			border-bottom: 1px solid @gray-lighter;
+		}
+	}
+
+	.subsectionTitle {
+		min-width: 186px;
+		width: 186px;
+		line-height: 33px;
+	}
+
+	.subsectionBody {
+		max-width: 580px;
+
+		@media (max-width: @screen-sm-max) {
+			margin: @spacing-xs 0;
+			max-width: none;
+			display: flex;
+
+			.half {
+				width: 49%;
+				margin-right: 2%;
+			}
+
+			.textInputOfFilter {
+				flex-grow: 1;
+				padding: 5px @spacing-custom @spacing-sm;
+				border-radius: 3px;
+				background-color: #fff;
+				border: solid 1px @gray-lighter;
+				width: 49%;
+				height: 36px;
+			}
+
+			.fullWidthForMobileView {
+				width: 100%;
+				margin: 0;
+			}
+		}
+	}
+
+	.checkbox {
+		margin-left: 15px;
+		color: @gray-darkest;
+		opacity: 0.5;
+
+		&.checked {
+			opacity: 1;
+		}
+
+		@media (max-width: @screen-sm-max) {
+			margin: 14px 0 @spacing-custom 0;
+			display: block;
+			width: max-content;
+		}
+	}
+
+	.titleSubsection,
+	.moveMessageSubsection {
+		margin-bottom: @spacing-xl;
+
+		@media (max-width: @screen-sm-max) {
+			margin-bottom: @spacing-md;
+			border-bottom: none;
+		}
+	}
+
+	.moveIntoFolderLabel {
+		line-height: 18px;
+
+		@media (max-width: @screen-sm-max) {
+			margin: @spacing-custom 0;
+			width: auto;
+			font-weight: 500;
+		}
+	}
+
+	.processAdditional {
+		display: inline-block;
+
+		@media (max-width: @screen-sm-max) {
+			margin: @spacing-sm 0;
+		}
+	}
+
+	.ruleSection {
+		margin-top: @spacing-custom;
+		margin-bottom: 40px;
+
+		@media (max-width: @screen-sm-max) {
+			margin: 0;
+		}
+	}
+}

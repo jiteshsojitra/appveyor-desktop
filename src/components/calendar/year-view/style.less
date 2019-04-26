@@ -1,0 +1,83 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.heading {
+	display: block;
+	flex: 1 1 auto;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 4px;
+	text-transform: uppercase;
+	text-align: left;
+	font-size: 16px;
+	font-family: @headings-font-family;
+	font-weight: @headings-font-weight;
+	color: @text-color;
+}
+
+.year {
+	.strict();
+	.scroll();
+	border-top: 1px solid @gray-lighter;
+	display: flex;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.month {
+	display: flex;
+	flex: 1 1 calc(100%/4);
+	min-width: 180px;
+	padding: 15px;
+	flex-wrap: wrap;
+	align-content: space-between;
+
+	@media (max-width: @screen-lg) {
+		flex: 1 1 calc(100%/3);
+	}
+
+	@media (max-width: @screen-sm) {
+		flex-basis: calc(100%/2);
+	}
+
+	@media (max-width: @screen-xs) {
+		flex-basis: 100%;
+		max-width: unset;
+	}
+}
+
+.day {
+	display: inline-block;
+	flex: 1 1 calc(100%/7);
+	box-sizing: border-box;
+	padding: 2px;
+	margin: -1px 0;
+	border: none;
+	border-radius: 2px;
+	color: @text-color;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 300;
+	line-height: inherit;
+	text-transform: uppercase;
+
+	&.outsideOfMonth {
+		opacity: 0.5;
+	}
+
+	&.today {
+		color: @brand-primary !important;
+		background: @gray-lighter !important;
+	}
+
+	&:hover {
+		color: black;
+	}
+
+	@media (max-width: @screen-sm) {
+		padding: 8px;
+	}
+}

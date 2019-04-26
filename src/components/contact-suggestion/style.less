@@ -1,0 +1,81 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.suggestion {
+	display: flex;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	border: 2px solid #FFF;
+	border-width: 1px 2px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: @gray;
+	cursor: pointer;
+
+	.avatar {
+		margin-right: 8px;
+	}
+
+	.name,
+	.email {
+		padding-right: 8px;
+	}
+
+	.avatar {
+		width: 36px;
+		height: 36px;
+		flex-shrink: 0;
+	}
+
+	.name {
+		font-weight: bold;
+	}
+
+	.email {
+		color: @gray-light;
+		flex: 1;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+	}
+
+	strong {
+		font-weight: normal;
+		color: #000;
+	}
+
+	&:first-child {
+		border-top-width: 2px;
+	}
+	&:last-child {
+		border-bottom-width: 2px;
+	}
+
+	&.selected {
+		background: @gray-lightest;
+	}
+
+	&.active {
+		background: @gray-lighter;
+	}
+}
+
+.closeContainer {
+	flex: 1;
+	text-align: right;
+	padding-right: 4px;
+}
+
+.closePlaceholder {
+	width: 22px;
+	height: 18px;
+}
+
+.close {
+	color: @gray-darker;
+	width: 18px;
+	height: 18px;
+}
+
+.previouslySelectedLabel {
+	font-size: 11px;
+}

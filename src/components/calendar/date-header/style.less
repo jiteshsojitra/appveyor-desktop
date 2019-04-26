@@ -1,0 +1,24 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+// Customize the month view's day numbering to account for day name titles in the first row:
+.dateHeader {
+	color: @text-color;
+	font-weight: inherit;
+	font-size: 13px;
+	user-select: none;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	strong {
+		padding-right: .3em;
+		color: @text-color;
+		font-weight: inherit;
+	}
+
+	&.isOffRange {
+		color: @gray-placeholder;
+	}
+}

@@ -1,0 +1,3 @@
+mutation modifyPrefs($prefs: PreferencesInput!) {
+	modifyPrefs(prefs: $prefs)
+}

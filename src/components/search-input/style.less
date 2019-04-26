@@ -1,0 +1,146 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+@input-height: 38px;
+@contact-tag-width-sm: 45px;
+@contact-tag-width: 150px;
+.container {
+	flex: 1;
+}
+
+.form {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	&.sectionSearch{
+		.input{
+			order:3;
+		}
+		.clearBtn{
+			order:4;
+		}
+		.searchButton{
+			order:1;
+		}
+		.contactTag {
+			order:2;
+		}
+	}
+}
+
+.input {
+	flex: 1;
+	height: @input-height;
+	border: 0;
+	border-radius: 2px;
+	padding-left: @spacing-md;
+	outline: none;
+	&::placeholder {
+		color: @gray-light;
+	}
+	@media (max-width: @screen-sm-max) {
+		padding-left: 11px;
+	}
+}
+
+.clearBtn {
+	margin-left: auto;
+	border: none;
+	background: transparent;
+	&.hideButon{
+		visibility: hidden;
+	}
+}
+span.clearIconSize[role="img"] {
+	font-size: 20px;
+}
+.suggestions {
+	position: absolute;
+	z-index: 11;
+	top: 100%;
+	width: 100%;
+	background-color: #fff;
+	color: @text-color;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.contactSuggestion {
+	&:hover {
+		background-color: @gray-lightest;
+	}
+
+	.contactSuggestionName {
+		font-weight: normal;
+	}
+
+	strong {
+		font-weight: bold;
+	}
+
+	&.contactSuggestionSelected {
+		background-color: @list-active-bg;
+	}
+}
+
+.contactTag {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: @gray-dark;
+	border-radius: 56px;
+	height: 30px;
+	padding:4px;
+	margin-left: 4px;
+	background-color: @gray-lighter;
+	&.focused {
+		background-color: @list-active-bg;
+	}
+	@media (max-width: 320px) {
+		margin-left: -1px;
+		padding:1px 1px 1px 0px;
+	}
+}
+
+.contactTagName {
+	padding: 2px 8px;
+	justify-content: left;
+	display: inline-block;
+	height: 22px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: @contact-tag-width;
+	@media (max-width: @screen-lg) and (max-width: @screen-sm) {
+		max-width: @contact-tag-width;
+	}
+
+	@media (max-width: @screen-xs) {
+		max-width: @contact-tag-width-sm;
+	}
+}
+
+.contactTagAvatar {
+	width: 24px;
+	height: 24px;
+}
+
+.close {
+	cursor: pointer;
+	padding-right: 7px;
+	color: @gray-dark;
+	font-size: inherit;
+}
+
+.searchButton {
+	padding: 0 8px;
+	border: 0;
+	background: none;
+	color: @gray-light;
+	cursor: pointer;
+	align-self: stretch;
+	@media (max-width: @screen-sm-max) {
+		padding: 0 0 0 14px;
+	}
+}
+.activeButton{
+	color:@brand-primary;
+}

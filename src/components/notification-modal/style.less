@@ -1,0 +1,45 @@
+@import '~@zimbra/x-ui/refs.less';
+
+.notificationModal {
+	.notificationModalContent {
+		margin: 0;
+
+		.actions {
+			padding-bottom: @spacing-lg;
+
+			button {
+				margin-left: 0;
+				margin-right: 20px;
+
+				&.clipboardBtn {
+					color: @gray-light;
+				}
+			}
+		}
+
+		&.showDetails {
+				padding-top: @spacing-lg;
+				border-top: 1px solid @gray-lighter;
+
+			.actions {
+				padding-bottom: 0;
+			}
+		}
+	}
+
+	.message {
+		padding: 0 @spacing-lg;
+		overflow: auto;
+		word-break: break-word;
+		margin: @spacing-md -@spacing-lg 0;
+		max-height: 250px;
+	}
+
+	footer {
+		border-top: 1px solid @gray-lighter;
+
+		button {
+			margin: 0;
+		}
+	}
+}

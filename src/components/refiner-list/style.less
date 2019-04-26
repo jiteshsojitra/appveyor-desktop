@@ -1,0 +1,91 @@
+@import '../../style/helpers.less';
+
+.contextMenu {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.group {
+	display: block;
+	position: relative;
+}
+
+.groupToggle {
+	position: absolute;
+	left: 10px;
+	top: 7px;
+	cursor: pointer;
+	padding: 0 4px;
+	z-index: 1;
+}
+
+.groupHeader {
+	padding: 7px 18px 7px 32px;
+	display: flex;
+	flex-direction: row;
+	align-items: space-between;
+	font-family: @branding-font-family-bold;
+	font-weight: normal;
+	position: relative;
+
+	.groupName {
+		flex: 1;
+	}
+}
+
+.groupList,
+.list {
+	padding: 0;
+}
+
+.groupList {
+	margin: 0;
+	padding-left: 5px;
+}
+
+.filterList {
+	padding: 0;
+	margin: 0;
+	.eventFilter {
+		font-size: 13px;
+		color: @gray-darkest;
+		list-style: none;
+		height: 32px;
+		padding-left: 40px;
+		display: flex;
+		cursor: pointer;
+		& > * {
+			line-height: 32px;
+			flex: 1 1 auto;
+			text-align: left;
+		}
+		&:hover {
+			background: @list-hover-bg;
+		}
+	}
+	.selectedFilter {
+		background: @list-active-bg !important;
+	}
+}
+
+.refineHeader {
+	color: @gray-darkest;
+	font-size: 13px;
+	font-weight: bold;
+	height: 32px;
+	padding: 8px 20px;
+}
+
+.dateFilter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 20px;
+	.dateInput {
+		text-align: center;
+		width: 100%;
+		padding: 4px;
+		font-size: 13px;
+	}
+}

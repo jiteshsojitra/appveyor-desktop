@@ -1,0 +1,2302 @@
+{
+	"app": {
+		"loading": "Loading…",
+		"offline": "Offline",
+		"generalError": "The application has encountered an error",
+		"connectionError": "Cannot connect to server.",
+		"reconnectMessage": "Reconnected to server.",
+		"notifications": {
+			"updatesAvailable": "Application Update: Refresh your browser to get the latest version."
+		},
+		"errors" : {
+			"logo_missing": "Brand Logo Missing"
+		}
+	},
+	"serverConfigDialog": {
+		"title": "Configure your email",
+		"serverUrl": "Please enter your mail server URL to set up the application.",
+		"continue": "Continue"
+	},
+	"buttons": {
+		"accept": "Accept",
+		"accepted": "Accepted",
+		"add": "Add",
+		"addCalendar": "Add Calendar",
+		"addMoreDetails": "Add More Details",
+		"cancel": "Cancel",
+		"discard": "Don't Save",
+		"change": "Change",
+		"clear": "Clear",
+		"close": "Close",
+		"compose": "Compose",
+		"continue": "Continue",
+		"confirm": "Confirm",
+		"delete": "Delete",
+		"deletePermanent": "Delete Permanently",
+		"decline": "Decline",
+		"declined": "Declined",
+		"dismiss": "Dismiss",
+		"dismissAll": "Dismiss All",
+		"dontSend": "Don't send",
+		"edit": "Edit",
+		"follow": "Follow",
+		"done": "Done",
+		"download": "Download",
+		"update": "Update",
+		"export": "Export Now",
+		"forward": "Forward",
+		"fullScreen": "Full Screen",
+		"hide": "Hide",
+		"import": "Import",
+		"more": "More",
+		"next": "Next",
+		"newMessage": "New Message",
+		"no": "No",
+		"ok": "OK",
+		"previous": "Previous",
+		"print": "Print",
+		"private": "Private",
+		"removeMailbox": "Remove mailbox",
+		"reply": "Reply",
+		"replyToAll": "Reply to All",
+		"resend": "Resend",
+		"restore": "Restore",
+		"reload": "Reload",
+		"save": "Save",
+		"saveSearch": "Save Search",
+		"send": "Send",
+		"show": "Show",
+		"snooze": "Snooze",
+		"snoozeAll": "Snooze All",
+		"tentative": "Tentative",
+		"undo": "Undo",
+		"unfollow": "Unfollow",
+		"verify": "Verify",
+		"yes": "Yes",
+		"zoomIn": "Zoom In",
+		"zoomOut": "Zoom Out",
+		"signin": "Sign In",
+		"searchMail": "Search Mail",
+		"updateSearch": "Update Search",
+		"refineSearch": "Refine",
+		"relogin": "Relogin",
+		"remove": "Remove",
+		"view": "View",
+		"addCertificate": "Add a Certificate",
+		"unread": "Unread",
+		"starred": "Starred",
+		"custom": "Custom"
+	},
+	"appNavigation": {
+		"email": "Mail",
+		"contacts": "Contacts",
+		"calendar": "Calendar"
+	},
+	"dates": {
+		"yesterday": "Yesterday"
+	},
+	"toasts": {
+		"sorry": "We are sorry! Something went wrong...",
+		"folderExists": {
+			"message":
+				"A folder named <b>{{name}}</b> already exists! Please enter a different name for your folder.",
+			"conversation":
+				"A folder named <b>{{name}}</b> already exists! Please enter a different name for your folder.",
+			"note":
+				"A notebook named <b>{{name}}</b> already exists! Please enter a different name for your notebook."
+		},
+		"deleteContacts": {
+			"singular": "Contact deleted.",
+			"plural": "{{count}} Contacts deleted."
+		},
+		"permanentlyDeleteContacts": {
+			"singular": "Contact permanently deleted.",
+			"plural": "{{count}} Contacts permanently deleted."
+		},
+		"emptyFolderDeleteMsg": "Only empty folders can be deleted. Please delete all contents of the <b>{{name}}</b> folder first.",
+		"movedToTopLevel": "<b>{{name}}</b> moved to the top level.",
+		"movedTo": "<b>{{name}}</b> moved to <b>{{destName}}</b>.",
+		"created": "<b>{{name}}</b> created.",
+		"renamed": "<b>{{prevName}}</b> renamed to <b>{{name}}</b>."
+	},
+	"loginScreen": {
+		"header": {
+			"title": "Sign in",
+			"tagline": "To access your {{name}} email"
+		},
+		"labels": {
+			"email": "Email",
+			"pass": "Password",
+			"newPass": "New Password",
+			"confirmPass": "Confirm Password",
+			"currentPass": "Current Password",
+			"cancel": "Cancel"
+		},
+		"forgotPass": {
+			"badCode": "Invalid code. Try again or click \"Resend\" to have a new code sent to your recovery email.",
+			"code": "Code",
+			"forgotPassword": "Forgot Password?",
+			"found": "Thank you. A verification code has been sent to {{email}}. Enter the code below.",
+			"header": "Password Assistance",
+			"noEmail": "No recovery information found for this email. Please try again or contact your administrator for more assistance.",
+			"paragraph": "Please provide your {{domain}} email to have a password reset code sent to your recovery email address."
+		},
+		"resetPass": {
+			"header": "Reset Your Password",
+			"headerChangePassword": "Change Password",
+			"passwordNotMatching":
+				"Both new passwords must match. Please retype them.",
+			"passwordChanged": "Your password has been changed successfully."
+		},
+		"errors": {
+			"invalidCredentials": "Invalid username or password",
+			"chooseNewPass":
+				"Your password is no longer valid. Please choose a new password.",
+			"inMaintainance": "This account is currently in maintenance mode."
+		},
+		"switchToBasic": "Switch to Basic Version",
+		"privacyPolicy": "Privacy Policy",
+		"acceptableUsePolicy": "Acceptable Use Policy",
+		"contact": "Contact",
+		"copyright":
+			"© 2019 Synacor, Inc. All rights reserved. \"Zimbra\" is a registered trademark of Synacor, Inc."
+	},
+	"header": {
+		"defaultAccount": "Account",
+		"SETTINGS": "Settings",
+		"LANGUAGE": "Language",
+		"EMAIL_SUPPORT": "Email Support",
+		"KEYBOARD_SHORTCUTS": "Keyboard Shortcuts",
+		"PRIVACY": "Privacy",
+		"LEGAL": "Legal",
+		"ABOUT_THE_ADS": "About the Ads",
+		"LOGOUT": "Logout",
+		"CHANGE_PASSWORD": "Change Password",
+		"changeProfileImage": "Change Profile Image",
+		"ABOUT": "About"
+	},
+	"navigation": {
+		"closeAllTabs": "Close All Messages"
+	},
+	"mail": {
+		"preText": {
+			"replied": "Re:",
+			"forwarded": "Fw:"
+		},
+		"folders": {
+			"IS_EMPTY": "Your <b>{{name}}</b> folder is empty",
+			"ADD_NEW_PLACEHOLDER": "Create a folder",
+			"FIND_PLACEHOLDER": "Find a folder"
+		},
+		"contextMenu": {
+			"MARK_READ": "Mark emails as read",
+			"EMPTY_JUNK": "Empty junk",
+			"EMPTY_TRASH": "Empty trash",
+			"ARCHIVE_ALL": "Archive all emails",
+			"TRASH_ALL": "Delete all emails",
+			"RENAME_FOLDER": "Rename folder",
+			"MOVE_FOLDER": "Move folder",
+			"DELETE_FOLDER": "Delete folder",
+			"CREATE_SUBFOLDER": "Create subfolder",
+			"CREATE_FOLDER": "Create folder",
+			"FIND_FOLDER": "Find folder",
+			"RENAME_SEARCH": "Rename search",
+			"MOVE_SEARCH": "Move search",
+			"DELETE_SEARCH": "Delete search",
+			"EDIT_PROPERTIES": "Edit properties",
+			"FOLDER_SYNC_SETTINGS": "Folder Sync Settings",
+			"PLACE_TOP_LEVEL": "Place at top level",
+			"MARK_AS_READ": "Mark as Read",
+			"MARK_AS_UNREAD": "Mark as Unread",
+			"STAR": "Star",
+			"CLEAR_STAR": "Clear Star",
+			"BLOCK": "Block",
+			"MARK_AS_SPAM": "Mark as Spam",
+			"MARK_AS_NOT_SPAM": "Mark as not Spam",
+			"ARCHIVE": "Archive",
+			"DELETE_MESSAGE": "Delete",
+			"showOriginal": "Show Original",
+			"PRINT": "Print",
+			"CREATE_EVENT": "Create Event",
+			"CREATE_FILTER": "Create Filter",
+			"ADD_SENDER_CONTACTS": "Add Sender to Contacts",
+			"VIEW_RAW_MESSAGE": "View Raw Message"
+		},
+		"sortMenu": {
+			"dateDesc": "Date: Newest on top",
+			"dateAsc": "Date: Oldest on top",
+			"attachDesc": "Attachments",
+			"flagDesc": "Starred",
+			"nameAsc": "Sender",
+			"rcptAsc": "Recipient",
+			"subjAsc": "Subject",
+			"groupByConversations": "Group by Conversations",
+			"settings": "More Settings…",
+			"readDesc": "Unread",
+			"sizeAsc": "Size: Smallest on top",
+			"sizeDesc": "Size: Biggest on top"
+		},
+		"sortLabels": {
+			"dateDesc": "Sort by date",
+			"dateAsc": "Sort by date",
+			"attachDesc": "Sort by attachment",
+			"flagDesc": "Sort by starred",
+			"nameAsc": "Sort by sender",
+			"rcptAsc": "Sort by recipient",
+			"subjAsc": "Sort by subject",
+			"readDesc": "Sort by unread",
+			"sizeAsc": "Sort by size",
+			"sizeDesc": "Sort by size"
+		},
+		"viewer": {
+			"messageContainsExternalImages": "This message contains external images",
+			"spoofedAddressWarning": "Be careful! The sender's address seems suspicious, so take extra caution with this message.",
+			"clickToLoad": "Click to load",
+			"numMoreMessages": {
+				"none": "no more messages",
+				"one": "{{count}} more message",
+				"many": "{{count}} more messages"
+			},
+			"alwaysDisplayImagesFrom": "Always display images from",
+			"onBehalfOf": "on behalf of",
+			"or": "or",
+			"unavailableOffline": "Message not available offline.",
+			"plusOthers": "+{{count}} others"
+		},
+		"title": "Mail",
+		"selectEmail": "Select Email",
+		"DRAFT": "Draft",
+		"noSubject": "[No subject]",
+		"notifications":{
+			"sent": "Message sent.",
+			"noRecipient": "No recipient addresses.",
+			"signError": "Error while signing message.",
+			"sendUndone": "Sending has been undone."
+		},
+		"print": {
+			"header": {
+				"subject": "Subject",
+				"from": "From",
+				"to": "To",
+				"cc": "Cc",
+				"date": "Date",
+				"sent": "Sent"
+			},
+			"attachments": "Attachments"
+		},
+		"placeHolders": {
+			"backtotop": "Back to top",
+			"search": "Search"
+		},
+		"prevMessageMenu": {
+			"dontInclude": "Don't Include Original Message",
+			"includeOriginal": "Include Original Message",
+			"includeLast": "Include Last Message Only",
+			"includeAttachment": "Include Original as Attachment"
+		},
+		"selected": "Selected"
+	},
+	"dialogs": {
+		"blockEmails": {
+			"DIALOG_TITLE": "Block",
+			"DESCRIPTION":
+				"Verify that you want to block messages from the following email addresses:",
+			"BLOCK_EMAILS_LABEL": "Block all future emails",
+			"DELETE_EMAILS_LABEL": "Delete all existing emails"
+		},
+		"emptyFolder": {
+			"DIALOG_TITLE": "Empty the {{name}} folder",
+			"DESCRIPTION":
+				"Are you sure you want to permanently delete all items in {{name}}?"
+		},
+		"deleteFolder": {
+			"DIALOG_TITLE": "Delete the {{name}} folder",
+			"DESCRIPTION_SAVED_SEARCHES":
+				"Are you sure you want to delete the \"{{name}}\" saved search?",
+			"DESCRIPTION": "Are you sure you want to delete the \"{{name}}\" folder?",
+			"DESCRIPTION_PERMANENT":
+				"Are you sure you want to permanently delete the \"{{name}}\" folder?"
+		},
+		"deleteContact": {
+			"DIALOG_TITLE": "Delete Contact",
+			"DESCRIPTION":
+				"Are you sure you want to delete this contact?",
+			"DESCRIPTION_PERMANENT":
+				"Are you sure you want to permanently delete this contact? This action cannot be undone."
+		},
+		"saveContact": {
+			"DIALOG_TITLE": "Save Changes?",
+			"PROCEED": "Save Changes",
+			"DISCARD": "Don't Save"
+		},
+		"timeError": {
+			"WORKING_HOURS_ERROR": "{{message}}"
+		},
+		"permanentDelete": {
+			"conversation": {
+				"title": "Delete Conversation",
+				"description":
+					"Are you sure you want to permanently delete the selected conversation(s)?"
+			},
+			"message": {
+				"title": "Delete Message",
+				"description":
+					"Are you sure you want to permanently delete the selected message(s)?"
+			}
+		},
+		"attachmentWarning": {
+			"title": "Warning",
+			"message": "Attachments will be lost, do you want to proceed?",
+			"cancel": "Cancel",
+			"proceed": "Proceed"
+		},
+		"SMIMEOffline": {
+			"title": "Encryption not available offline",
+			"message": "Please try again when you're online."
+		},
+		"emailMismatchWithCert": {
+			"title": "Encryption not available",
+			"message": "Recipient's email address does not match certificate."
+		},
+		"encryptError": {
+			"title": "Cannot encrypt and send",
+			"recipientError": "Missing or invalid certificate for one or more recipients.",
+			"senderError": "Cannot sign/encrypt by sender certificate."
+		},
+		"previousMailSetting": {
+			"confirmModalTitle": "Warning",
+			"confirmModalText": "Text that you‘ve added at the top will be preserved, but other changes you’ve made may be lost. Continue?"
+		}
+	},
+	"calendar": {
+		"title": "Calendar",
+		"today": "Today",
+		"repeats": "Repeats",
+		"event_no_title": "( No title )",
+		"newEvent": "New Event",
+		"backToCalendar": "Back to Calendar",
+		"eventFields": {
+			"organizer": "Organizer",
+			"recurring": "Recurring"
+		},
+		"search": {
+			"refineHeader": "Refine by",
+			"results": "{{count}} {{types}} were found matching your search",
+			"filters": {
+				"type": "Events/Tasks",
+				"date": "Date"
+			},
+			"popover": {
+				"repeat": "Repeats {{frequency}}",
+				"frequencies": {
+					"SEC": "Every Second",
+					"MIN": "Every Minute",
+					"HOU": "Hourly",
+					"DAI": "Daily",
+					"WEE": "Weekly",
+					"MON": "Monthly",
+					"YEA": "Yearly"
+				}
+			},
+			"eventType": {
+				"tasks": "Tasks",
+				"events": "Events"
+			}
+		},
+		"actions": {
+			"BUTTON": "Actions",
+			"PRINT": "Print",
+			"NEW_CALENDAR": "Create New Calendar",
+			"NEW_TASK_LIST": "Create New Task List",
+			"SHARE": "Share",
+			"SHOW_TASKS": "Show Tasks",
+			"ADD_HOLIDAYS": "Add Holidays",
+			"ADD_SHARED_CALENDAR": "Add a Friend's Calendar",
+			"SYNC_HELP": "Sync Help"
+		},
+		"views": {
+			"year": "Year",
+			"month": "Month",
+			"week": "Week",
+			"day": "Day",
+			"agenda": "List"
+		},
+		"addCalendarModal": {
+			"remind": {
+				"remind": "Remind",
+				"mail": "Mail",
+				"mobileDesktop": "Mobile/Desktop"
+			},
+			"footnote":
+				"Note: Reminders are sent subject to the owner's reminder setting for an event",
+			"errors": {
+				"alreadyExists": "A calendar with that name already exists",
+				"invalidName": "Invalid calendar name",
+				"generic": "An unknown error occurred: {{error}}"
+			}
+		},
+		"editModal": {
+			"title": "Add Event",
+			"editTitle": "Edit Event",
+			"forwardTitle": "Forward Event on behalf of {{organizerName}}",
+			"forward": "Invitation forwarded.",
+			"FILE_SIZE_EXCEEDED":
+				"Unable to upload your attachment. Please try again. Note: the maximum attachment size is 10MB.",
+			"fields": {
+				"start": "Start",
+				"allDay": "All Day",
+				"end": "End",
+				"repeat": "Repeat",
+				"repeatOptions": {
+					"NONE": "None",
+					"DAI": "Every day",
+					"WEE": "Every week",
+					"MON": "Every month",
+					"YEA": "Every year"
+				},
+				"to": "To",
+				"private": "Private",
+				"location": "Location",
+				"invitees": "Invitees",
+				"notes": "Notes",
+				"remind": "Remind",
+				"remindOptions": {
+					"never": "Never",
+					"0s": "At time of event",
+					"1m": "1 minute before",
+					"5m": "5 minutes before",
+					"10m": "10 minutes before",
+					"15m": "15 minutes before",
+					"30m": "30 minutes before",
+					"45m": "45 minutes before",
+					"60m": "60 minutes before",
+					"2h": "2 hours before",
+					"3h": "3 hours before",
+					"4h": "4 hours before",
+					"5h": "5 hours before",
+					"18h": "18 hours before",
+					"1d": "1 day before",
+					"2d": "2 days before",
+					"3d": "3 days before",
+					"4d": "4 days before",
+					"1w": "1 week before",
+					"2w": "2 weeks before"
+				},
+				"mobileDesktop": "Mobile/Desktop",
+				"email": "Email",
+				"showAs": "Show as",
+				"showAsOptions": {
+					"F": "Free",
+					"T": "Tentative",
+					"B": "Busy",
+					"O": "Out of Office"
+				},
+				"calendar": "Calendar"
+			},
+			"buttons": {
+				"showAvailability": "Show Availability",
+				"addAttachment": "Add Attachment"
+			},
+			"availability": {
+				"title": "Availability for {{date}}",
+				"subtitle":
+					"Only calendars that are shared with you or that are public will be visible.",
+				"status": {
+					"nonworking": "Non-working hours",
+					"free": "Free",
+					"busy": "Busy",
+					"tentative": "Tentatively busy",
+					"unavailable": "Out of office",
+					"nodata": "Calendar not shared"
+				}
+			},
+			"notifications": {
+				"problemInCreating": "There was a problem creating the event.",
+				"problemInModifying": "There was a problem modifying the event.",
+				"permissionDenied":
+					"You don't have required permissions to edit this event.",
+				"problemInFetching": "There was a problem in getting data of event.",
+				"tryAgain": "Try again",
+				"eventUpdate": "Event update sent.",
+				"eventSaved": "Event saved.",
+				"eventSent": {
+					"singular": "Invitation sent.",
+					"plural": "Invitations sent."
+				},
+				"inEventNotificationText": "You have not sent invitations for this event.",
+				"inEventNotificationAction": "Send invitations now"
+			}
+		},
+		"sidebar": {
+			"calendarListLabel": {
+				"holiday": "Holidays",
+				"own": "My Calendars",
+				"other": "Others"
+			},
+			"actions": {
+				"IMPORT_CALENDAR": "Import",
+				"EXPORT_CALENDAR": "Export"
+			},
+			"holidayCalendars": {
+				"Australian": "Australian Holidays",
+				"Chinese": "Chinese Lunar Simplified Holidays",
+				"Brazilian": "Brazilian Holidays",
+				"Canadian": "Canadian Holidays",
+				"Danish": "Danish Holidays",
+				"Dutch": "Dutch Holidays",
+				"Irish": "Irish Holidays",
+				"Finnish": "Finnish Holidays",
+				"French": "French Holidays",
+				"German": "German Holidays",
+				"HongKong": "Hong Kong Holidays",
+				"Indian": "Indian Holidays",
+				"Italian": "Italian Holidays",
+				"Japanese": "Japanese Holidays",
+				"Mexican": "Mexican Holidays",
+				"Norwegian": "Norwegian Holidays",
+				"NewZealand": "New Zealand Holidays",
+				"Portuguese": "Portuguese Holidays",
+				"SouthAfrican": "South African Holidays",
+				"SouthKorean": "South Korean Holidays",
+				"Swedish": "Swedish Holidays",
+				"Spanish": "Spanish Holidays",
+				"Taiwanese": "Taiwanese Holidays",
+				"UK": "UK Holidays",
+				"US": "US Holidays"
+			},
+			"myCalendars": "My Calendars",
+			"holidays": "Holidays",
+			"sports": "Sports",
+			"others": "Others",
+			"notifications": {
+				"calendarShared": {
+					"singular": "Shared with 1 contact",
+					"plural": "Shared with {{count}} contacts"
+				},
+				"errors": {
+					"cannotShareWithSelf": "You cannot share a calendar with yourself",
+					"invalidEmail":
+						"Please enter a valid email address format (e.g. name@domain.com)",
+					"calendarAlreadyShared": "Calendar already shared with user"
+				}
+			}
+		},
+		"dialogs": {
+			"calendarMenu": {
+				"COLOR_LABEL": "Color"
+			},
+			"holidayCalendar": {
+				"DIALOG_TITLE": "Holiday Calendars",
+				"HOLIDAY_CALENDAR_LABEL": "Pick a Calendar"
+			},
+			"newCalendar": {
+				"DIALOG_TITLE": "Add Calendar",
+				"EDIT_DIALOG_TITLE": "Edit Calendar",
+				"COLOR_LABEL": "Color",
+				"INPUT_PLACEHOLDER": "New Calendar",
+				"ERROR_DUPLICATE_CALENDAR": "A calendar with this name already exists."
+			},
+			"printCalendar": {
+				"DIALOG_TITLE": "Print Calendar",
+				"SELECTED_DATE_LABEL": "Selected Date",
+				"TODAY_LABEL": "Today",
+				"TO_LABEL": "to",
+				"DATE_RANGE_LABEL": "Date Range",
+				"PRINT_VIEW_LABEL": "Print View",
+				"PRINT_VIEW_DAY_LABEL": "Day",
+				"PRINT_VIEW_WEEK_LABEL": "Week",
+				"PRINT_VIEW_MONTH_LABEL": "Month",
+				"PRINT_VIEW_AGENDA_LABEL": "List",
+				"HOURS_LABEL": "Hours",
+				"OPTIONS_LABEL": "Options",
+				"MINI_CALENDAR_LABEL": "Include mini-calendar",
+				"PRINT_WORKDAYS_LABEL": "Print work days only",
+				"PRINT_ONE_MONTH_LABEL": "Print one month per page",
+				"PRINT_ONE_WEEK_LABEL": "Print one week per page",
+				"PRINT_ONE_DAY_LABEL": "Print one day per page"
+			},
+			"recurrenceEdit": {
+				"title": "Edit Recurring Event",
+				"label": "You're editing a recurring event. Apply changes to:",
+				"eventOnly": "This Event Only",
+				"allEvents": "All Events"
+			},
+			"share": {
+				"reset": "Reset",
+				"copyLink": "Copy link",
+				"title": "Share Calendar: {{name}}",
+				"settingsTitle": "Sharing settings",
+				"sharedWith": "Shared with {{grantees}} | ",
+				"enablePublicLabel":
+					"Enable my public calendar (easiest, least private)",
+				"generateLinksLabel": "Generate Links (most secure)",
+				"inviteEmailsLabel": "Invite people by email (most flexible)",
+				"publicSelectLabel": "Anyone with the link can view events",
+				"emailSelectLabel": "Anyone with the link can",
+				"linksBrowserLabel": "To view in browser — View only",
+				"linksICSLabel": "To import into a Calendar app (.ics) — View only",
+				"addressFieldPreviouslySelected": "Shared",
+				"addressFieldOwner": "Owner",
+				"noAccess": "No one has access.",
+				"notifyCopy": "Copied link to clipboard.",
+				"inviteEmailsSection": "Invite people by email",
+				"accessSection": "Who has access:",
+				"emailAddressesPlaceholder": "Enter names or email addresses…",
+				"eventNotResponded": "{{name}} has not responded",
+				"fields": {
+					"permissions": {
+						"options": {
+							"r": "Can view",
+							"rf": "Can view free/busy times only",
+							"rp": "Can view (including private events)",
+							"rw": "Can view and edit",
+							"rwidx": "Can view, edit, add, and remove",
+							"rwidxa": "Can administer",
+							"rwidxap": "Can administer (including private events)",
+							"rwidxp":
+								"Can view, edit, add, and remove (including private events)"
+						}
+					},
+					"permissionsInline": {
+						"options": {
+							"r": "view",
+							"rf": "view free/busy times only",
+							"rp": "view (including private events)",
+							"rw": "view and edit",
+							"rwidx": "view, edit, add, and remove",
+							"rwidxa": "administer",
+							"rwidxap": "administer (including private events)",
+							"rwidxp": "view, edit, add, and remove (including private events)"
+						}
+					}
+				}
+			},
+			"importCalendar": {
+				"DIALOG_TITLE": "Import from file",
+				"CHOOSE_FILE" : "Choose File",
+				"ERROR_IMPORT_FORMAT": "The chosen file format is not valid.",
+				"ERROR_IMPORT_UNKNOWN":
+					"An unknown error occurred in importing events.",
+				"PROMPT_TEXT":
+					"The file should be in iCalendar ics format only. The maximum size of the file that can be uploaded is 5MB."
+			},
+			"exportCalendar": {
+				"DIALOG_TITLE": "Export calendar",
+				"PROMPT_TEXT": "Export this calendar in ICS format.",
+				"ERROR_EXPORT": "An error occured while downloading your calendar",
+				"FORMATS": {
+					"ics": "iCalendar ICS",
+					"json": "JavaScript Object Notation JSON",
+					"rss": "Rich Site Summary RSS",
+					"xml": "Extensible Markup Language XML",
+					"atom": "Atom syndication format ATOM",
+					"html": "HyperText Markup Language HTML"
+				}
+			},
+			"newSharedCalendar": {
+				"DIALOG_TITLE": "Add Calendar",
+				"ERROR_DUPLICATE_CALENDAR": "A calendar with this name already exists.",
+				"EMAIL_INPUT_LABEL":
+					"Please enter your friend's {{providerName}} email address:",
+				"NO_SHARES_FOR_EMAIL_ERROR":
+					"{{email}} is not sharing any calendars. Make sure that your friend is using {{providerName}} Calendar and has shared a calendar (or set one up to be public)",
+				"CALENDAR_TITLE_PLACEHOLDER": "New Shared Calendar",
+				"CALENDAR_OWNER_LABEL": "Owner",
+				"CALENDAR_NAME_LABEL": "Calendar",
+				"CALENDAR_COLOR_LABEL": "Color",
+				"CALENDAR_REMIND_LABEL": "Remind",
+				"CALENDAR_REMIND_MAIL_LABEL": "Mail",
+				"CALENDAR_REMIND_MOBILE_DESKTOP_LABEL": "Mobile/Desktop",
+				"CALENDAR_REMIND_DISCLAIMER":
+					"Note: Reminders are sent subject to the owner's reminder setting for an event.",
+				"CALENDAR_LINKED_TOAST":
+					"The calendar \"{{calendarName}}\" has been added."
+			},
+			"sharedDeleteWarningDialog": {
+				"DIALOG_TITLE": "Confirmation",
+				"DIALOG_WARNING":
+					"Are you sure you want to delete this calendar? Other users may be affected."
+			},
+			"recurrenceDelete": {
+				"title": "Delete Recurring Event",
+				"label": "You're deleting a recurring event. Delete:",
+				"eventOnly": "This Event Only",
+				"allEvents": "All Events",
+				"notifyOrganizer": "Notify Organizer"
+			},
+			"deleteEvent" : {
+				"title": "Delete",
+				"label": "Are you sure you would like to delete this event?",
+				"notifyOrganizer": "Notify Organizer"
+			},
+			"deleteNotificationMessages" : {
+				"declineSubject": "Decline:",
+				"declineSingleInstance": "I will not be able to attend on-",
+				"appointmentTrashed": "Appointment deleted",
+				"appointmentRestored": "Appointment restored",
+				"cancelAppointment": "Cancelled-",
+				"cancelSingleInstance": "A single instance of the following meeting has been cancelled"
+			},
+			"customRecurrence": {
+				"title": "Custom recurrence",
+				"repeatSection": {
+					"title": "Repeat every",
+					"dropdown": {
+						"DAI" : {
+							"singular": "Day",
+							"plural": "Days"
+						},
+						"WEE" : {
+							"singular": "Week",
+							"plural": "Weeks"
+						},
+						"MON" : {
+							"singular": "Month",
+							"plural": "Months"
+						},
+						"YEA" : {
+							"singular": "Year",
+							"plural": "Years"
+						}
+					},
+					"on": "On",
+					"weekOrder": {
+						"first": "first",
+						"second": "second",
+						"third": "third",
+						"fourth": "fourth",
+						"last": "last"
+					},
+					"MON": {
+						"byDateRule": "On day {{date}} of the month",
+						"byWeekDayRule": "On {{order}} {{weekDay}} of the month"
+					},
+					"YEA": {
+						"byDateRule": "On {{month}} {{date}}",
+						"byWeekDayRule": "On {{order}} {{weekDay}} of {{month}}"
+					},
+					"weekDays": {
+						"SU": "S",
+						"MO": "M",
+						"TU": "T",
+						"WE": "W",
+						"TH": "T",
+						"FR": "F",
+						"SA": "S"
+					}
+				},
+				"endsSection": {
+					"title": "Ends",
+					"labels": {
+						"never": "Never",
+						"onDate": "On",
+						"afterNOccurances": "After",
+						"numOfOccurences": "occurrences"
+					}
+				},
+				"recurrence": {
+					"DAI": {
+						"one": {
+							"noEndCondition": "Daily",
+							"endCondition": {
+								"byDate": "Daily, until {{endDate}}",
+								"byCount": "Daily, {{count}} times"
+							}
+						},
+						"multiple": {
+							"noEndCondition": "Every {{interval}} days",
+							"endCondition": {
+								"byDate": "Every {{interval}} days, until {{endDate}}",
+								"byCount": "Every {{interval}} days, {{count}} times"
+							}
+						}
+					},
+					"WEE": {
+						"one": {
+							"noEndCondition": "Weekly on {{days}}",
+							"noSpecificDay": {
+								"noEndCondition": "Weekly"
+							},
+							"endCondition": {
+								"byDate": "Weekly on {{days}}, until {{endDate}}",
+								"byCount": "Weekly on {{days}}, {{count}} times"
+							},
+							"allWeek": {
+								"noEndCondition": "Weekly on weekdays",
+								"endCondition": {
+									"byDate": "Weekly on weekdays, until {{endDate}}",
+									"byCount": "Weekly on weekdays, {{count}} times"
+								}
+							}
+						},
+						"multiple": {
+							"noEndCondition": "Every {{interval}} weeks on {{days}}",
+							"endCondition": {
+								"byDate": "Every {{interval}} weeks on {{days}}, until {{endDate}}",
+								"byCount": "Every {{interval}} weeks on {{days}}, {{count}} times"
+							},
+							"allWeek": {
+								"noEndCondition": "Every {{interval}} weeks on weekdays",
+								"endCondition": {
+									"byDate": "Every {{interval}} weeks on weekdays, until {{endDate}}",
+									"byCount": "Every {{interval}} weeks on weekdays, {{count}} times"
+								}
+							}
+						}
+					},
+					"MON": {
+						"one": {
+							"byDateRule": {
+								"noEndCondition": "Monthly on Day {{date}}",
+								"endCondition": {
+									"byDate": "Monthly on Day {{date}}, until {{endDate}}",
+									"byCount": "Monthly on Day {{date}}, {{count}} times"
+								}
+							},
+							"byWeekDayRule": {
+								"noEndCondition": "Monthly on the {{order}} {{day}}",
+								"endCondition": {
+									"byDate": "Monthly on the {{order}} {{day}}, until {{endDate}}",
+									"byCount": "Monthly on the {{order}} {{day}}, {{count}} times"
+								}
+							}
+						},
+						"multiple": {
+							"byDateRule": {
+								"noEndCondition": "Every {{interval}} months on Day {{date}}",
+								"endCondition": {
+									"byDate": "Every {{interval}} months on day {{date}}, until {{endDate}}",
+									"byCount": "Every {{interval}} months on day {{date}}, {{count}} times"
+								}
+							},
+							"byWeekDayRule": {
+								"noEndCondition": "Every {{interval}} months on the {{order}} {{day}}",
+								"endCondition": {
+									"byDate": "Every {{interval}} months on the {{order}} {{day}}, until {{endDate}}",
+									"byCount": "Every {{interval}} months on the {{order}} {{day}}, {{count}} times"
+								}
+							}
+						}
+					},
+					"YEA": {
+						"byDateRule": {
+							"noEndCondition": "Annually on {{date}}",
+							"endCondition": {
+								"byDate": "Annually on {{date}}, until {{endDate}}",
+								"byCount": "Annually on {{date}}, {{count}} times"
+							}
+						},
+						"byWeekDayRule": {
+							"noEndCondition": "Annually on {{order}} {{day}} of {{monthName}}",
+							"endCondition": {
+								"byDate": "Annually on {{order}} {{day}} of {{monthName}}, until {{endDate}}",
+								"byCount": "Annually on {{order}} {{day}} of {{monthName}}, {{count}} times"
+							}
+						}
+					}
+				}
+			},
+			"sendInvite": {
+				"title": "Send invitations now?"
+			},
+			"discardChanges": {
+				"title": "Discard changes?",
+				"buttonText": "Discard"
+			}
+		},
+		"contextMenu": {
+			"editCalendar": "Edit Calendar",
+			"share": "Share...",
+			"unlink": "Unfollow",
+			"linkShared": "Add a Friend's Calendar",
+			"deleteCalendar": "Delete Calendar"
+		},
+		"notifications": {
+			"appointmentReminder": "Appointment Reminder",
+			"unlinkShared": "The calendar \"{{calendarName}}\" has been removed.",
+			"calendarDeleted": "Calendar Deleted.",
+			"calendarRestored": "Calendar Restored.",
+			"calendarUpdated": "Calendar details updated."
+		},
+		"invite": {
+			"lang" : {
+				"iso": "en-US",
+				"dir": "ltr"
+			},
+			"intro": "The following is a new meeting request:",
+			"subject": "Subject:",
+			"organizer": "Organizer:",
+			"time": "Time:",
+			"location": "Location:",
+			"invitees": "Invitees:"
+		}
+	},
+	"tasks": {
+		"Task": {
+			"one":"Task",
+			"many": "Tasks"
+		},
+		"TITLE_LIST": "Tasks - List",
+		"TITLE_PRIORITY": "Tasks - Priority",
+		"TITLE_DUE_DATE": "Tasks - Due Date",
+		"TITLE_DONE": "Tasks - Done",
+		"SETTINGS": "Task Settings",
+		"NEW_TASK": "New Task",
+		"PRIORITY_VIEW": "Priority View",
+		"LIST_VIEW": "List View",
+		"DUE_DATE_VIEW": "Due Date View",
+		"DONE_VIEW": "Done View",
+		"CREATE_LIST": "Create List...",
+		"SHARE": "Share...",
+		"PLACEHOLDER": "Add Task",
+		"NO_TASKS": "0 Tasks.",
+		"normal": "Normal",
+		"important": "Important !",
+		"urgent": "Urgent !!",
+		"pastDue": "Past Due",
+		"dueToday": "Due Today",
+		"upcoming": "Upcoming",
+		"duplicateListError":
+			"A task list with this name already exists. Please enter a different name for your task list.",
+		"contextMenu": {
+			"deleteTaskList": "Delete Task List",
+			"editTask": "Edit Task",
+			"postponeOneDay": "Postpone by a Day",
+			"postponeUntilTomorrow": "Postpone until Tomorrow",
+			"markDone": "Mark as Done",
+			"markNotDone": "Mark as Undone",
+			"renameTaskList": "Rename Task List",
+			"deleteTask": "Delete Task"
+		},
+		"groups": {
+			"ALL": "All",
+			"DOING": "In Progress",
+			"DONE": "Completed"
+		},
+		"createList": {
+			"title": "Create Task List",
+			"description": "Enter a name for the new list",
+			"placeholder": "New List",
+			"create": "Create List",
+			"cancel": "Cancel"
+		},
+		"loading": "Loading Tasks",
+		"addTask": {
+			"editTitle": "Edit Task",
+			"placeholder": "Add Task",
+			"dueDate": "Due Date",
+			"priority": {
+				"label": "Priority"
+			},
+			"lists": {
+				"label": "List"
+			},
+			"notes": "Notes",
+			"error": {
+				"taskErrorKey": "Entering a name is required",
+				"invalidDate": "Date is not valid."
+			}
+		},
+		"notifications": {
+			"addTask": "Task Added.",
+			"createList": "Task List Created.",
+			"delete": "Task Deleted.",
+			"deleteUndone": "Task Restored.",
+			"completed": "Task Completed.",
+			"listDeleted": "Task List Deleted.",
+			"listRestored": "Task List Restored."
+		}
+	},
+	"contacts": {
+		"title": "Contacts",
+		"contactViewPlaceholder": "Choose a contact to view or update.",
+		"chooseContact": "Choose a contact to view or update.",
+		"dialogs" : {
+			"deleteList" : {
+				"DIALOG_TITLE" : "Delete the {{name}} list",
+				"DESCRIPTION" : "Are you sure you want to permanently delete the \"{{name}}\" list?"
+			},
+			"uploadPhoto" : {
+				"dialogTitle": "Update Photo",
+				"dragDropDescription": "Recommended minimum size 280px x 280px",
+				"dragDropImage": "Drag and drop image here, or browse",
+				"dragDropImageMobile": "Tap to change",
+				"rotateDescription": "Drag the corners of the dotted frame to resize. Drag the box to reposition.",
+				"rotateImage": "Rotate",
+				"removePhoto": "Remove Photo",
+				"errorMaxWidth" : "The photo you selected is too large. The maximum size is 800px x 800px. Please try a smaller photo.",
+				"errorMinWidth" : "The photo you selected is too small. The minimum size is 110px x 110px. Please try a larger photo.",
+				"errorType" : "The selected image is not a supported file type. Supported file types include: PNG, GIF, JPG, SVG, and BMP. Please try again with a supported file type."
+			}
+		},
+		"picker": {
+			"title": "Choose contacts",
+			"description": "Select addresses to add to the {{field}} field",
+			"searchPlaceholder": "Search for a contact",
+			"defaultContactChooserSource": "All Contacts",
+			"selectAllContacts": "Select All",
+			"numOfSelectedContacts": {
+				"none": "None selected",
+				"one": "{{count}} selected",
+				"many": "{{count}} selected"
+			},
+			"additionalSelectedItems": {
+				"singular": "{{count}} selected contact:",
+				"plural": "{{count}} selected contacts:"
+			},
+			"galContacts": "Global Address List"
+		},
+		"importFromFile": {
+			"DIALOG_TITLE": "Import from file",
+			"IMPORT_BUTTON": "Import",
+			"FILE_SIZE_EXCEEDED":
+				"Error: File size is bigger than 5MB. Try again with a file of smaller size.",
+			"DESCRIPTION":
+				"To transfer contacts from another email program you'll need to export all your contacts into a list first. They can be exported as a .csv or .vcf formats. The maximum size of the file that can be uploaded is 5MB.",
+			"UPLOAD_INVALID":
+				"Error: The file you're trying to upload is invalid. Try another file.",
+			"NO_FILE": "Error: Please select a file to import contacts."
+		},
+		"export": {
+			"DIALOG_TITLE": "Export Contacts",
+			"DESCRIPTION":
+				"Choose the format you would like to export your contacts in.",
+			"EXPORT_BUTTON": "Export Now"
+		},
+		"actions": {
+			"heading": "{{selectedCount}} of {{total}} contacts selected",
+			"email": {
+				"title": "Email",
+				"description": "Send an email to your selected contacts.",
+				"buttonText": "Email Contacts"
+			},
+			"assign": {
+				"title": "Assign",
+				"description": "Assign your contacts to a list you have created.",
+				"buttonText": "Assign Contacts"
+			},
+			"remove": {
+				"title": "Remove",
+				"description": "Remove your contacts from the current list.",
+				"buttonText": "Remove Contacts"
+			},
+			"restore": {
+				"title": "Restore Contacts",
+				"description": "Move contacts back to your All Contacts folder.",
+				"buttonText": "Restore Contacts"
+			},
+			"delete": {
+				"title": "Delete",
+				"titlePermanent": "Delete Permanently",
+				"description":
+					"Keep your contacts up-to-date! Delete old or unused contacts.",
+				"descriptionPermanent":
+					"Contacts will be deleted permanently. This action cannot be undone.",
+				"buttonText": "Delete Contacts"
+			}
+		},
+		"editLists": {
+			"DIALOG_TITLE": "Assign to Lists",
+			"LIST_ALREADY_EXISTS": "A List with that name already exists.",
+			"NEW_LIST": "New List",
+			"REMOVE_FROM_LIST": "Remove from List",
+			"REMOVED_FROM_LIST": "Contact removed from {{name}}.",
+			"REMOVED_MULTIPLE_FROM_LIST": "{{count}} contacts removed from {{name}}.",
+			"ASSIGNMENT_CHANGED": "Your contact lists have been updated."
+		},
+		"trash": {
+			"list": {
+				"one": "{{name}} has been deleted."
+			}
+		},
+		"list": {
+			"noName": "<No Name>",
+			"deleted": "{{contactNameMarkup}}<span class='{{deletedClass}}'>, Deleted</span>"
+		},
+		"details": {
+			"messagesFrom": "<strong>Messages</strong> from {{name}}",
+			"viewAll": "View All",
+			"filesFrom": "<strong>Files</strong> from {{name}}",
+			"photosFrom": "<strong>Photos</strong> from {{name}}"
+		},
+		"edit": {
+			"addContact": "Add Contact",
+			"editContact": "Edit Contact",
+			"addMore": "Add More",
+			"errors": {
+				"invalidEmail":
+					"Please enter a valid email address format (e.g. name@domain.com).",
+				"minimumFieldsRequired":
+					"Please enter some information for this contact.",
+				"emailMismatchWithCert": "Email does not match certificate."
+			},
+			"details": {
+				"contact": "Contact Details",
+				"work": "Work Details",
+				"personal": "Personal Details",
+				"secureCert": "Security Certificate"
+			},
+			"fields": {
+				"newContact": "New Contact",
+				"firstName": "First name",
+				"lastName": "Last name",
+				"middleName": "Middle name",
+				"nickname": "Nickname",
+				"jobTitle": "Job Title",
+				"company": "Company",
+				"birthday": "Birthday",
+				"anniversary": "Anniversary",
+				"website": "Website",
+				"notes": "Notes",
+				"im": "Instant Messenger",
+				"Street": "Street",
+				"City": "City",
+				"Postal": "Postal Code",
+				"State": "State or Province",
+				"Country": "Country",
+				"atPlaceholder": "{{jobTitle}} at {{company}}"
+			},
+			"dropdown": {
+				"email": {
+					"email": "email",
+					"workEmail": "work email",
+					"homeEmail": "home email"
+				},
+				"phone": {
+					"mobile": "mobile",
+					"phone": "phone",
+					"homePhone": "home phone",
+					"workPhone": "work phone",
+					"pager": "pager",
+					"fax": "fax"
+				},
+				"im": {
+					"yahoo": "yahoo",
+					"xmpp": "xmpp",
+					"aol": "aol",
+					"msn": "Windows Live Messenger"
+				},
+				"chat": "chat",
+				"birthday": "birthday",
+				"anniversary": "anniversary",
+				"website": "website",
+				"home": "home",
+				"work": "work"
+			}
+		},
+		"modalEdit": {
+			"TITLE": "Edit Details",
+			"DESCRIPTION": "for {{address}}"
+		},
+		"hoverCard": {
+			"MENU": "Contact Actions",
+			"EDIT": "Edit contact",
+			"ADD": "Add to contacts",
+			"COPY_ADDRESS": "Copy email address",
+			"COPY_DETAILS": "Copy all details",
+			"COPIED_TOAST": "Copied",
+			"searchEmails": "Search Emails"
+		},
+		"notifications": {
+			"DELETED_PERMANENTLY": {
+				"none": "No Contact deleted.",
+				"one": "Contact deleted.",
+				"many": "{{count}} Contacts Deleted."
+			}
+    	},
+		"contextMenu": {
+			"editDetails": "Edit Details",
+			"assignToLists": "Assign to Lists",
+			"removeFromList": "Remove from List",
+			"deleteContact": "Delete",
+			"permanentlyDeleteContact": "Delete Permanently",
+			"shareContact": "Share Contact",
+			"RENAME_LIST" : "Rename List",
+			"DELETE_LIST" : "Delete List"
+		},
+		"headerDropdown": {
+			"title": "Actions",
+			"sortBy": "Sort by ",
+			"firstName": "Sort by First Name",
+			"lastName" : "Sort by Last Name",
+			"email" : "Sort by Email",
+			"displayName" : "Sort by Display Name",
+			"reverseSortOrder": "Reverse Sort Order",
+			"import": "Import...",
+			"export": "Export...",
+			"printAll": "Print All",
+			"deleteList": "Delete List"
+		},
+		"offlineModal": {
+			"title": "Action unavailable offline",
+			"body": "Please try again when online."
+		}
+	},
+	"error": {
+		"any": "Error: {{e}}",
+		"invalidEmail": "Please enter a valid email address format (e.g. name@domain.com).",
+		"genericInvalidRequest": "An unknown error has occurred.",
+		"upload": "chosen files are too large"
+	},
+	"mediaMenu": {
+		"toggleButton": {
+			"open": "Open Plus Sign Menu",
+			"close": "Close Plus Sign Menu"
+		},
+		"buttons": {
+			"clearSearch": "Clear Search"
+		},
+		"photos": {
+			"placeholder": "Once you send and receive photos, you'll see them here.",
+			"fromEmail": "Photos from Email",
+			"noResults": "No results found for \"{{searchTerm}}\". Try searching:",
+			"noResultsKeywords": "Other keywords from subject line, email, or filename",
+			"noResultsName": "The name of the person who may have sent or received the photo"
+		},
+		"files": {
+			"placeholder": "Once you send and receive files, you'll see them here.",
+			"fromEmail": "Files from Email",
+			"noResults": "No results found for \"{{searchTerm}}\". Try searching:",
+			"noResultsKeywords": "Other keywords from subject line, email, or filename",
+			"noResultsName": "The name of the person who may have sent or received the file"
+		},
+		"gifs": {
+			"heading": {
+				"empty": "Popular GIFs",
+				"notempty": "GIFs"
+			},
+			"subheading": "Suggested Searches",
+			"poweredBy": "Powered by Giphy.com",
+			"fromGiphy": "Gif from Giphy.com",
+			"empty": "No Results"
+		}
+	},
+	"compose": {
+		"from": "From",
+		"hideCc": "Hide CC/BCC",
+		"showCc": "CC/BCC",
+		"subject": "Subject",
+		"saved": "Saved {{time}}",
+		"to": "To",
+		"cc": "Cc",
+		"bcc": "Bcc",
+		"attachment": {
+			"title": {
+				"one": "{{count}} Attachment",
+				"many": "{{count}} Attachments"
+			},
+			"view": {
+				"one": "View",
+				"many": "View All"
+			},
+			"remove": {
+				"one": "Remove",
+				"many": "Remove All"
+			},
+			"download": {
+				"one": "Download",
+				"many": "Download All"
+			}
+		},
+		"toolbar": {
+			"attachmentsTitle": "Attachments",
+			"collapsedTitle": "Formatting Options",
+			"fontsTitle": "Font",
+			"colorTitle": "Text Color",
+			"listsTitle": "Lists",
+			"indentationTitle": "Indentation",
+			"alignmentTitle": "Text Alignment",
+			"smimeTitle": "SMIME Operations",
+			"titleBold": "Bold",
+			"titleItalic": "Italic",
+			"titleUnderline": "Underline",
+			"titleLink": "Link",
+			"headingText": "Text",
+			"headingHighlight": "Highlight",
+			"attachments": {
+				"my_device": "Attach from my device",
+				"my_computer": "Attach from my computer",
+				"photos": "Attach photo from email",
+				"files": "Attach file from email",
+				"gifs": "Attach GIF"
+			},
+			"fonts": {
+				"modern": "Modern",
+				"modernWide": "Modern wide",
+				"classic": "Classic",
+				"classicWide": "Classic wide",
+				"courierNew": "Courier New",
+				"garamond": "Garamond",
+				"lucidaConsole": "Lucida Console"
+			},
+			"fontSize": {
+				"tiny": "Tiny",
+				"small": "Small",
+				"medium": "Medium",
+				"large": "Large",
+				"xLarge": "X-Large",
+				"huge": "Huge"
+			},
+			"emojiMenu": "Insert Emoji",
+			"togglePlaintext": {
+				"false": "Switch to Plain Text",
+				"true": "Switch to Rich Text"
+			},
+			"deleteDraft": "Delete Draft",
+			"links": {
+				"insertLink": "Insert link"
+			}
+		},
+		"linkEditorDialog": {
+			"title": "Link Options",
+			"displayText": "Display text",
+			"editLink": "Edit link",
+			"followLink": "Follow link",
+			"placeholderText": "http://www.provider.net"
+		},
+		"textarea": {
+			"placeholder": "Enter your message...",
+			"imageDrop": "Drag and drop inline images here",
+			"attachDrop": "Drag and drop attachments here"
+		},
+		"confirmAttachmentForward": {
+			"TITLE": "Include original attachments?",
+			"DESCRIPTION":
+				"You added new recipients to your reply. Do you want to include attachments from the original message?",
+			"CONFIRM": "Yes",
+			"CANCEL": "No"
+		},
+		"onBehalfOfTextWithEmailAddress": "{{fromDisplay}} <strong> on behalf of {{fromAccountName}}</strong> &lt;{{emailAddress}}&gt;",
+		"onBehalfOfTextWithName":"{{fromDisplay}} <strong>on behalf of {{fromAccountName}}</strong>",
+		"sendAsTextWithEmailAddress": "<strong> Send as {{fromAccountName}} </strong> &lt;{{emailAddress}}&gt;",
+		"sendAsTextWithName": "<strong>Send as {{fromAccountName}}</strong>"
+	},
+	"shortcutsModal": {
+		"title": "Keyboard Shortcuts"
+	},
+	"settings": {
+		"modal": {
+			"title": "Settings"
+		},
+		"accountRecovery": {
+			"title": "Account Recovery",
+			"addressToUseText": "This is the address you can use to reset your password if you forget it:",
+			"buttons": {
+				"addRecovery": "Add Recovery Email",
+				"changeRecoveryEmail": "Change Recovery Email",
+				"resend": "Resend",
+				"resendVerificationCode": "Resend Verification Code",
+				"reset": "Reset"
+			},
+			"verified": "Verified",
+			"pending": "Pending",
+			"verifyRecoveryEmail": "Verify Recovery Email",
+			"verificationText": "A verification code has been sent to <b>{{recoveryAddress}}</b>. Enter the code below to verify. Not in your inbox? Check your Junk folder or resend.",
+			"enterCode": "Enter the code",
+			"codeError": "Verification failed. Check the code and try again or resend.",
+			"addressError": "You must enter a valid email address.",
+			"resent": "Your verification code has been resent.",
+			"sameAddress": "You have not changed the recovery address.",
+			"pipe": " | ",
+			"maxResendsReached": "You have reached the maximum attempts for resending your verification code. Please change or reset your recovery address."
+		},
+		"blockedAddresses": {
+			"title": "Blocked Addresses",
+			"blockedAddresses": "Blocked addresses:",
+			"used": "{{currentBlocked}} of {{maxBlocked}} used",
+			"add": "Add an address",
+			"errorInvalid": "The email address or domain you entered is not valid.",
+			"placeholder": "example@example.com",
+			"block": "Block",
+			"remove": "Remove"
+		},
+		"offlineMode": {
+			"title": "Offline Mode",
+			"prompt": "Enable offline mode to manage and compose mail, contacts and appointments when you're not connected to the Internet.",
+			"radioButtons": {
+				"enable": {
+					"title": "Enable offline mode",
+					"prompt": "Copies of recent items will be synchronized and saved to this computer. If you're using a shared or public computer, this is not recommended. See Folder Properties to manage individual folder offline settings."
+				},
+				"disable": {
+					"title": "Disable offline mode",
+					"prompt": "You can read and compose new mail, edit and create contacts, and edit and create appointments only when you're connected to the Internet. Recent items will not be saved on this computer."
+				}
+			}
+		},
+		"securityAndActivity": {
+			"showImagesOption": {
+				"always": "Always, except in Junk folder",
+				"never": "Never by default"
+			},
+			"showImagesSubsection": "Show images in emails",
+			"title": "Security and Activity"
+		},
+		"filters": {
+			"title": "Filters"
+		},
+		"filterRuleModal": {
+			"mainTitle": "Filters",
+			"validateFilterName": "Please enter a filter name.",
+			"validateFilterRule": "You must specify at least one filter rule.",
+			"title": "Edit Filter",
+			"addTitle": "Add a new filter",
+			"saveLabel": "Save",
+			"cancelLabel": "Cancel",
+			"rulePrompt": "If an incoming message meets all of these conditions:",
+			"filterNameLabel": "Filter Name",
+			"moveIntoFolderLabel": "Then move the messages to this folder",
+			"sortIntoFoldersLabel":
+				"Sort incoming messages into folders ({{currentlyUsed}} of 1000 used)",
+			"caseSensitive": "Match case",
+			"deliverTo": "Deliver to \"<b>{{folderPath}}</b>\"",
+			"if" : "if",
+			"stopProcessing": "Do not process additional filters",
+			"allowProcessing": "Process additional filters"
+		},
+		"filterRules": {
+			"tocc": "To/CC",
+			"body": "Body",
+			"matchCase": "(match case)",
+			"is": "is",
+			"isNot": "is not",
+			"contains": "contains",
+			"containsNot": "does not contain",
+			"matches": "matches wildcard condition",
+			"matchesNot": "does not match wildcard condition"
+		},
+		"filterRuleRemoveModal": {
+			"title": "Delete filter",
+			"description":
+				"Are you sure you want to permanently delete the \"{{name}}\" filter?"
+		},
+		"viewingEmail": {
+			"title": "Viewing Email",
+			"messageListsSubsection": "When viewing message lists",
+			"enableConversationsLabel": "Enable conversations",
+			"showSnippetsLabel": "Show snippets",
+			"groupByListLabel": "Group by date",
+			"multitaskingSubsection": "Multitasking",
+			"tabsLabel": "Tabs",
+			"recentLabel": "Recent",
+			"previewPaneSubsection": "Preview Pane",
+			"previewPaneOption": {
+				"right": "Preview pane on the right",
+				"bottom": "Preview pane on the bottom",
+				"none": "None"
+			},
+			"messageListDensitySubsection": "Message list density",
+			"messageListDensityOption": {
+				"regular": "Regular",
+				"slim": "Slim",
+				"relaxed": "Relaxed"
+			},
+			"markAsReadSubsection": "Mark as read",
+			"markAsReadOption": {
+				"immediately": "Immediately",
+				"2seconds": "After 2 seconds",
+				"5seconds": "After 5 seconds",
+				"never": "Never"
+			},
+			"checkForNewEmailTimerSection": "Check for new mail",
+			"checkForNewEmailTimerOption": {
+				"manually": "Manually",
+				"asNewMailArrives": "As new mail arrives",
+				"incrementalTime": "{{interval}} minutes"
+			},
+			"sendReadReceiptSubsection": "Read receipts",
+			"sendReadReceiptOptions": {
+				"askMe": "Ask me",
+				"alwaysSend": "Always send",
+				"neverSend": "Never send"
+			},
+			"afterMovingMessageSubsection": "After moving message",
+			"afterMovingMessageOption": {
+				"back": "Go back to the original folder",
+				"previous": "Show previous email message",
+				"next": "Show next email message"
+			},
+			"desktopNotificationsSubsection": "Desktop notifications",
+			"desktopNotificationsLabel": "Enable desktop notifications",
+			"mobileNotificationsSubsection": "Notifications",
+			"mobileNotificationsLabel": "Enable notifications",
+			"mailVersionSubsection": "Mail version",
+			"fullFeatured": "Full featured",
+			"mailVersionAdvancedLabel":
+				" (recommended) - View photo slideshows, drag and drop attachments, personalize your theme, and more.",
+			"mailVersionBasicLabel": "Basic"
+		},
+		"writingEmail": {
+			"title": "Writing Email",
+			"whenSendingMessageSubsection": "When sending messages",
+			"addToContactsLabel": "Automatically add new recipients to Contacts",
+			"generateLinkPreview": "Automatically generate a preview of links",
+			"undoSendSubsection": "Undo send",
+			"enableUndoSend": "Enable",
+			"requestReadReceipt": "Request read receipts",
+			"enableRequestReadReceipt": "Always",
+			"richTextFontSubsection": "Default rich text font",
+			"sample": "Sample",
+			"defaultSendingAccountSubsection": "Default sending account",
+			"primary": "Primary ({{email}})",
+			"sendOnlyAddressSubsection": "Add send only address",
+			"editSignature": "Note: To edit your signature, go to Accounts.",
+			"delegates": {
+				"sendSettingsSubsection": "Delegate send settings",
+				"sendSettingsInput": {
+					"owner": "Save sent messages to my Sent folder",
+					"sender": "Save sent messages to delegate's Sent folder",
+					"both": "Save sent messages to my Sent folder and delegate's Sent folder",
+					"none": "Don't save sent messages"
+				},
+				"delegates": "Delegates",
+				"addDelegates": "Add Delegates",
+				"addDelegatesNotes": "Note: Changes to delegates are saved immediately.",
+				"delegatePermissions": "Delegate Permissions",
+				"permissions": "Permissions",
+				"delegateSendAs": "Send As",
+				"delegateSendOnBehalfOf": "Send on behalf of",
+				"usersHaveDelegated": "The following users have delegated authority to this account"
+			}
+		},
+		"accounts": {
+			"title": "Accounts",
+			"mailForwardingLabel":
+				"Forward: Your mail is forwarded to the specified address, so you can check it there.",
+			"mailForwardingTitle": "Access your mail elsewhere",
+			"mailForwardingExampleAddress": "example@example.com",
+			"mailAddressesTitle": "Accounts",
+			"addAccount": {
+				"email": "Email Address",
+				"emailPlaceholder": "name@example.com",
+				"wrongEmail": "The email address provided is invalid.",
+				"invalidPort":
+					"The port provided must be a positive integer between 1 and 65535",
+				"password": "Password",
+				"passwordPlaceholder": "Required",
+				"additionalInformationTitle": "Additional information needed",
+				"typeSubsection": "Account Type",
+				"imap": "IMAP",
+				"pop": "POP",
+				"host": "Mail Server",
+				"namePlaceholder": "name",
+				"username": "Username",
+				"advancedSettings": "Advanced Settings",
+				"changePort": "Change port",
+				"useSSL":
+					"Use an encrypted connection (SSL) when accessing this server",
+				"portHint": "({{portNum}} is the default)",
+				"downloadDestination": "Download Messages to:",
+				"downloadFolderLabel": "Folder: ",
+				"downloadFolderPlaceholder": "john.doe",
+				"inbox": "Inbox",
+				"popDeleteFromServer":
+					"Delete messages on the server after downloading",
+				"addAnotherAccountLabel": "Add another account",
+				"successfulConnection": "Connection successful.",
+				"connectingMessage": "Connecting to {{email}}…",
+				"fixErrorsLabel": "Fix Errors"
+			},
+			"types": {
+				"primary": "primary"
+			},
+			"editAccount": {
+				"fromDisplay": "Your name",
+				"fromDisplayHelper": "The name shown in the emails you send.",
+				"description": "Description",
+				"descriptionHelper": "Name this mailbox.",
+				"replyToAddressSection": "Reply-to-address",
+				"replyToAddressEnabled":
+					"Receive replies to your sent emails at a different address.",
+				"replyToAddress": "Email address",
+				"replyToDisplay": "Name",
+				"accessYourMail": "Access your mail elsewhere",
+				"editSignature": "Edit Signature",
+				"forward":
+					"Forward: Your mail is forwarded to the specified address, so you can check it there. ",
+				"append": "Append a signature to the emails you send",
+				"confirmation": "Are you sure you want to remove \"{{accountName}}\"?",
+				"removeMailboxFolderOnDelete": "Delete the folder \"{{name}}\"?",
+				"additionalConfirmationInfo":
+					"You won’t be able to send messages from this mailbox.",
+				"storeAndForward": "Store and Forward",
+				"deleteAndForward": "Delete and Forward",
+				"removeMailboxHelper":
+					"Disconnecting a mailbox will permanently remove all messages and data from provider.net mail and cannot be undone."
+			},
+			"errors": {
+				"loginFailed": "Login failed. Please try again.",
+				"invalidCredentials": "Invalid credentials. Please try again.",
+				"generic": "Failed to connect. Please try again.",
+				"existingIsFailing": "There is a problem connecting to your account."
+			},
+			"mobileConfig": {
+				"title": "Mobile or desktop configuration",
+				"description": {
+					"text": "IMAP, CalDav and CardDav are open protocols for synchronizing your account’s resources with mobile or desktop configurations.",
+					"list": {
+						"IMAP": "IMAP for email",
+						"CalDAV": "CalDAV for Calendar and Tasks",
+						"CardDAV": "CardDAV for Contacts"
+					}
+				},
+				"optionText": "Select and download a mobileconfig profile to automatically configure devices and apps that support it.",
+				"optionList": {
+					"all": "Email, Calendar and Tasks, Contacts",
+					"dav": "Calendar and Tasks, Contacts",
+					"caldav": "Calendar and Tasks",
+					"carddav": "Contacts",
+					"imap": "Email"
+				},
+				"urlText": "URLs for manual configuration:",
+				"urlLink": {
+					"calendar": "CalDAV: {{uri}}/calendar",
+					"contacts": "CardDAV: {{uri}}/Contacts"
+				}
+			}
+		},
+		"signatures": {
+			"title": "Signatures",
+			"appendTitle": "Edit Signatures",
+			"append": "Append a signature to the emails you send",
+			"account": "Account"
+		},
+		"calendarAndReminders": {
+			"title": "Calendar and Reminders",
+			"eventsListsSubsection": "Invitations",
+			"generalSettingsTitle": "General Calendar Settings",
+			"startOfWeekSubsection": "Start of Week",
+			"startOfDaySubsection": "Start of Workday",
+			"endOfDaySubsection": "End of Workday",
+			"timeZoneSubsection": "Workday Time Zone",
+			"timezoneHelpTip": "Set the Timezone for your Workday times.",
+			"autoAddAppointmentsToCalendar": "Automatically add to my calendar",
+			"defaultCalendarSubsection": "Default Calendar",
+			"defaultCalHelpTip": "Choose which calendar you want to use when creating events and receiving event invitations.",
+			"enableAppleIcalDelegation": "Enable delegation for CALDav clients",
+			"sharingTitle": "Sharing"
+		},
+		"vacationResponse": {
+			"title": "Out of Office",
+			"enableOutOfOfficeReply":
+				"Enable automatic response during these dates (inclusive)",
+			"fromDate": "From",
+			"untilDate": "Until",
+			"sendMeCopy": "Send sample copy to me",
+			"sampleSent": "Sample email sent.",
+			"vacationResponseSample": "Out of Office Response Sample",
+			"externalSendersSubsection": "External Senders",
+			"externalSendersOption": {
+				"sendStandard": "Send standard automatic response",
+				"sendExternal": "Send external automatic response",
+				"donotSend": "Don't send automatic response"
+			}
+		},
+		"smimeAndEncryption": {
+			"title": "S/MIME and Encryption",
+			"defaultSettings": {
+				"title": "Default settings for new emails",
+				"subSectionTitle": "You can change this when sending an email.",
+				"options": {
+					"rememberSettings": "Remember settings from previous email",
+					"noSignOrEnc": "Do not sign or encrypt",
+					"sign": "Sign",
+					"signAndEnc": "Sign and encrypt"
+				}
+			},
+			"certificates": {
+				"title": "Certificates",
+				"notTrusted": "Certificate is not trusted",
+				"notFoundText": "You currently don't have any security certificates."
+			}
+		},
+		"zimlets": {
+			"title": "Add-ons (Zimlets)",
+			"mainTitle": "Available Add-ons",
+			"helpText": "Add-ons (aka Zimlets) are applications that enhance the functionality of your email. They are made available by your administrator.",
+			"moreHelp": "More Help",
+			"emptyListHelpText": "You currently have no available add-ons."
+		}
+	},
+	"about": {
+		"modal": {
+			"titleWithVersion": {
+				"web": "Zimbra X Version {{version}} (build {{hash}}, date {{timestamp}})",
+				"mac": "Zimbra Desktop for Mac Version {{version}} (build {{hash}}, date {{timestamp}})",
+				"windows": "Zimbra Desktop for Windows Version {{version}} (build {{hash}}, date {{timestamp}})",
+				"other": "Zimbra Desktop Version {{version}} (build {{hash}}, date {{timestamp}})"
+			},
+			"title": {
+				"web": "Zimbra X",
+				"mac": "Zimbra Desktop for Mac",
+				"windows": "Zimbra Desktop for Windows",
+				"other": "Zimbra Desktop"
+			},
+			"serverVersion": "Server Version {{version}} (build {{build}})",
+			"version": "Version {{version}} (build {{hash}}, date {{timestamp}})",
+			"isOnline": "Connected to server",
+			"isOffline": "Not connected to server",
+			"copyright": "Copyright© 2005 - 2019 Synacor, Inc. All rights reserved. This product is protected by U.S. and international copyright and intellectual property laws. \"Zimbra\" is a registered trademark of Synacor, Inc. in the United States and other jurisdictions. All other marks and names mentioned herein may be trademarks of their respective companies.",
+			"signature": {
+				"corp": "Synacor, Inc.",
+				"link": "www.synacor.com"
+			}
+		}
+	},
+	"search": {
+		"allMail": "All Mail",
+		"searchResults": "Search Results - {{query}}",
+		"results": {
+			"none": "No results",
+			"one": "One result",
+			"many": "{{count}} results"
+		},
+		"offline": {
+			"results": {
+				"none": "No results, try searching again when you're online.",
+				"one": "For more results, try searching again when you’re online.",
+				"many": "For more results, try searching again when you’re online."
+			}
+		},
+		"error": {
+			"couldNotParse": "Invalid search, please try again"
+		},
+		"primaryButtonLabel": "Search {{type}}",
+		"placeholder": "Search your {{type}}",
+		"buttonTypes": {
+			"mail": "Mail",
+			"calendar": "Calendar",
+			"contacts": "Contacts"
+		},
+		"placeholderTypes": {
+			"mail": "mailbox",
+			"calendar": "calendar",
+			"contacts": "contacts"
+		},
+		"categories": {
+			"photos": "Search photos",
+			"files": "Search files",
+			"gifs": "Search GIFs"
+		},
+		"placeholderWithContact": "Add Keywords",
+		"notes": {
+			"noResults": "We couldn't find a note with the keyword {{searchTerm}}",
+			"results": {
+				"singular": "There is {{length}} note which matches your search.",
+				"plural": "There are {{length}} notes which match your search."
+			}
+		},
+		"save_search": {
+			"updated": "Search options updated.",
+			"success": "Search saved to Saved Searches.",
+			"delete": "Saved search \"{{name}}\" deleted."
+		},
+		"cards": {
+			"relatedContacts": {
+				"title": "Related Contacts",
+				"showAll": "See more",
+				"hideAll": "See less"
+			},
+			"contactFrequency": {
+				"frequencyDescription":
+					"You and {{name}} have traded {{numMessages}} messages in the past {{dateRangeText}}. They first sent you a message regarding ‘{{firstMessageSubject}}’.",
+				"dateRangeLabel": {
+					"1m": "month",
+					"6m": "six months",
+					"1y": "year"
+				}
+			}
+		},
+		"scope": {
+			"search_in": "Search In:",
+			"all_mail": "All mail",
+			"advanced_search":"Advanced search"
+		},
+		"advanced": {
+			"hasAttachment": "Has attachment",
+			"hasImage": "Has image",
+			"to": "To",
+			"from": "From",
+			"searchIn": "Search In",
+			"subject": "Subject",
+			"contains": "Contains",
+			"date": "Date",
+			"dateTo": "to",
+			"dateRange": {
+				"anytime": "Any Time",
+				"last7": "Last 7 days",
+				"last30": "Last 30 days",
+				"customDate": "Custom date..."
+			}
+		}
+	},
+	"smime": {
+		"emailOperationWithEmail": {
+			"signed": "Signed by {{name}}",
+			"signedAndEnc": "Signed and Encrypted by {{name}}"
+		},
+		"emailOperationWithoutEmail": {
+			"signed": "Signed",
+			"signedAndEnc": "Signed and Encrypted",
+			"encrypted": "Encrypted without Signing"
+		},
+		"emailStatus": {
+			"was-signed": "This certificate has expired",
+			"untrusted": "Authenticity not verified due to untrusted certificate",
+			"encrypt-only": "Authenticity not verified due to no signature",
+			"corrupt": "Warning: This message may have been tampered with!",
+			"revoked": "Warning: The certificate used to sign this message has been revoked!",
+			"expired": "This certificate has expired",
+			"wrong-signer": "Signed by {{name}}; but from the wrong address",
+			"unapproved-algorithm": "The signature relies on an unapproved algorithm!",
+			"unknown": "An error occurred during the processing of this message",
+			"error": "An error occurred during the processing of this message",
+			"invalid": "Could not verify the signature of this message"
+		},
+		"viewCert": "View Certificate",
+		"statusText": {
+			"contactUpdate": {
+				"senderNotFoundInContact": "<b>{{senderInfoText}}</b> not found in Contacts.",
+				"senderHasOlderCert": "<b>{{senderInfoText}}</b> has sent a new certificate."
+			}
+		},
+		"toasts": {
+			"createContact": "Contact created",
+			"addCertToContact": "Certificate added",
+			"replaceOldCertFromContact": "Certificate updated"
+		},
+		"buttons": {
+			"createNewContactWithCert": "Create new contact",
+			"updateCertificateOfContact": "Update certificate",
+			"addCertificateToContact": "Add certificate to sender's contact information"
+		},
+		"certificate": {
+			"expiredText": "Certificate expired",
+			"verifiedText": "Certificate verified",
+			"emailMismatchText": "Email does not match certificate"
+		},
+		"certificateModal": {
+			"title": "Certificate",
+			"issuedTo": {
+				"title": "Issued to",
+				"email": "Email",
+				"name": "Organization",
+				"unit": "Organization Unit",
+				"country": "Country",
+				"state": "State",
+				"locality": "City"
+			},
+			"issuedBy": {
+				"title": "Issued by",
+				"commonName": "Common Name",
+				"orgName": "Organization",
+				"orgUnit": "Organization Unit",
+				"orgCountry": "Country",
+				"orgState": "State",
+				"orgLocality": "City"
+			},
+			"validity": {
+				"title": "Period of Validity",
+				"beginsOn": "Begins on",
+				"endsOn": "Ends on",
+				"endedOn": "Ended on"
+			},
+			"signature": {
+				"title": "Signature",
+				"serial": "Serial number",
+				"algorithm": "Algorithm"
+			}
+		},
+		"senderCertErrorModal": {
+			"certNotFoundTitle": "Unable to send",
+			"certNotFoundDesc": "Your security certificate is not found or is not valid."
+		},
+		"contacts": {
+			"error": {
+				"nonCertFile": "File type not valid. Please choose a certificate file.",
+				"invalidCertFile": "The certificate does not match the email address.",
+				"corruptedCertFile": "Corrupted certificate file! Please choose another.",
+				"emailAddressMissing": "Please enter an email address before adding certificate."
+			}
+		}
+	},
+	"requestReadReceipt": {
+		"writeEmailMenuTitle": "Request read receipt",
+		"notifyReceiptSent": "Read receipt sent.",
+		"sendReceipt": "Send read receipt",
+		"readReceiptRequested": "<b>{{name}}</b> has requested a read receipt for this email."
+	},
+	"notifications": {
+		"savedSearchesMoved": "\"{{name}}\" restored to Saved Searches.",
+		"specialCharWarning": "Name may not contain colon, slash or double-quote.",
+		"localSpecialCharWarning": "Please use only letters, numbers or underscore.",
+		"invalidNameWarning": "Please enter a valid name",
+		"lengthExceedWarning": "Folder name must be shorter than {{count}} characters.",
+		"archiveFolderError": "There was a problem creating the Archive folder.",
+		"moveFolderSpecialCharWarning": "Local folder name can not contain any of these characters: #$@!^%\\&;\"/ - Please rename folder and try again.",
+		"dates": {
+			"now": "Now",
+			"in": "In",
+			"overdue": "Overdue by"
+		}
+	},
+	"lists": {
+		"empty": "Nothing to show."
+	},
+	"folderlist": {
+		"saved_searches": "Saved Searches",
+		"folders": "Folders",
+		"deleted_contacts": "Deleted Contacts",
+		"local_folder": "Local Folders"
+	},
+	"faults": {
+		"account": {
+			"AUTH_REQUIRED": "Please login to continue",
+			"AUTH_EXPIRED":
+				"Your current session has expired, please sign in to continue.",
+			"AUTH_FAILED":
+				"Your username/email or password was incorrect. Please try again.",
+			"AUTH_FAILED_changePassword":
+				"Your password was incorrect. Please try again.",
+			"CHANGE_PASSWORD":
+				"Your password is no longer valid. Please choose a new password.",
+			"EXTERNAL_AUTH_FAILED":
+				"Your username/email or password was incorrect. Please try again.",
+			"PASSWORD_LOCKED":
+				"Password locked. User not allowed to change password.",
+			"PASSWORD_CHANGE_TOO_SOON": "Password cannot be changed too soon.",
+			"PASSWORD_RECENTLY_USED":
+				"The password you submitted has recently been used. Please choose a different password.",
+			"INVALID_PASSWORD": {
+				"zimbraPasswordAllowedChars":
+					"Your password contains invalid characters.",
+				"zimbraPasswordMinLength":
+					"Your password must be at least {{count}} characters long.",
+				"zimbraPasswordMaxLength":
+					"Your password must be shorter than {{count}} characters.",
+				"zimbraPasswordMinLowerCaseChars":
+					"Your password must contain at least {{count}} lowercase characters.",
+				"zimbraPasswordMinUpperCaseChars":
+					"Your password must contain at least {{count}} uppercase characters.",
+				"zimbraPasswordMinNumericChars":
+					"Your password must contain at least {{count}} numeric characters.",
+				"zimbraPasswordMinAlphaChars":
+					"Your password must contain at least {{count}} alphabet characters.",
+				"zimbraPasswordMinPunctuationChars":
+					"Your password must contain at least {{count}} punctuation characters.",
+				"zimbraPasswordMinDigitsOrPuncs":
+					"Your password must contain at least {{count}} numeric or punctuation characters."
+			},
+			"MAINTENANCE_MODE": "This account is currently in maintenance mode.",
+			"DATA_SOURCE_EXISTS": "Account has already been added."
+		},
+		"mail": {
+			"ALREADY_EXISTS_search": "A search named \"{{name}}\" already exists.",
+			"ALREADY_EXISTS_folder":
+				"A folder named \"{{name}}\" already exists. Please enter a different name for your folder."
+		},
+		"network": {
+			"offlineError": "Unable to connect to server. Please check your connection and try again."
+		}
+
+	},
+	"prepositions": {
+		"at": "at",
+		"from": "from",
+		"to": "to"
+	},
+	"actions": {
+		"toasts": {
+			"localfolder": {
+				"move": {
+					"message": {
+						"none": "No message selected",
+						"one": "Message successfully moved to {{folder}}.",
+						"many": "{{count}} Messages successfully moved to {{folder}}."
+					}
+				}
+			},
+			"delete": {
+				"conversation": {
+					"one": "Conversation permanently deleted.",
+					"many": "{{count}} Conversations permanently deleted."
+				},
+				"message": {
+					"one": "Message permanently deleted.",
+					"many": "{{count}} Messages permanently deleted."
+				}
+			},
+			"read": {
+				"conversation": {
+					"one": "Conversation read.",
+					"many": "{{count}} Conversations read."
+				},
+				"message": {
+					"one": "Message read.",
+					"many": "{{count}} Messages read."
+				}
+			},
+			"!read": {
+				"conversation": {
+					"one": "Conversation unread.",
+					"many": "{{count}} Conversations unread."
+				},
+				"message": {
+					"one": "Message unread.",
+					"many": "{{count}} Messages unread."
+				}
+			},
+			"flag": {
+				"conversation": {
+					"one": "Conversation starred.",
+					"many": "{{count}} Conversations starred."
+				},
+				"message": {
+					"one": "Message starred.",
+					"many": "{{count}} Messages starred."
+				}
+			},
+			"!flag": {
+				"conversation": {
+					"one": "Conversation unstarred.",
+					"many": "{{count}} Conversations unstarred."
+				},
+				"message": {
+					"one": "Message unstarred.",
+					"many": "{{count}} Messages unstarred."
+				}
+			},
+			"move": {
+				"conversation": {
+					"one": "Conversation moved to {{folder}}.",
+					"many": "{{count}} Conversations moved to {{folder}}."
+				},
+				"message": {
+					"one": "Message moved to {{folder}}.",
+					"many": "{{count}} Messages moved to {{folder}}."
+				}
+			},
+			"spam": {
+				"conversation": {
+					"one": "Conversation reported as Spam.",
+					"many": "{{count}} Conversations reported as Spam."
+				},
+				"message": {
+					"one": "Message reported as Spam.",
+					"many": "{{count}} Messages reported as Spam."
+				}
+			},
+			"!spam": {
+				"conversation": {
+					"one": "Conversation unspammed.",
+					"many": "{{count}} Conversations unspammed."
+				},
+				"message": {
+					"one": "Message unspammed.",
+					"many": "{{count}} Messages unspammed."
+				}
+			},
+			"trash": {
+				"conversation": {
+					"one": "Conversation deleted.",
+					"many": "{{count}} Conversations deleted."
+				},
+				"message": {
+					"one": "Message deleted.",
+					"many": "{{count}} Messages deleted."
+				}
+			},
+			"block": {
+				"conversation": {
+					"one": "Sender {{address}} blocked.",
+					"many": "Senders blocked."
+				},
+				"message": {
+					"one": "Sender {{address}} blocked.",
+					"many": "Senders blocked."
+				}
+			},
+			"deleteAndBlock": {
+				"conversation": {
+					"one":
+						"Sender {{address}} blocked and related conversations deleted.",
+					"many": "Senders blocked and related conversations deleted."
+				},
+				"message": {
+					"one": "Sender {{address}} blocked and related messages deleted.",
+					"many": "Senders blocked and related messages deleted."
+				}
+			},
+			"deleteOnBlockSuccess": {
+				"conversation": {
+					"one": "Conversation related to {{address}} deleted.",
+					"many": "{{count}} conversations related to {{address}} deleted."
+				},
+				"message": {
+					"one": "Message related to {{address}} deleted.",
+					"many": "{{count}} messages related to {{address}} deleted."
+				}
+			},
+			"deleteOnBlockFail": {
+				"conversation": {
+					"one": "Unable to delete conversation from {{address}}.",
+					"many": "Unable to delete conversations from {{address}}."
+				},
+				"message": {
+					"one": "Unable to delete message from {{address}}.",
+					"many": "Unable to delete messages from {{address}}."
+				}
+			},
+			"addSenderToContacts": {
+				"conversation": {
+					"one": "{{address}} added to contacts."
+				},
+				"message": {
+					"one": "{{address}} added to contacts."
+				}
+			}
+		}
+	},
+	"invitations": {
+		"labels": {
+			"location": "Where",
+			"organizer": "Organizer",
+			"invitees": "Invitees",
+			"locationResource": "Location",
+			"invitationNotCurrent": "This event is out of date.",
+			"repeats": "Repeats",
+			"respond": "RSVP",
+			"when": "When",
+			"invitationResponse": {
+				"accepted": "{{inviteesname}} has accepted your invitation.",
+				"declined": "{{inviteesname}} has declined your invitation.",
+				"tentative": "{{inviteesname}} has tentatively accepted your invitation."
+			}
+		},
+		"cancelledMessage": "{{organizerName}} has cancelled this event."
+	},
+	"local_folder": {
+		"movedSuccessfuly": {
+			"none": "No message selected",
+			"one": "Message moved to {{folder}}.",
+			"many": "{{count}} messages moved to {{folder}}."
+		},
+		"partiallyMoved": "{{count}} out of {{total}} messages moved to {{folder}}.",
+		"errorMessage": "Unable to move messages.",
+		"folderMove": {
+			"success": "{{folder}} moved to local folders.",
+			"error": "Unable to move folder."
+		}
+	},
+	"vhtmlComponents": {
+		"delegation": {
+			"header": {
+				"granted": "{{owner}} has granted {{rights}} to {{grantee}}",
+				"revoked": "{{owner}} has revoked {{rights}} from {{grantee}}"
+			},
+			"subject": "{{owner}} has {{grantedOrRevoked}} delegate permission",
+			"granted": "Granted",
+			"revoked": "Revoked",
+			"and": "and",
+			"sendAs": "Send As",
+			"sendOnBehalfOf": "Send On Behalf Of",
+			"rights": "rights",
+			"owner": "Owner",
+			"grantee": "Grantee"
+		}
+	},
+	"routes": {
+		"notFound": "Not Found",
+		"home": "Go Home"
+	},
+	"notificationModal": {
+		"title": "Something went wrong",
+		"hideDetails": "Hide details",
+		"showDetails": "Show details...",
+		"copied": "Copied",
+		"copyToClipboard" : "Copy to clipboard"
+	},
+	"languageModal": {
+		"title": "Choose language"
+	},
+	"timeFormats": {
+		"defaultFormat": "12",
+		"format12hr": {
+			"formatHour": "h A",
+			"formatDateTimeShort": "M/d/yy h:mm a",
+			"formatTimeLong": "h:mm:ss a z",
+			"formatTimeMedium": "h:mm:ss a",
+			"formatTimeShort": "h:mm a",
+			"formatDateTimeMedium": "MMM D, YYYY h:mm A",
+			"formatDateTimeFirstEmail": "dddd, MMMM Do, h:mm A",
+			"formatDateTimeEmail": "dddd, MMMM Do, h:mm:ss A",
+			"longDateFormat": {
+				"LT": "h:mm A",
+				"LTS": "h:mm:ss A",
+				"L": "DD/MM/YYYY",
+				"LL": "D MMMM YYYY",
+				"LLL": "D MMMM YYYY h:mm A",
+				"LLLL": "dddd, D MMMM YYYY h:mm A",
+				"customLLLL": "dddd, MMMM DD, YYYY hh:mm A",
+				"mediumLLLL": "ddd, MMM DD, YYYY hh:mm A",
+				"longHourLT": "hh:mm A"
+			}
+		},
+		"format24hr": {
+			"longDateFormat": {
+				"LT": "H:mm",
+				"LTS": "H:mm:ss",
+				"L": "DD/MM/YYYY",
+				"LL": "D MMMM YYYY",
+				"LLL": "D MMMM YYYY H:mm",
+				"LLLL": "dddd D MMMM YYYY H:mm",
+				"customLLLL": "dddd, MMMM DD, YYYY HH:mm",
+				"mediumLLLL": "ddd, MMM DD, YYYY HH:mm",
+				"longHourLT": "HH:mm"
+			},
+			"formatHourMinute": "HHmm",
+			"formatHour": "H",
+			"formatDateTimeFirstEmail": "dddd, MMMM Do, H:mm",
+			"formatDateTimeEmail": "dddd, MMMM Do, H:mm:ss",
+			"formatDateTimeMedium": "MMM D, YYYY H:mm",
+			"formatDateTimeShort": "M/d/yy HHmm",
+			"formatTimeLong": "HHmmss z",
+			"formatTimeMedium": "HHmmss",
+			"formatTimeShort": "HHmm"
+		},
+		"dateFormats": {
+			"formatDate": "MM/DD/YY",
+			"formatWeekDayLongDate": "ddd M/D/YYYY",
+			"formatWeekDayShortDate": "ddd M/D",
+			"formatDateYearShort": "ddd, MMMM D, Y",
+			"formatDateYearLong": "dddd, MMMM D, YYYY",
+			"formatDateYearMedium": "ddd, D MMM YYYY",
+			"customformatDateYearLong": "ddd, MMMM D YYYY",
+			"formatcustomDateLong": "YYYY-MM-DD",
+			"formatDateLong": "MMMM DD, YYYY",
+			"formatDateLongMonthMedium": "MMMM D, YYYY",
+			"formatDateMedium": "MMM DD, YYYY",
+			"formatDateMediumDayShort":"MMM D, YYYY",
+			"formatDateDayShort": "MMMM D, YYYY",
+			"formatDateEmail": "dddd MMMM Do YYYY",
+			"formatMonthLong": "MMMM",
+			"formatMonthMedium": "MMM",
+			"formatMonthDayLong": "MMMM D",
+			"customformatMonthDayLong": "MMMM DD",
+			"formatMonthDayMedium": "MMM D",
+			"formatMonthYearLong": "MMMM YYYY",
+			"customFormatMonthYearLong": "MMMM, YYYY",
+			"formatMonthYearMedium": "MMM YYYY",
+			"formatDayLong": "ddd D",
+			"formatDay": "DD",
+			"foramtWeekDayLong": "dddd",
+			"foramtWeekDay": "ddd",
+			"foramtWeekDayMedium": "dd",
+			"formatDayYearLong": "D, YYYY",
+			"formatYearLong": "YYYY",
+			"day": "day",
+			"year": "year",
+			"seconds": "seconds"
+		}
+	}
+}

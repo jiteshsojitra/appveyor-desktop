@@ -1,0 +1,13 @@
+query GetWorkingHours($names: [String!]!, $start: Float, $end: Float) {
+	workingHours: getWorkingHours(names: $names, start: $start, end: $end) {
+		id
+		free {
+			start
+			end
+		}
+		unavailable {
+			start
+			end
+		}
+	}
+}

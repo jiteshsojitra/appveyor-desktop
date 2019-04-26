@@ -1,0 +1,11 @@
+query getContactFrequency($email: String!, $by: String!, $offsetInMinutes: String) {
+	getContactFrequency(email: $email, by: $by, offsetInMinutes: $offsetInMinutes) {
+		data {
+			by
+			dataPoint {
+				label
+				value
+			}
+		}
+	}
+}

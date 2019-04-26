@@ -1,0 +1,24 @@
+#import "../../fragments/folder.graphql"
+
+mutation createFolder(
+	$color: Int,
+	$fetchIfExists: Boolean,
+	$flags: String,
+	$name: String!,
+	$parentFolderId: ID,
+	$url: String,
+	$view: FolderView
+) {
+	createFolder(
+		color: $color
+		fetchIfExists: $fetchIfExists
+		flags: $flags
+		name: $name
+		parentFolderId: $parentFolderId
+		url: $url
+		view: $view
+	)
+	{
+		...folderFields
+	}
+}

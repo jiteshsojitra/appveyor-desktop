@@ -1,0 +1,6 @@
+mutation sendInviteReply($inviteReply: InviteReplyInput!){
+	sendInviteReply(inviteReply: $inviteReply) {
+		inviteId,
+		calendarItemId
+	}
+}

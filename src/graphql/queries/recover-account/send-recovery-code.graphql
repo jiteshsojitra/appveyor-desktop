@@ -1,0 +1,6 @@
+mutation SendRecoveryCode($email: String!) {
+	recoverAccount(op: sendRecoveryCode, email: $email, channel: email) {
+		recoveryAccount
+		recoveryAttemptsLeft
+	}
+}

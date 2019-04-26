@@ -1,0 +1,173 @@
+@import '~@zimbra/x-ui/refs.less';
+
+.container {
+	height: 100%;
+	background-image: url('../../../clients/default/assets/login-page-background.png');
+	background-color: @login-background-color;
+	background-size: cover;
+}
+
+.login {
+	background-color: @login-inner-background-color;
+	border-radius: 2px;
+	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.4);
+	margin: 0 auto;
+	padding: 40px;
+	position: relative;
+	top: 50%;
+	width: 340px;
+	z-index: 1; // To ensure the footer never goes over the form.
+
+	h1 {
+		font-size: 20px;
+	}
+
+	.container & {
+		transform: translateY(-50%);
+
+		@media (max-width: @screen-tablet) {
+			width: 52%;
+		}
+
+		@media (max-width: @screen-phone) {
+			width: 95%;
+		}
+	}
+}
+
+.footer {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	text-align: center;
+
+	// Intentionally leftover code remaining for commented out code in component
+	h6, small, li {
+		font-size: 13px;
+	}
+
+	h6 {
+		margin: 0 0 13px 0;
+	}
+
+	ol {
+		color: fade(#fff, 80%);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			display: inline-block;
+
+			&:not(:last-child):after {
+				content: '|';
+				padding: 0 5px;
+			}
+
+		}
+	}
+}
+
+.error {
+	animation: errorIn 250ms ease forwards 1;
+	background-color: fade(@brand-danger, 20%);
+	border-bottom: 1px solid @brand-danger;
+	color: #000;
+	display: none;
+	margin: 0 -40px;
+	padding: 10px 40px;
+
+	.icon {
+		margin-right: 10px;
+	}
+
+	&.showing {
+		display: block;
+	}
+}
+
+.form {
+	display: block;
+	margin: auto;
+	max-width: 300px;
+
+	label {
+		display: block;
+		margin-top: 20px;
+		margin-left: 1px; // for 1px border on <input>
+
+		&.invalid {
+			color: @brand-danger;
+		}
+	}
+
+
+	input {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		font-size: 100%;
+		border: 1px solid @gray-lighter;
+		border-radius: 2px;
+		outline: none;
+
+		&:focus {
+			border-color: @brand-primary;
+		}
+
+		&.invalid {
+			border-color: @brand-danger;
+		}
+
+		@media (max-width: @screen-xs) {
+			font-size: 16px;
+		}
+	}
+}
+
+.buttons {
+	display: flex;
+	margin-top: 15px;
+	justify-content: space-between;
+
+	button {
+		margin: 0;
+	}
+}
+
+div.buttonsContainer {
+	text-align: center;
+
+	button {
+		display: inline-block;
+
+		&.continue {
+			margin-top: 32px;
+		}
+	}
+}
+
+div.forgotPassPopoverButton {
+	display: flex;
+	align-items: center;
+}
+
+.forgotPassPopoverTitle {
+	color: @link-color;
+}
+
+.forgotPassPopover {
+	max-width: 275px;
+	padding: 20px;
+
+	h4 {
+		font-size: 13px;
+		margin: 0;
+	}
+
+	p {
+		margin: 10px 0 0 0;
+	}
+}

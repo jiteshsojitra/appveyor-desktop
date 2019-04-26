@@ -1,0 +1,3 @@
+mutation createSharedCalendar($link: NewMountpointSpec!) {
+	createSharedCalendar(link: $link)
+}

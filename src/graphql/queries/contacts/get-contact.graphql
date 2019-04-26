@@ -1,0 +1,23 @@
+#import "../../fragments/contact.graphql"
+
+query getContact(
+	$id: ID,
+	$ids: [ID!],
+	$derefGroupMember: Boolean,
+	$memberOf: Boolean
+) {
+	getContact(
+		id: $id,
+		ids: $ids,
+		derefGroupMember: $derefGroupMember,
+		memberOf: $memberOf
+	) {
+		...contactFields
+		members {
+			contacts {
+				...contactFields
+			}
+			type
+		}
+	}
+}

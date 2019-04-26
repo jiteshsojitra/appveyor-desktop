@@ -1,0 +1,21 @@
+@import '../../style/helpers.less';
+
+.toolbar {
+	min-height: @toolbar-height;
+	height: auto;
+	display: flex;
+	align-items: center;
+	padding: 0 14px;
+	border-bottom: 1px solid @gray-lighter;
+	font-size: 24px;
+	color: @gray-darkest;
+}
+.searchContainer{
+	padding:0;
+	background-color: @gray-lightest;
+}
+.searchInput{
+	max-width:600px;
+	height: calc( @toolbar-height - 2px);
+	background: white;	
+}

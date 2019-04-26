@@ -1,0 +1,34 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.button {
+	background-color: @sidebar-primary-button-color;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+	color: white;
+	cursor: pointer;
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+	margin: @spacing-sm auto;
+	text-align: center;
+	padding: 10px 0;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: 100%;
+	&.buttonLink{
+		box-shadow:none;
+		background-color:transparent;
+		color: @text-color;
+		text-align: left;
+	}
+}
+
+.icon {
+	color: @brand-primary;
+	margin-right: 10px;
+	font-size: 16px;
+	position: relative;
+	top: -2px;
+}

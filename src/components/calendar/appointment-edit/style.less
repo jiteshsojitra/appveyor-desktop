@@ -1,0 +1,474 @@
+@import '~@zimbra/x-ui/helpers.less';
+@import '~@zimbra/x-ui/variables.less';
+@import '~@zimbra/x-ui/refs.less';
+
+@label-width: 110px;
+@label-width-sm: 60px;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+
+	.header {
+		border-bottom: 1px solid @gray-lighter;
+		padding: 14px 24px;
+		margin: 0;
+		position: relative;
+		h2 {
+			margin: 0;
+			padding: 0;
+			font-size: @font-size-h4;
+			font-weight: 400;
+		}
+
+		.actionButton {
+			top: 10px;
+			right: @spacing-md;
+			width: 24px;
+			height: 24px;
+			padding: 0;
+			border-radius: 50%;
+			transition: all 150ms ease;
+			position: absolute;
+		}
+	}
+
+	.simpleHeader {
+		padding: 0 0 16px 0;
+
+		h2 {
+			margin: 0;
+			padding: 0;
+			font-size: @font-size-h4;
+			font-weight: 400;
+		}
+	}
+
+	.formWrapper {
+		padding: 16px 24px;
+		display: block;
+		flex: 1;
+
+		.scroll();
+
+		@media (max-width: @screen-sm-max) and ( min-width: @screen-xs-max ) {
+			padding: 16px 80px;
+		}
+
+		.alignedForm {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.privateWrapper {
+			padding-left: 8px
+		}
+
+		.alignedLabel {
+			display: block;
+			width: @label-width;
+			min-width: @label-width;
+			padding-right: 8px;
+			@media (max-width: @screen-sm-max) {
+				min-width: @label-width-sm !important;
+				width: @label-width-sm !important;
+			}
+
+			&.disabledElement {
+				
+				a {
+					color: @gray-darkest;
+					text-decoration: none;
+				}
+			}
+		}
+
+		.fieldOffset {
+			margin-left: @label-width;
+			@media (max-width: @screen-sm-max) {
+				margin-left: @label-width-sm;
+			}
+		}
+
+		.dateSelector {
+			margin-right: 8px;
+			@media (max-width: @screen-xs-max) {
+				width: 80px;
+			}
+		}
+
+		.timeSelector {
+			padding: 5px 12px;
+			margin-right: 8px;
+			@media (max-width: @screen-xs-max) {
+				padding: 5px 0 5px 12px;
+				width: 110px;
+			}
+		}
+
+		.subOption {
+			display: block;
+			margin-bottom: 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.inviteesGroup {
+			margin-bottom: 8px;
+		}
+
+		.addressField {
+			flex: 1;
+			appearance: none;
+			border-radius: 3px;
+			background-color: #fff;
+			border: solid 1px @gray-lighter;
+		}
+
+		.availabilityIndicatorGroup {
+			margin-left: @label-width;
+			width: auto;
+			@media (max-width: @screen-sm-max) {
+				margin-left: @label-width-sm;
+			}
+		}
+		.availabilityButton {
+			margin: 8px 0;
+		}
+		.attachmentButton {
+			width: 25px;
+			height: 24px;
+			margin-bottom: auto;
+			background-color: transparent;
+			span {
+				&::before {
+					position: relative;
+					left: -12px;
+					bottom: 8px;
+				}
+			}
+			&.disabled {
+				cursor: default
+			}
+		}
+
+		.notesContainer {
+			border: solid 1px @gray-lighter;
+			border-radius: 3px;
+			width: 400px;
+		}
+
+		.attachments {
+			margin-left: 10px;
+			margin-right: 4px;
+			display: inline-block;
+		}
+
+		.textArea {
+			border: none;
+			width: 99%;
+		}
+
+		.calendarSelect {
+			padding: 8px 5px;
+			width: 150px;
+			border: solid 1px @border-color-primary;
+			border-radius: 3px;
+
+			> ul {
+				max-width: 250px;
+			}
+
+			.calendarOption {
+				text-align: left;
+				background: #FFF;
+				color: #000;
+
+				&:hover, &:focus {
+					background: @gray-lighter;
+				}
+
+				> div[class*="itemTitle"] {
+					float: left;
+					padding-left: 0;
+				}
+
+			}
+
+			.calendarOptionItem {
+				display: flex;
+				font-weight: normal;
+
+				.calendarColor {
+					margin-right: 8px;
+					width: 16px;
+					height: 16px;
+					border: 2px solid #FFF;
+				}
+
+				.calendarText {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					color: @gray-darkest;
+					flex: 1;
+				}
+			}
+
+			.toggleButtonClass {
+				width: 100%;
+
+				&:focus {
+					color: inherit;
+				}
+
+				p {
+					overflow: hidden;
+					width: calc(100% - 14px);
+				}
+			}
+		}
+
+		.repeatInstanceBtn {
+			width: 400px;
+			height: auto;
+			text-align: left;
+			border: solid 1px @gray-lighter;
+			border-radius: 3px;
+			padding: (@spacing-sm + 1) (@spacing-xl + 2) (@spacing-sm + 1) (@spacing-md - 4);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			
+			@media (max-width: @screen-sm-max) {
+				width: 120px;
+			}
+
+			[role="img"] {
+				position: absolute;
+				right: @spacing-md;
+			}
+		}
+	}
+
+	.footer {
+		position: relative;
+		bottom: 0;
+		flex: 0 0 0;
+		width: 100%;
+		height: 64px;
+		padding: 0 20px;
+		border-top: 1px solid @gray-lighter;
+		line-height: 64px;
+	}
+
+	label {
+		padding: 0;
+	}
+
+	.datepickerWrapper{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.allDay {
+		margin-top: 8px;
+	}
+
+	.disabledElement {
+		color: @placeholder-color;
+
+		span {
+			color: @placeholder-color !important;
+		}
+
+		button {
+			color: @placeholder-color;
+		}
+
+		& :after {
+			color: @placeholder-color;
+		}
+	}
+
+}
+
+
+.weekDayOption {
+	margin: 0 0 @spacing-md 90px;
+
+	ul.selectWeekDays {
+		list-style: none;
+		display: inline-block;
+		margin-left: @spacing-xs;
+
+		li {
+			display: inline;
+			margin: 0px @spacing-xs;
+			label {
+				display: inline-block;
+				background-color: @gray-lightest;
+				color: @gray-dark;
+				border-radius: 25px;
+				margin: @spacing-xs 0px;
+				width: @spacing-lg;
+				height: @spacing-lg;
+				padding: 2px;
+				box-sizing: border-box;
+				text-align: center;
+				font-size: @font-size-base;
+				cursor: pointer;
+			}
+
+			input[type="checkbox"] {
+				position: absolute;
+				opacity: 0;
+				width: @spacing-lg;
+				height: @spacing-lg;
+
+				&:checked + label {
+					background-color: #0088c1;
+					color: @body-bg;
+					transition: all .2s;
+				}
+			}
+		}
+
+	}
+}
+
+.toolbarAction {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	flex: auto;
+	padding: 5px;
+
+	.addEventAction {
+		height: 36px;
+		border-radius: 2px;
+	}
+
+}
+
+.recurrenceEditModal {
+	.header {
+		padding-bottom: 8px;
+	}
+
+	label {
+		padding-bottom: 5px;
+		display: inline-block;
+	}
+}
+
+.customRecurrenceModal {
+	.header {
+		color: @gray-darkest;
+	}
+
+	.endingOption {
+		padding-top: @spacing-md;
+
+		.dateSelector {
+			display: inline-block;
+			margin-left: @spacing-md;
+			width: 100px;
+		}
+
+		.numOfOccurencesSelector {
+			margin: 0 @spacing-sm 0 (@spacing-md + 4);
+			width: 60px;
+		}
+	}
+
+	.repeatInterval {
+		width: 56px;
+		height: 36px;
+		margin: 0 @spacing-sm 0 @spacing-md;
+	}
+
+	.repeatvalue {
+		margin-bottom: @spacing-md;
+
+		.selectButton {
+			width: 164px;
+		}
+
+	}
+
+	.selectButton {
+		width: 228px;
+		border: solid 1px @border-color-primary;
+		border-radius: 3px;
+
+		> ul {
+			width: 100%;
+		}
+
+		li.dropdownOption {
+			text-align: left;
+			background: none;
+			color: @gray-darker;
+			padding: @spacing-sm (@spacing-md - 1);
+			font-weight: normal;
+			text-transform: none;
+
+			&:hover, &:focus {
+				background: @gray-lightest;
+			}
+
+			> div[class*="itemTitle"] {
+				float: none;
+				padding-left: 0;
+			}
+		}
+
+		.toggleButtonClass {
+			display: block;
+			padding: @spacing-sm (@spacing-xs + 1);
+
+			&:focus {
+				color: inherit;
+			}
+
+			p {
+				width: calc(100% - 14px);
+				font-weight: normal;
+				color: @gray-darkest;
+				text-transform: none;
+			}
+		}
+	}
+
+	.monthYearOption {
+		margin: 0 0 @spacing-md 90px;
+	}
+}
+
+.discardModalContent {
+	padding-bottom: 52px !important;
+}
+
+.inEventNotification {
+	background-color: rgba(255, 184, 28, 0.2);
+	padding: @spacing-sm @spacing-md;
+	margin-bottom: @spacing-md;
+	max-width: 446px;
+	color: @gray-base;
+	border-bottom: 1px solid #ffb81c;
+}
+
+.anchorLink {
+	color: @link-color;
+	padding-left: 0px;
+}
+
+.customRecurrText {
+	white-space: pre-line;
+	color: @text-color;
+}

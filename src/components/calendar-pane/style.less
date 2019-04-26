@@ -1,0 +1,100 @@
+@import '../../style/helpers.less';
+
+.calendarPane {
+	transition: opacity 150ms ease 50ms, width 450ms ease 20ms;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+
+	.listTopper {
+		max-height: 72px;
+		overflow: hidden;
+		display: block;
+	}
+}
+
+@media (min-width: @screen-md) {
+	.calendarPane {
+		width: ~'calc(100vw - ' (@sidebar-width) ~')';
+		min-width: 66.67%;
+
+		&.attachmentViewerOpen {
+			width: ~'calc(50% - ' (@sidebar-width/2) ~')';
+			min-width: 0;
+		}
+		&.mediaMenuOpen {
+			width: ~'calc(66.67% - ' @sidebar-width/2 ~')';
+			min-width: ~'calc(100% - ' @sidebar-width ~' - 400px)';
+		}
+	}
+
+	.calendarListPane {
+		&.withBottomPreview {
+			transition: none;
+		}
+		transition: max-width 450ms ease 20ms;
+		max-width: 100%;
+		/*TODO: Explore other alternatives as this will be a costly animation*/
+		&.collapse {
+			max-width: 0;
+		}
+	}
+}
+
+@media (min-width: @screen-lg) {
+	.calendarPane {
+		width: auto;
+	}
+}
+
+@media (max-width: 600px) {
+	width: 200%;
+	overflow: hidden;
+	transition: transform 250ms ease 50ms;
+
+	.scrollableList {
+		width: 50%;
+		border-right: none;
+	}
+
+	.readPane {
+		width: 50%;
+		box-shadow: none;
+	}
+}
+
+.calendarListPane {
+	float: left;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	&.narrow {
+		width: 330px;
+	}
+}
+
+.readPane {
+	position: relative;
+	height: 100%;
+	box-shadow: -1px 0 0 #ccc;
+	overflow: auto;
+	background-color: @read-pane-bg-color;
+
+	&.rightPaneOpen {
+		margin-left: 1px;
+	}
+}
+
+.readPaneWide {
+	position: static;
+	width: 100%;
+}
+
+.horizontalResizeControl {
+	float: left;
+}
+
+.widecalendarListHeader {
+	background: @gray-lighter;
+	border-bottom: 0;
+}

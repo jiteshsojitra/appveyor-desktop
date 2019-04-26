@@ -1,0 +1,99 @@
+@import '~@zimbra/x-ui/refs.less';
+@import '~@zimbra/x-ui/helpers.less';
+
+.rsvpTitle {
+	padding-top: 6px;
+}
+
+.rsvp {
+	display: inline-block;
+	margin: 0;
+
+	> * {
+		font-size: 100%;
+		margin: 0px;
+		margin-right: 40px;
+		margin-top: -1px;
+	}
+
+	.select {
+		> ul {
+			max-width: 250px;
+			max-height: 160px;
+		}
+
+		p {
+			font-weight: normal;
+			padding-left: 4px;
+			color: @gray-darker;
+		}
+
+		.invitationOption {
+			text-align: left;
+			background-color: #FFF !important;
+			color: #000;
+			width: 198px;
+
+			&:hover, &:focus {
+				background-color: @read-pane-toolbar-color !important;
+			}
+
+			> div[class*="itemTitle"] {
+				float: left;
+				padding-left: 0;
+			}
+
+		}
+	}
+}
+
+.buttonText {
+	display: inline-block;
+	margin-top: 6px;
+}
+
+.invitationItem {
+	padding: 0;	
+	
+	&:not(:disabled):hover,
+	&:not(:disabled):focus {
+		cursor: inherit;
+	}
+
+	span {
+		display: block;
+		margin-right: 2px;
+		&.success {
+			color: @brand-success;
+		}
+		&.info {
+			color: @brand-info;
+		}
+		&.danger {
+			color: @brand-danger;
+		}
+	}
+
+	span[role="img"] {
+		vertical-align: middle;
+		margin-right: 2px;
+	}
+}
+
+.invitationItemInline{
+	cursor: pointer;
+	span {
+		display: inline-block;
+		padding: 0px 2px 0px 0px;
+	}
+}
+
+@media (max-width: @screen-xs) {
+	.invitation {
+		.rsvp {
+			> * {
+				margin-right: 20px;
+			}
+		}
+	}
+}

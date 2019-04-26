@@ -1,0 +1,9 @@
+export const OUTBOX = 'Outbox';
+export const DRAFTS = 'Drafts';
+export const SENT = 'Sent';
+export const INBOX = 'Inbox';
+export const INBOXINUPPERCASE = 'INBOX'; // requires because currently we are getting 'secondary user INBOX folder name value' in uppercase format
+export const TRASH = 'Trash';
+export const CONTACTS = 'Contacts';
+export const EMAILED_CONTACTS = 'Emailed Contacts';
+export const JUNK = 'Junk';

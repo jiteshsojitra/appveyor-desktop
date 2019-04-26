@@ -1,0 +1,22 @@
+query AutoCompleteGAL (
+	$limit: Int = 20,
+	$name: String!,
+	$type: GalSearchType,
+	$needExp: Boolean
+) {
+	autoCompleteGAL (
+		limit: $limit,
+		name: $name,
+		type: $type,
+		needExp: $needExp
+	) {
+		contacts {
+			id
+			attributes {
+				zimbraCalResType
+				fullName
+				email
+			}
+		}
+	}
+}

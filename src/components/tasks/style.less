@@ -1,0 +1,288 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+@font-size-smallish: 13px;
+
+.loading {
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	background: transparent;
+
+	.spinner {
+		font-size: 16px;
+		margin-bottom: 4px;
+	}
+}
+
+.dateErrorText {
+	margin-top: 0;
+	font-size: @font-size-base;
+	line-height: @line-height-base;
+	color: var(--brand-danger);
+  }
+
+
+.tasks {
+	font-size: @font-size-smallish;
+	color: @text-color;
+
+	.header {
+		height: 46px;
+		line-height: 46px;
+		padding: 0;
+		border-bottom: 1px solid @sidebar-shaded-color;
+
+		h4 {
+			margin: 0;
+			padding: 0 20px;
+			font-size: inherit;
+			color: inherit;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	}
+
+	.actionsMenuButton {
+		float: right;
+		button {
+			vertical-align: top;
+		}
+	}
+	.actionsMenuIcon {
+		display: inline-block;
+		vertical-align: top;
+		width: 46px;
+		height: 46px;
+		padding: 0;
+		line-height: 44px;
+		font-size: 24px;
+		color: @gray-light;
+	}
+
+	.actionsMenu {
+		margin-right: 5px;
+		min-width: 100px;
+
+		a {
+			padding-right: 40px;
+		}
+	}
+}
+
+
+.taskList {
+	padding: 10px 0 0 0;
+
+	.listHeader {
+		display: flex;
+		padding: 10px 0;
+
+		.renameInput {
+			input {
+				border: 1px solid @gray-light;
+			}
+		}
+
+		h5 {
+			margin: 0;
+			padding: 0 2px;
+			font-weight: inherit;
+			font-size: inherit;
+			color: inherit;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			user-select: none;
+		}
+	}
+
+	.toggle, .toggleAdd {
+		line-height: inherit;
+		height: 100%;
+		width: 30px;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+		font-size: 100%;
+
+		> * {
+			position: relative;
+			transition: all 300ms ease;
+			font-size: 100%;
+		}
+	}
+
+	&.collapsed .toggle > * {
+		transform: rotate(-90deg);
+	}
+
+	.toggleAdd {
+		margin-left: auto;
+	}
+
+	.add {
+		position: relative;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 200ms ease;
+	}
+
+	&.isShowingAdd .add {
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	.list {
+		margin: 0;
+		padding: 0 18px 0 28px;
+		transform-origin: 0 0;
+		animation: open 200ms ease forwards 1;
+
+		.noTask {
+			padding-left: 22px;
+		}
+	}
+	@keyframes open {
+		0% { transform: scaleY(0); opacity: 0; }
+	}
+}
+
+.task {
+	padding: 7px 0;
+	text-align: left;
+
+	.firstLine {
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		margin: 0;
+
+		[class*=choiceInputContainer] {
+			flex: 0 0 auto;
+		}
+
+		.text {
+			display: inline-block;
+			position: relative;
+			margin: 0;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			user-select: none;
+
+			&.isDone {
+				text-decoration: line-through;
+			}
+		}
+
+		.editText {
+			position: relative;
+			display: inline-block;
+			width: 100%;
+			margin: 0;
+			padding: 3px;
+			border: 1px solid @gray-light;
+			border-radius: 2px;
+			font-family: inherit;
+			font-size: 100%;
+			line-height: inherit;
+			outline: none;
+		}
+
+		&.isEditing {
+			.text {
+				padding: 0;
+			}
+		}
+
+	}
+
+	.dueDate {
+		color: @gray-light;
+		padding-left: 18px;
+		text-align: left;
+	}
+}
+
+
+.createListDialog {
+	input {
+		width: 100%;
+		padding: 5px;
+		border: 1px solid @gray-placeholder;
+		border-radius: 2px;
+		font-size: @font-size-base;
+		outline: none;
+
+		&:focus {
+			border-color: @brand-primary;
+		}
+
+		&:invalid {
+			border-color: @brand-danger;
+		}
+	}
+}
+
+.addEditTaskDialog{
+	.createListDialog;
+
+	input {
+		width: auto;
+		border: 1px solid @gray-lighter;
+	}
+
+	select {
+		min-width: 196px;
+		width: 100%;
+	}
+
+}
+
+.popover {
+	padding: 24px;
+	color: #000;
+	max-width: 250px;
+
+	.name {
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+
+	.date {
+		margin-bottom: 10px;
+	}
+
+	hr {
+		margin: 8px 0;
+	}
+
+	.notes {
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		max-height: 110px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	.buttonGroup {
+		margin-top: 10px;
+
+		.button:first-child {
+			margin-left: 0;
+		}
+	}
+
+	.popover_loading {
+		display: inline-block;
+		margin-left: 4px;
+		background: transparent;
+
+		.spinner {
+			font-size: 16px;
+		}
+	}
+}

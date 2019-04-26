@@ -1,0 +1,46 @@
+@import '~@zimbra/x-ui/refs.less';
+
+.iconWrapper {
+	width: 80px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.contentTypeIcon {
+		font-size: 25px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		color: #FFF;
+	}
+
+	&.uploading {
+		background-color: @gray-lighter;
+	}
+	&.doc {
+		background-color: @file-type-doc;
+	}
+	&.ppt {
+		background-color: @file-type-ppt;
+	}
+	&.pdf {
+		background-color: @file-type-pdf;
+	}
+	&.xls {
+		background-color: @file-type-xls;
+	}
+	&.zip {
+		background-color: @file-type-zip;
+	}
+	&.media {
+		background-color: @file-type-media;
+	}
+	&.code {
+		background-color: @file-type-code;
+	}
+	&.default {
+		background-color: @file-type-default;
+	}
+}

@@ -1,0 +1,31 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.createCalendarModalContent {
+	margin-top: 14px;
+}
+
+.contentWrapper{
+	@media(max-width: @screen-sm-max) {
+		padding: 30px 20px;
+		header + &{
+			padding-top: 10px
+		}
+	}
+}
+
+.createCalendarModal {
+	.colorPicker {
+		margin-left: 16px;
+	}
+	.colorPickerContainer {
+		display: flex;
+		margin-top: 24px;
+		@media(max-width: @screen-sm-max) {
+			margin-top: 18px;
+			align-items: top;
+			.colorLabel{
+				padding-top: 10px;
+			}
+		}
+	}
+}

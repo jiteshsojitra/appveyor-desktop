@@ -1,0 +1,3 @@
+mutation prefOutOfOfficeFromDate($value: String!) {
+	prefOutOfOfficeFromDate(value: $value)
+}

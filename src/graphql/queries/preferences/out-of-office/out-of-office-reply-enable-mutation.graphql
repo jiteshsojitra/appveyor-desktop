@@ -1,0 +1,3 @@
+mutation prefEnableOutOfOfficeReply($value: Boolean!) {
+	prefEnableOutOfOfficeReply(value: $value)
+}

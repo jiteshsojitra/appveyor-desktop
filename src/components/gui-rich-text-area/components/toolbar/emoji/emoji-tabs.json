@@ -1,0 +1,35 @@
+[
+  {
+    "name": "people",
+    "unicode": "1f600",
+    "caption": "Smileys & People"
+  }, {
+    "name": "nature",
+    "unicode": "1f435",
+    "caption": "Animals & Nature"
+  }, {
+    "name": "food",
+    "unicode": "1f354",
+    "caption": "Food & Drink"
+  },  {
+    "name": "objects",
+    "unicode": "1f4a1",
+    "caption": "Objects"
+  }, {
+    "name": "activity",
+    "unicode": "26bd",
+    "caption": "Activity"
+  }, {
+    "name": "travel",
+    "unicode": "1f697",
+    "caption": "Travel & Places"
+  }, {
+    "name": "symbols",
+    "unicode": "1f523",
+    "caption": "Symbols"
+  }, {
+    "name": "flags",
+    "unicode": "1f3f3",
+    "caption": "Flags"
+  }
+]

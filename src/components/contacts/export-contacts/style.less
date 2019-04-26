@@ -1,0 +1,33 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.exportContacts {
+	.description {
+		font-size: 13px;
+		margin-bottom: 9px;
+	}
+
+	.option {
+		display: block;
+		padding: 5px 10px;
+		font-size: 13px;
+
+		input {
+			margin-right: 8px;
+		}
+	}
+
+	a[role="button"] {
+		&:hover, &:focus {
+			color: white;
+		}
+	}
+
+	.error {
+		padding: 10px;
+		color: @brand-danger;
+		animation: fadeIn 300ms ease forwards 1;
+		@keyframes fadeIn {
+			from { opacity: 0; transform: scaleY(0.001); }
+		}
+	}
+}

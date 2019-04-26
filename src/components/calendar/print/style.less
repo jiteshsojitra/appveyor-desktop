@@ -1,0 +1,364 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+@time-indicator-svg: escape('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="@{gray-dark}" fill-rule="evenodd" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 2.13A5.87 5.87 0 0 0 2.13 8 5.87 5.87 0 0 0 8 13.87 5.87 5.87 0 0 0 13.87 8 5.87 5.87 0 0 0 8 2.13zm-2.28 8.72a.67.67 0 0 1-.46-1.15l2.07-2V4.3a.67.67 0 1 1 1.34 0V8a.67.67 0 0 1-.2.48l-2.3 2.18a.66.66 0 0 1-.45.2z"/></svg>'); //# in a uri doesn't work in FF.  Need to escape it.
+
+.main{
+	padding:20px;
+	@media print { 
+		padding:0;
+	}
+}
+.header{
+	width:100%;
+	>div{
+		width:100%;
+		padding-bottom:20px;
+		box-sizing:border-box;
+		color:@gray-dark;
+	}
+	.headerInfo{
+		display: flex;
+		font-size: 10px;
+		line-height: 1.7;
+		flex: 1 1;
+		justify-content: space-between;
+		@media print { 
+			display:none;
+		}
+	}
+	
+	.headerDate{
+		font-size: 20px;
+		font-weight: 300;
+		
+	}
+	.calendarColorsLegend{
+		display: inline-block;
+		margin-right: 10px;
+		div{
+			width: 12px;
+			height: 12px;
+			display: block;
+			margin-right: 8px;
+			float: left;
+		}
+		span{
+			-webkit-print-color-adjust: exact; 
+			font-size: 11px;
+			line-height: 12px;
+			float: left;
+		}
+	}
+	.minical{
+		width:150px;
+		margin-bottom: 20px;
+	}
+}
+
+.calendarContainer{
+	display: block;
+	width: 100%;
+}
+.addPageBreak{
+	page-break-after: always;
+}
+.calendar {
+	background: #FFF;
+	width: 100%;
+	height: auto;
+	display: block;
+	
+	// fix RBC expanding out of its bounds for 2+ event days in month view
+	* {
+		min-width: 0 !important;
+	}
+	.calendarWrapper {
+		
+		width: 100%;
+	}
+	.calendarInner {
+		width: 100%;
+		height: auto; 
+		margin-bottom:20px;
+		border:1px solid @gray-lightest;
+		display: initial;
+	}
+
+	.rightbar {
+		flex: 0 0 auto;
+		width: @rightbar-width;
+		background-color: @rightbar-bg-color;
+	}
+
+	:global {
+		.rbc-row-content {
+			z-index: unset; // Remove stacking context created by RBC; ¿it does nothing?
+		}
+		.rbc-event-content{
+			color: #000;
+		}
+		.rbc-month-view,
+		.rbc-time-view {
+			border-left-width: 0;
+			border-right-width: 0;
+			border-bottom-width: 0;
+		}
+		.rbc-month-row {
+			min-height: 110px;
+		}
+
+		.rbc-time-view {
+			.rbc-time-gutter, .rbc-time-header-gutter {
+				min-width: 72px !important;
+			}
+
+			.rbc-time-header-gutter:after {
+				content: 'All Day'; // TODO: How to localize? Pending RBC feature: https://github.com/intljusticemission/react-big-calendar/issues/853
+				display: block;
+				padding-top: 3px;
+			}
+
+			.rbc-timeslot-group {
+				@media (max-width: @screen-sm-max) {
+					min-height: 88px; // 44px per half hour
+				}
+			}
+			
+		}
+		.rbc-month-view {
+			.scroll();
+
+			.rbc-date-cell,
+			.rbc-day-bg,
+			.rbc-row-segment {
+				flex-basis: calc(100%/7);
+				max-width: calc(100%/7);
+			}
+		}
+
+		.rbc-header {
+			padding: 3px 8px;
+			font-size: 13px;
+			font-weight: normal;
+			text-align: left;
+			user-select: none;
+		}
+
+		.rbc-month-header {
+			display: none;
+		}
+
+		.rbc-month-view .rbc-date-cell {
+			text-align: left;
+			padding: 3px 0 0 7px;
+			white-space: nowrap;
+		}
+
+		.rbc-header-gutter {
+			text-transform: capitalize;
+			white-space: nowrap;
+		}
+
+		.rbc-time-slot {
+			white-space: nowrap;
+			user-select: none;
+			cursor: default;
+		}
+
+		.rbc-time-column {
+			min-width: 60px;
+		}
+
+		.rbc-time-content {
+			border-top-width: 1px;
+			flex-basis: auto;
+		}
+
+		.rbc-agenda-view, .rbc-time-content {
+			-webkit-overflow-scrolling: touch;
+		}
+		.rbc-agenda-view {
+			display: inline-block;
+			flex:none;
+			table.rbc-agenda-table{
+				thead{
+					display: none;
+				}
+				tbody > tr > td{
+					padding: 15px 15px;
+					border-left: 0px none;
+					border-right: 0px none;
+					border-bottom: 1px solid #DDD;
+				}
+				.rbc-agenda-date-cell{
+					font-weight: bold;
+				}
+			}	
+		}
+		.rbc-today {
+			background-color: @gray-lightest;
+		}
+
+		.rbc-slot-selection {
+			width: 100%;
+		}
+
+		.rbc-current-time-indicator {
+			display: none !important;
+		}
+	}
+
+	&.dayView {
+		:global {
+			.rbc-time-header > .rbc-row:first-child {
+				display: none;
+			}
+
+			.rbc-today {
+				background-color: transparent;
+			}
+		}
+	}
+
+	// Time gutter values outside of 8am-5pm get greyed out:
+	.afterHours {
+		opacity: 0.5;
+	}
+
+	:global(.rbc-agenda-table) .event {
+		@media (max-width: @screen-md) {
+			height: 44px;
+		}
+	}
+
+	.event {
+		padding: 2px 4px;
+		margin: 0;
+		color: inherit;
+		overflow: visible;
+		background: none;
+		border: none;
+		border-radius: 4px;
+		border: 1px solid white;
+		height: 24px;
+
+
+		&:not(:first-child) {
+			margin-left: 2px;
+		}
+
+		.eventInner {
+			box-sizing: border-box;
+			height: 100%;
+			margin: 0 0 0 1px;
+			font-size: 13px;
+			color: #000;
+			white-space: nowrap;
+			overflow: hidden;
+
+			> time {
+				float: left;
+				padding: 0 5px 0 0;
+				font-weight: bold;
+			}
+		}
+
+		&.isBusy {
+			/* TODO add some visual distinction? */
+		}
+
+		&.isFree {
+			/* TODO add some visual distinction? */
+		}
+
+		&:hover, &.isSelected {
+			box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2);
+		}
+
+		&.quickAdd {
+			z-index: 2;
+		}
+	}
+
+	&.weekView {
+		:global {
+			.rbc-time-content {
+				padding-left: 52px;
+			}
+			.rbc-allday-cell .rbc-row {
+				padding-left: 0;
+			}
+			.rbc-time-gutter,
+			.rbc-header-gutter {
+				width: 52px;
+				margin-left: -52px;
+			}
+			.rbc-timeslot-group {
+				flex: 1 1 auto;
+			}
+		}
+	}
+
+	// more IE10 fix
+	&.weekView :global(.rbc-header),
+	&.weekView :global(.rbc-day-slot) {
+		flex-basis: calc(100%/7);
+		max-width: calc(100%/7);
+	}
+}
+
+.actionButton {
+	margin: 10px 4px;
+	flex-shrink: 0;
+	width: 36px;
+	height: 36px;
+	padding: 0;
+}
+
+.actionButtons {
+	display: flex;
+	justify-content: flex-end;
+	flex: 1;
+	flex-shrink: 0;
+	margin-right: 4px;
+}
+
+.composeButton {
+	background-color: @brand-primary;
+	color: white;
+	border-radius: 2px;
+	&:hover {
+		color: white;
+	}
+}
+
+.eventTooltip {
+	padding: 26px 24px;
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.36);
+	max-width: 450px;
+
+	.close {
+		position: absolute;
+		right: 16px;
+		top: 16px;
+	}
+}
+
+.eventTooltipTarget {
+	width: 100%;
+	height: 100%;
+}
+
+html{
+	overflow: visible;
+	position: static;
+}
+body{
+	-webkit-print-color-adjust: exact;
+	height: auto;
+	overflow: visible;
+	position: initial;
+}
+

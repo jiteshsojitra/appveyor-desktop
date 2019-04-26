@@ -1,0 +1,88 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.container {
+	display: inline-block;
+	position: relative;
+	line-height: normal;
+
+	&:not(.noArrow):before {
+		font-family: 'zimbra-icons';
+		content: "\e930";
+		position: absolute;
+		right: 11px;
+		top: 12px;
+		font-size: 10px;
+	}
+
+	&.fullWidth {
+		width: 100%;
+
+		.select {
+			width: 100%;
+		}
+	}
+}
+
+.select,
+.collapseLabel {
+	white-space: nowrap;
+	background-color: transparent;
+	padding: 9px 34px 9px 12px;
+	border-radius: 3px;
+	border: solid 1px @gray-lighter;
+	color: @gray-darkest;
+	position: relative;
+
+	&.collapsable {
+		outline: none;
+		padding: 0 25px 0 2px;
+	}
+
+	&.bold {
+		font-weight: bold;
+	}
+
+	&.noBorder {
+		border: 0;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: @gray-lightest;
+		}
+	}
+}
+
+.collapseLabel.inlineArrow {
+	&:before{
+		font-family: 'zimbra-icons';
+		content: "\e930";
+		position: absolute;
+		right: 11px;
+		top: 1px;
+		font-size: 9px;
+	}
+}
+
+.select {
+	appearance: none;
+
+	&::-ms-expand {
+		display: none;
+	}
+
+	&.hidden {
+		opacity: 0;
+	}
+}
+
+.collapseLabel {
+	line-height: 14px;
+	position: absolute;
+	display: inline-block;
+	padding-right: 25px;
+
+	&.hidden {
+		display: none;
+	}
+}

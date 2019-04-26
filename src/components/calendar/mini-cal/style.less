@@ -1,0 +1,148 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+@minical-button-padding: 4px;
+
+div.minical {
+	padding: 0;
+	margin-bottom: 16px;
+
+	// TODO: Replace with custom outlines?
+	*:focus {
+		outline-width: 2px;
+	}
+}
+
+.header {
+	padding: 0 0;
+	border-bottom: 1px solid @sidebar-shaded-color;
+
+	.prev, .next {
+		float: left;
+		z-index: 1;
+		padding: 0 @spacing-xs;
+	}
+
+	.picker {
+		display: block;
+		margin: 0;
+		padding: 0;
+		text-align: right;
+		white-space: nowrap;
+
+		> * {
+			text-align: left;
+		}
+
+		.button {
+			padding: 0;
+			line-height: 48px;
+			text-transform: uppercase;
+			text-align: right;
+			font-size: 16px;
+			max-width: auto;
+			font-weight: normal;
+			text-overflow: clip;
+			max-width: 200px;
+			font-family: @headings-font-family;
+			font-weight: @headings-font-weight;
+			color: @text-color;
+			cursor: pointer;
+		}
+
+		.button p {
+			max-width: 200px;
+			line-height: inherit;
+			font-weight: inherit;
+			font-family: inherit;
+			font-size: inherit;
+		}
+	}
+}
+
+.monthView,
+.yearView,
+.yearsView {
+	text-align: center;
+}
+
+.yearView, .yearsView {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
+}
+
+.yearsView {
+	width: 100%;
+}
+
+.week {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	align-content: space-between;
+}
+
+// if the main calendar is showing a week, highlight that week instead of the showing day
+.fullCalendarView_week {
+	.day.current:not(.today) {
+		background: none !important;
+	}
+	.week.current {
+		background: fade(@sidebar-shaded-color, 60%);
+		border-radius: 2px;
+	}
+}
+
+.year, .month, .day {
+	display: inline-block;
+	flex: 1 1 auto;
+	box-sizing: border-box;
+	padding: @minical-button-padding;
+	margin: 0;
+	border: none;
+	border-radius: 2px;
+	color: @text-color;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 300;
+	line-height: inherit;
+	text-transform: uppercase;
+
+	&:hover {
+		background: fade(@sidebar-shaded-color, 60%) !important;
+		color: black;
+	}
+
+	&.current {
+		background: fade(@sidebar-shaded-color, 60%) !important;
+	}
+
+	&.today {
+		background: @sidebar-shaded-color !important;
+		color: @brand-primary !important;
+	}
+}
+
+.day {
+	min-height: 24px;
+}
+
+.fullCalendarView_agenda .current:not(.today) {
+	background: none !important;
+	color: @text-color !important;
+}
+
+.year, .month {
+	flex-basis: calc(100%/3-@minical-button-padding);
+	max-width: calc(100%/3);	// IE10 fix
+}
+
+.day {
+	flex-basis: calc(100%/7-@minical-button-padding);
+	max-width: calc(100%/7);	// IE10 fix
+
+	&.outsideOfMonth {
+		opacity: .5;
+	}
+}

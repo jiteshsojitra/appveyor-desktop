@@ -1,0 +1,3 @@
+mutation forwardAppointmentInvite( $appointmentInvite: ForwardAppointmentInviteInput! ) {
+	forwardAppointmentInvite( appointmentInvite: $appointmentInvite )
+}

@@ -1,0 +1,5 @@
+mutation createCalendar($name: String!, $color: Int!, $url: String) {
+	createCalendar(name: $name, color: $color, url: $url) {
+		id
+	}
+}

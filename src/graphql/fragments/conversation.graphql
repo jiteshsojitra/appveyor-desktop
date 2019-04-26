@@ -1,0 +1,28 @@
+#import "./message.graphql"
+
+fragment conversationFields on Conversation {
+	id
+	size
+	date
+	folderId
+	subject
+	conversationId
+	flags
+	tags
+	tagNames
+	revision
+	changeDate
+	modifiedSequence
+	sortField
+	emailAddresses {
+		address
+		name
+		type
+		displayName
+	}
+	messages {
+		...messageFields
+	}
+	numMessages
+	unread
+}

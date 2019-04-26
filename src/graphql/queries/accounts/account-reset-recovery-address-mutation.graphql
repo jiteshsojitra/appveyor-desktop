@@ -1,0 +1,3 @@
+mutation resendRecoveryCode {
+	setRecoveryAccount(op: reset, channel: email)
+}

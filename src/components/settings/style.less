@@ -1,0 +1,982 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.settings {
+	display: flex;
+	height: 100%;
+	width: 100%;
+
+	@media (max-width: @screen-xs-max) {
+		flex-direction: column;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	.sidebar {
+		width: 300px;
+		padding: 20px 0;
+		border-right: 1px solid @gray-lighter;
+		.scroll();
+		-webkit-overflow-scrolling: touch;
+		@media (max-width: @screen-xs-max) {
+			width: 100%;
+			border-right: unset;
+			&.activePanel {
+				display: none;
+			}
+		}
+	}
+
+	.inlineField {
+		margin-right: 8px;
+	}
+
+	.vactionSubField {
+		max-width: 574px;
+		width: 100%;
+	}
+
+	.vacationResponseTextArea {
+		max-width: 574px;
+		width: 100%;
+		height: 158px;
+		.scroll();
+	}
+
+	.vacationExternalMessageArea {
+		width: 100%;
+	}
+
+	.buttonNoMargin {
+		margin-bottom: @spacing-md;
+		@media (max-width: @screen-xs-max) {
+			margin-bottom: @spacing-lg + 4;
+		}
+	}
+
+	.sidebarMenu {
+		display: block;
+
+		.sidebarItem {
+			display: block;
+			padding: 6px 24px;
+			margin-bottom: 4px;
+			cursor: pointer;
+			color: @text-color;
+			border-left: 4px solid transparent;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.active {
+				font-weight: bold;
+				color: @gray-darkest;
+			}
+
+			&:focus,
+			&:hover {
+				border-color: @brand-primary;
+				text-decoration: none;
+				outline: none;
+			}
+
+			&.hide {
+				display: none;
+			}
+		}
+	}
+
+	.settingsWrapper {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		padding: 20px;
+		@media (max-width: @screen-xs-max) {
+			width: 100%;
+			display: none;
+			&.activePanel {
+				display: unset;
+			}
+		}
+	}
+
+	.mb1 {
+		margin-bottom: 16px;
+	}
+	.subsection {
+		margin-bottom: 16px;
+		@media (max-width: @screen-xs-max) {
+			margin-bottom: 28px;
+		}
+	}
+
+	.mb1_5 {
+		margin-bottom: 24px;
+	}
+
+	.subsection {
+		display: flex;
+		font-size: 13px;
+		color: @text-color;
+
+		@media (max-width: @screen-xs-max) {
+			flex-direction: column;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&.compact {
+			margin-bottom: 8px;
+		}
+	}
+
+	.subsectionTitle {
+		min-width: 220px;
+		width: 220px;
+
+		&.forSelect {
+			line-height: 33px;
+		}
+
+		@media (max-width: @screen-xs-max) {
+			margin-bottom: 10px;
+			font-weight: 500;
+			&.forSelect {
+				line-height: unset;
+			}
+		}
+	}
+
+	.filtersSubsectionTitle {
+		min-width: 210px;
+		width: 210px;
+		@media (max-width: @screen-xs-max) {
+			width: unset;
+		}
+	}
+
+	.sectionTitle {
+		font-size: 18px;
+		color: @gray-darkest;
+		padding-bottom: 10px;
+		@media (max-width: @screen-xs-max) {
+			font-size: 20px;
+			padding-bottom: 20px;
+		}
+	}
+
+	.subsectionBody {
+		flex-grow: 1;
+		max-width: 375px;
+		.half {
+			width: 184px;
+			&.inline {
+				display: inline-block;
+			}
+
+			&:first-child {
+				margin-right: 6px;
+			}
+
+			@media (max-width: @screen-xs-max) {
+				display: inline-block;
+				width: 150px;
+			}
+		}
+
+		.processAdditional {
+			display: inline-block;
+		}
+	}
+
+	.subsectionBodyButton {
+		margin-top: 0;
+		margin-bottom: 0;
+
+		&[disabled] {
+			cursor: default;
+		}
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	.compactCheckboxSection {
+		margin-bottom: 8px;
+		display: flex;
+		align-items: baseline;
+
+		input {
+			flex-shrink: 0;
+		}
+	}
+	.label {
+		display: flex;
+		[class*=radioInput] {
+			top: 4px;
+		}
+		.labelText {
+			flex: 1;
+		}
+	}
+	.list {
+		margin: 0;
+		padding-left: 0;
+
+		li {
+			margin-bottom: 6px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			@media (max-width: @screen-xs-max) {
+				margin-bottom: 14px;
+			}
+		}
+
+		&.folderDownloadSection {
+			padding-bottom: 16px;
+			margin-bottom: 16px;
+			border-bottom: 1px solid @gray-lighter;
+		}
+	}
+
+	.calendarSelect {
+		padding: 8px 5px;
+		width: 184px;
+		border: solid 1px @border-color-primary;
+		border-radius: 3px;
+
+		> ul {
+			max-width: 250px;
+		}
+
+		.calendarOption {
+			text-align: left;
+			background: #FFF;
+			color: #000;
+
+			&:hover,
+			&:focus {
+				background: @gray-lighter;
+			}
+
+			&:not(:hover) {
+				background: transparent;
+			}
+
+			> div[class*="itemTitle"] {
+				float: left;
+				padding-left: 0;
+			}
+		}
+
+		.calendarOptionItem {
+			display: flex;
+			font-weight: normal;
+
+			.calendarColor {
+				margin-right: @spacing-sm;
+				width: @icon-size-sm;
+				height: 16px;
+				border: 2px solid #FFF;
+			}
+
+			.calendarText {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				color: @gray-darkest;
+				flex: 1;
+			}
+		}
+	}
+
+	.toggleButtonClass {
+		width: 100%;
+
+		&:focus {
+			color: inherit;
+		}
+
+		p {
+			overflow: hidden;
+			width: calc(100% - 10px);
+		}
+	}
+
+	.richTextPreview {
+		position: relative;
+		margin-top: 8px;
+		background-color: @gray-lightest;
+		border: solid 1px @gray-lighter;
+		min-height: 80px;
+
+		span {
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	.inputGroup {
+		display: flex;
+		margin-bottom: 20px;
+
+		button {
+			margin-top: 0;
+			margin-right: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	.textInput {
+		flex-grow: 1;
+		padding: 5px 12px 6px;
+		height: 32px;
+		appearance: none;
+		border-radius: 3px;
+		background-color: #fff;
+		border: solid 1px @gray-lighter;
+
+		&::placeholder,
+		&[disabled] {
+			color: @placeholder-color;
+		}
+
+		&[disabled] {
+			background-color: @gray-lightest;
+		}
+
+		&.block {
+			display: block;
+			margin-top: 6px;
+			width: 100%;
+
+			@media (min-width: @screen-xs) {
+				width: 374px;
+			}
+		}
+	}
+
+	.helperText {
+		font-size: 13px;
+		color: @gray-light;
+		padding-top: 3px;
+
+		&.helperTextDark {
+			color: @text-color;
+		}
+	}
+
+	.emailAddressList,
+	.filtersList {
+		padding-left: 0;
+		height: 240px;
+		margin: 8px 0 12px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		overflow-y: auto;
+	}
+
+	.emailAddressListEntry,
+	.filtersListEntry {
+		overflow-x: hidden;
+		word-wrap: break-word;
+		width: 100%;
+		padding: 7px 11px;
+		cursor: pointer;
+
+		&.selected {
+			background-color: fadeout(@brand-primary, 92%);
+		}
+	}
+
+	.filterRuleTestsList {
+		list-style-type: disc;
+		padding-left: 32px;
+
+		li {
+			padding-left: 12px;
+			word-wrap: break-word;
+		}
+	}
+
+	.filterProcessLabel {
+		line-height: 1em;
+		margin-top: @spacing-xs;
+		margin-bottom: @spacing-xs;
+	}
+
+	.arrow {
+		font-size: 24px;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.filtersControls {
+		float: right;
+
+		div {
+			display: inline-block;
+		}
+
+		&:first-child {
+			margin-right: 6px;
+		}
+	}
+	.flexContainer {
+		display: flex;
+		.select {
+			background-position: 316px;
+		}
+	}
+
+	.mailAccountBox {
+		display: flex;
+		align-items: center;
+		border-radius: 3px;
+		background-color: #ffffff;
+		border: solid 1px @gray-lighter;
+		transition: all 200ms ease-in-out;
+		margin-bottom: 4px;
+		cursor: pointer;
+		position: relative;
+
+		&:hover {
+			background-color: fade(@brand-primary, 8%);
+		}
+
+		.mailAccountContent {
+			text-align: left;
+			padding: 0 8px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.mailAccountName {
+			margin-right: 4px;
+		}
+
+		.mailAccountNote {
+			color: @gray-light;
+			margin-left: 4px;
+		}
+
+		.leftLogo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			width: 32px;
+			height: 32px;
+			background: #f1f1f1;
+			border-right: 1px solid @gray-lighter;
+			color: @brand-primary;
+		}
+
+		.leftLogoIcon {
+			font-size: 22px;
+		}
+	}
+
+	.mailAccountFailing {
+		padding-right: 8px;
+	}
+
+	.accountsList {
+		padding: 0;
+		margin: 0 0 10px 0;
+	}
+
+	.addMailboxButton {
+		background: #ffffff;
+		border: none;
+		padding: 0;
+		font-size: 14px;
+		font-weight: bold;
+		text-align: left;
+		color: @brand-tertiary;
+		.addIcon {
+			font-size: 20px;
+			padding: 7px;
+			vertical-align: sub;
+			margin-right: 11px;
+		}
+	}
+
+	.addAccountSubsection,
+	.addAccountLabel,
+	.editAccountTitle,
+	.primaryAccountSection {
+		padding-bottom: 20px;
+	}
+
+	.mobileConfigSection {
+		ul {
+			margin: 0px @spacing-md;
+			padding: 0px;
+			list-style-type: disc;
+		}
+		p {
+			margin: 0px;
+		}
+		.optionText {
+			margin: @spacing-lg 0px;
+			p {
+				margin-bottom: 11px;
+			}
+		}
+		.button {
+			margin-top: @spacing-lg;
+		}
+	}
+
+	.addAccountLabel {
+		display: block;
+		font-size: 18px;
+		text-align: left;
+		color: @gray-darkest;
+		padding-bottom: 20px;
+		&:last-child {
+			border-bottom: 1px solid @gray-lighter;
+		}
+	}
+
+	.addAccountInput {
+		display: block;
+		width: 100%;
+		font-size: 14px;
+	}
+
+	.inlineList {
+		li {
+			display: inline-block;
+			margin-right: 15px;
+			line-height: 32px;
+		}
+	}
+
+	.infoInput {
+		width: 100%;
+	}
+
+	.infoLabel {
+		min-width: 130px;
+		width: 130px;
+		line-height: 32px;
+		@media (max-width: @screen-xs-max) {
+			line-height: normal;
+			margin-bottom: 7px;
+		}
+	}
+
+	.portInput {
+		width: 90px;
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+
+	.rightHint {
+		padding-left: 12px;
+	}
+
+	.plainButton {
+		margin-left: 0;
+	}
+
+	.groupToggle {
+		left: 10px;
+		top: 7px;
+		cursor: pointer;
+		padding-right: 4px;
+		z-index: 1;
+	}
+
+	.groupToggleTextContainer {
+		display: flex;
+		font-size: 13px;
+		text-align: left;
+		color: @brand-tertiary;
+		.groupToggleText {
+			flex: 1;
+		}
+	}
+
+	.groupToggleIcon {
+		position: relative;
+		line-height: 15px;
+		height: 15px;
+		width: 15px;
+		font-size: 13px;
+		color: @brand-tertiary;
+	}
+
+	.additionalInfoContainer {
+		display: block;
+	}
+
+	.checkboxList {
+		li {
+			display: flex;
+		}
+		.togglePort {
+			flex: 2;
+			padding-top: 5px;
+		}
+		.togglePortInput {
+			flex: 1;
+		}
+		.togglePortHint {
+			flex: 2;
+			font-size: 13px;
+			text-align: left;
+			color: @gray-light;
+			margin: 0;
+			padding-top: 5px;
+			padding-left: 12px;
+		}
+	}
+
+	.confirmationMessage {
+		font-size: 24px;
+		margin-bottom: 4px;
+		text-align: left;
+		font-weight: 300;
+		color: @gray-darkest;
+	}
+
+	.confirmationSpan {
+		font-size: 13px;
+		text-align: left;
+		color: @gray-darker;
+		margin-top: 0;
+		margin-bottom: 8px;
+	}
+
+	.normalSelect {
+		font-size: small;
+	}
+	.dateInput {
+		@media (max-width: @screen-xs-max) {
+			label {
+				text-align: left;
+			}
+		}
+	}
+
+	.signatureBox {
+		height: 120px;
+	}
+
+	.smimeSection {
+		.sectionTitle {
+			font-size: @font-size-h3;
+			font-weight: @headings-font-weight;
+			padding-bottom: calc(@spacing-lg - 2);
+		}
+
+		.subsection {
+			flex-direction: column;
+			margin-bottom: @spacing-xl;
+
+			.subsectionTitle {
+				font-size: @font-size-h4;
+				width: 100%;
+			}
+
+			.helperText {
+				padding: @spacing-sm 0 calc(@spacing-lg - 4);
+			}
+
+			.subsectionBody {
+				max-width: 100%;
+
+				.smimeCertificatesList {
+					margin-top: @spacing-md;
+
+					.certificate {
+						display: flex;
+						align-items: center;
+						margin: 0;
+						padding: calc(@spacing-sm - 1) 0 @spacing-sm;
+						border-top: 1px solid @gray-lighter;
+
+						&:last-child {
+							border-bottom: 1px solid @gray-lighter;
+							padding-bottom: calc(@spacing-sm - 1);
+						}
+
+						.shieldIcon {
+							width: @icon-size-md;
+							height: @icon-size-md;
+							margin-right: @spacing-sm;
+						}
+
+						.certAccount {
+							flex-grow: 1;
+							padding-left: 3px;
+						}
+
+						.viewCert {
+							color: @brand-tertiary;
+							cursor: pointer;
+							padding-right: 3px;
+						}
+
+						.viewCertError {
+							color: @brand-danger;
+							padding-right: 3px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.offlineModeSection {
+		.subsection {
+			flex-wrap: wrap;
+		}
+
+		p {
+			margin: 0;
+		}
+
+		.alignedRadioButton {
+			display: flex;
+
+			&:not(:last-child) {
+				margin-bottom: 16px;
+			}
+		}
+
+		.bold {
+			font-weight: 700;
+		}
+	}
+
+	.accountRecovery {
+		.emailAndStatus {
+			max-width: 474px;
+			display: flex;
+			flex-direction: row;
+			margin-right: 20px;
+
+			.pending {
+				color: @brand-danger;
+			}
+
+			.verified {
+				color: @brand-success;
+			}
+
+			.recoveryEmail {
+				flex: 1 0 85%;
+				font-size: @font-size-med;
+			}
+
+			.status {
+				flex: 1 0 15%;
+				text-align: right;
+			}
+
+			.statusIcon {
+				margin-right: 5px;
+			}
+		}
+
+		.inputError {
+			&:focus {
+				outline-color: @brand-danger;
+			}
+		}
+
+		.inlineModalTitle {
+			color: @gray-darkest;
+			font-size: 18px;
+			font-weight: normal;
+		}
+
+		.inlineModalWrapper {
+			border-radius: 5px;
+
+			@media (max-width: @screen-tablet) {
+				.inlineModal {
+					height: 200px;
+				}
+
+				.inlineModalToolbar {
+					position: absolute;
+				}
+			}
+		}
+
+		.verificationMessage {
+			margin-bottom: 20px;
+		}
+
+		.noLeftSpace {
+			padding-left: 0;
+			margin-left: 0;
+		}
+
+		.noLeftMargin {
+			margin-left: 0;
+		}
+
+		.actionSection {
+			.modifyButtons {
+				width: 100%;
+			}
+		}
+
+		.emailInput {
+			margin-bottom: 16px;
+			width: 50%;
+			min-width: 250px;
+		}
+
+		.codeInput {
+			margin-bottom: 16px;
+		}
+	}
+
+	.zimletList {
+		li {
+			label {
+				line-height: 32px;
+				border-bottom: 1px solid @gray-lighter;
+				display: block;
+				padding: 0;
+			}
+		}
+	}
+}
+
+.editAccountTitle {
+	font-size: @font-size-h3;
+	font-weight: 300;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+.testingDataSourceContainer {
+	padding-top: 100px;
+	text-align: center;
+}
+
+.testingDataSourceSection {
+	text-align: center;
+	margin-bottom: 12px;
+
+	.check {
+		display: inline-block;
+	}
+}
+
+.spinner {
+	font-size: 27px;
+}
+
+.animatedCheckmark {
+	height: 32px;
+}
+
+.successMessage,
+.errorMessage,
+.helpTooltipTitle,
+.textButtonBold {
+	font-weight: bold;
+}
+
+.successMessage {
+	color: @brand-success;
+}
+
+.warningIcon,
+.errorMessage {
+	color: @brand-danger;
+}
+
+.errorMessage {
+	word-break: break-word;
+}
+
+.downloadFolderPlaceholder {
+	color: @gray-placeholder;
+}
+
+.downloadFolderName {
+	display: inline-block;
+	margin-left: 4px;
+}
+
+.largeLabel {
+	margin-bottom: 4px;
+}
+
+.inlineRadioButton {
+	margin-right: 18px;
+}
+
+.inputWithRightHint {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex: auto;
+}
+
+.advancedToggle {
+	color: @brand-tertiary;
+	cursor: pointer;
+	user-select: none;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.defaultCalTooltip {
+	width: 275px;
+	@media (max-width: @screen-xs) {
+		margin-left: -150px;
+	}
+	@media (max-width: 360px) {
+		margin-left: -200px;
+	}
+}
+
+.danger {
+	color: @brand-danger;
+}
+
+.warning {
+	color: @brand-warning;
+}
+
+.success {
+	color: @brand-success;
+}
+
+.disabledText {
+	opacity: 0.5;
+}
+
+.notYetImplemented {
+	display: none !important;
+}

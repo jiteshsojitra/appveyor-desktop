@@ -1,0 +1,227 @@
+@import '~@zimbra/x-ui/refs.less';
+@import '~@zimbra/x-ui/helpers.less';
+@import (reference) '../modal-dialog/style.less';
+
+.contact {
+	padding: (@spacing-sm - 2) @spacing-md;
+	cursor: pointer;
+	border-bottom: 1px solid @gray-lighter;
+	user-select: none;
+	display: flex;
+	align-items: center;
+
+	> * {
+		vertical-align: baseline;
+	}
+
+	.flexItem {
+		margin-right: (@spacing-xs + 1);
+
+		&.contactFields {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: pre;
+			&.emailField {
+				flex: 1;
+				span {
+					color: @gray-light;
+				}
+			}
+		}
+
+		.avatar {
+			width: 36px;
+			height: 36px;
+			flex-shrink: 0;
+		}
+
+		[class*=choiceInputContainer] {
+			margin-right: (@spacing-sm - 2);
+		}
+
+		span {
+			display: inline-block;
+			padding: 0 5px;
+			font-size: 13px;
+		}
+	}
+
+	strong {
+		display: inline-block;
+		padding: 0 5px;
+		font-size: 13px;
+		color: @gray-darker;
+	}
+
+	&.selected {
+		background-color: fade(@gray-lightest, 80%);
+	}
+
+	&.inoperable {
+		opacity: 0.5;
+	}
+}
+
+.divider {
+	padding: 10px;
+	box-shadow: 0 -1px 0 @gray-lighter;
+	color: @gray-placeholder;
+	text-align: center;
+	font-style: italic;
+	user-select: none;
+	z-index: 1;
+	&.additionalSelected {
+		text-align: left;
+		font-style: normal;
+		padding: (@spacing-sm + 2) @spacing-md;
+	}
+}
+
+.dialog {
+	.dialog();
+
+	.header {
+		height: 112px;
+		border-bottom: 1px solid @gray-lighter;
+
+		h2 {
+			margin: 0;
+			padding: 16px 16px 2px;
+			font-size: 20px;
+			font-weight: normal;
+		}
+	}
+
+	.description {
+		margin: 0;
+		padding: 0 16px;
+		text-align: left;
+		font-size: 13px;
+	}
+
+	.query,
+	.changeFolder {
+		display: inline-block;
+		width: 50%;
+		padding: 9px 16px 0;
+
+		.dropdownContainer {
+			border: 1px solid @gray-lighter;
+			border-radius: 3px;
+			width: 100%;
+
+			.popoverButton, .popoverTitle {
+				width: 100%;
+
+				button {
+					width: 100%;
+					height: 26px;
+					padding: 6px;
+
+					:global(.zimbra-icon-angle-down){
+						float: right;
+					}
+
+					:global(.zimbra-client_action-menu_label){
+						float: left;
+					}
+				}
+			}
+		}
+
+		input, .select {
+			display: block;
+			width: 100%;
+			max-width: 100%;
+			margin: 0;
+			padding: 6px;
+			background: #FFF;
+			border: 1px solid @gray-lighter;
+			font-size: 13px;
+			border-radius: 3px;
+			appearance: none;
+			outline: none;
+
+			&::placeholder {
+				color: @placeholder-color;
+			}
+
+			&:focus {
+				border-color: @brand-primary;
+			}
+		}
+	}
+
+	.changeFolder {
+		padding-left: 0;
+
+		.select {
+			vertical-align: middle;
+			padding: 4px 6px;
+			text-align: left;
+			p {
+				display: inline-block;
+				font-weight: normal;
+				padding: 0 2px;
+				text-overflow: clip;
+			}
+			ul {
+				width: 100%;
+			}
+			:global(.blocks_select_button) {
+				display: block;
+			}
+			:global(.blocks_select_buttonIcon) {
+				position: absolute;
+				right: 5px;
+				top: 7px;
+				font-size: 100%;
+			}
+		}
+	}
+
+	.content {
+		.noContacts {
+			display: block;
+			padding: @spacing-xl 0;
+			text-align: center;
+			font-weight: normal;
+			color: @gray-light;
+		}
+	}
+
+	.selectAll {
+		position: fixed;
+		top: 112px;
+		width: 100%;
+	}
+
+	.footer {
+		.selectionState {
+			position: absolute;
+			right: 14px;
+			top: 30px;
+			font-size: 13px;
+		}
+	}
+
+	&.scrollable {
+		height: 446px;
+
+		@media (max-height: 446px) {
+			height: 100%;
+		}
+
+		.content {
+			top: 144px;
+			padding: 0;
+			&.hideSelectAll {
+				top: 112px;
+			}
+		}
+
+		.footer {
+			border-top: 1px solid @gray-lighter;
+		}
+	}
+}

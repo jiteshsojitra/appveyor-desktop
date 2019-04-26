@@ -1,0 +1,18 @@
+#import "../../fragments/folder.graphql"
+
+mutation createSearchFolder(
+	$name: String!,
+	$parentFolderId: ID,
+	$types: FolderView,
+	$query: String!
+) {
+	createSearchFolder(
+		name: $name
+		parentFolderId: $parentFolderId
+		types: $types,
+		query: $query
+	)
+	{
+		...folderFields
+	}
+}

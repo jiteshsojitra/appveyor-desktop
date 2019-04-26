@@ -1,0 +1,88 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.card {
+	border: 1px solid @border-color-primary;
+	background-color: #fff;
+	padding: 0 1rem;
+	margin-bottom: 1rem;
+}
+
+.section {
+	border-bottom: 1px solid @border-color-primary;
+	padding: 1rem 0;
+
+	&.pb0 {
+		padding-bottom: 0;
+	}
+
+	&:last-child {
+		border-bottom: 0;
+	}
+}
+
+.topSection {
+	display: flex;
+}
+
+.topSectionInfo {
+	flex: auto;
+}
+
+.topSectionAvatar {
+	flex-shrink: 0;
+}
+
+.title {
+	margin-bottom: 2px;
+	overflow: hidden;
+	word-break: break-word;
+}
+
+.name {
+	font-size: @font-size-med;
+	font-weight: 500;
+	color: @gray-base;
+}
+
+.jobTitle,
+.frequencyDescription,
+.inlineIcon {
+	color: @gray-light;
+}
+
+.inlineIconContainer {
+	width: 16px;
+	text-align: center;
+	display: inline-block;
+	margin-right: 8px;
+	line-height: 0;
+}
+
+.inlineIcon {
+	font-size: 18px;
+}
+
+.attribute {
+	line-height: 22px;
+	display: flex;
+	align-items: center;
+}
+
+.rangeControls {
+	padding: 1em 0;
+}
+
+.rangeButton {
+	margin-right: 1em;
+
+	&.active {
+		text-decoration: underline;
+		color: @gray-light;
+	}
+}
+
+.avatar {
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+}

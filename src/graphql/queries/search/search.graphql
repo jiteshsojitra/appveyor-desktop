@@ -1,0 +1,60 @@
+#import "../../fragments/contact.graphql"
+#import "../../fragments/search.graphql"
+#import "../../fragments/mime-part.graphql"
+
+query search(
+	$cursor: Cursor,
+	$fetch: String,
+	$fullConversation: Boolean,
+	$limit: Int,
+	$needExp: Boolean,
+	$memberOf: Boolean,
+	$offset: Int,
+	$query: String,
+	$recip: Int,
+	$sortBy: SortBy,
+	$types: SearchType,
+	$withAttachments: Boolean = false
+) {
+	search(
+		cursor: $cursor,
+		fetch: $fetch,
+		fullConversation: $fullConversation,
+		limit: $limit,
+		needExp: $needExp,
+		memberOf: $memberOf,
+		offset: $offset,
+		query: $query,
+		recip: $recip,
+		sortBy: $sortBy,
+		types: $types
+	) {
+		more
+		offset
+		sortBy
+		contacts {
+			...contactFields
+		}
+		messages {
+			...searchMessageFields
+			attachments @include(if: $withAttachments) {
+				...mimePartFields
+			}
+			inlineAttachments @include(if: $withAttachments) {
+				...mimePartFields
+			}
+			mimeParts @include(if: $withAttachments) {
+				...mimePartFields
+				mimeParts {
+					...mimePartFields
+					mimeParts {
+						...mimePartFields
+					}
+				}
+			}
+		}
+		conversations {
+			...searchConversationFields
+		}
+	}
+}

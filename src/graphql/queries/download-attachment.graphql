@@ -1,0 +1,6 @@
+query downloadAttachment($id: ID!, $part: ID!) {
+	downloadAttachment(id: $id, part: $part) {
+		id
+		content
+	}
+}

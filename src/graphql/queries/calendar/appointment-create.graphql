@@ -1,0 +1,3 @@
+mutation createAppointment($appointment: CalendarItemInput!, $accountName: String) {
+	createAppointment(accountName: $accountName, appointment: $appointment)
+}

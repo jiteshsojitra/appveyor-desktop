@@ -1,0 +1,42 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.checkboxFieldGroup {
+	display: flex;
+	align-items: baseline;
+	margin-bottom: 4px;
+
+	label {
+		margin-left: 12px;
+		padding-bottom: 0;
+		line-height: 1;
+	}
+}
+
+.emails {
+	margin-bottom: 20px;
+}
+
+.emailRow {
+	margin-bottom: 6px;
+}
+
+.email {
+	border: 1px solid @brand-primary;
+	color: @brand-primary;
+  border-radius: 3px;
+  padding: 2px 0 2px 8px;
+  display: inline-block;
+}
+
+.removeEmail {
+	color: @brand-primary;
+	outline: none;
+	border: none;
+	vertical-align: bottom;
+
+	&,
+	&:not(:disabled):focus,
+	&:not(:disabled):hover {
+		background: none;
+	}
+}

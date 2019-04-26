@@ -1,0 +1,3 @@
+mutation modifySignature($signature: SignatureInput!) {
+	modifySignature(signature: $signature)
+}

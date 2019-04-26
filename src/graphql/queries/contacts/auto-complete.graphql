@@ -1,0 +1,30 @@
+
+query AutoComplete(
+	$name: String,
+	$type: GalSearchType,
+	$needExp: Boolean,
+	$folders: String,
+	$includeGal: Boolean
+) {
+	autoComplete: autoComplete(
+		name: $name,
+		type: $type,
+		needExp: $needExp,
+		folders: $folders,
+		includeGal: $includeGal
+	) {
+		canBeCached
+		match {
+			id
+			email
+			ranking
+			isGroup
+			display
+			first
+			middle
+			last
+			full
+			company
+		}
+	}
+}

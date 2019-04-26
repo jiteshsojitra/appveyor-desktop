@@ -1,0 +1,19 @@
+mutation login(
+	$username: String!,
+	$password: String,
+	$recoveryCode: String,
+	$tokenType: String,
+	$persistAuthTokenCookie: Boolean
+) {
+	login(
+		recoveryCode: $recoveryCode,
+		username: $username,
+		password: $password,
+		tokenType: $tokenType,
+		persistAuthTokenCookie: $persistAuthTokenCookie
+	) {
+		authToken {
+			_content
+		}
+	}
+}

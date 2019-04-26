@@ -1,0 +1,14 @@
+#import "../../fragments/calendar.graphql"
+
+query CalendarsQuery {
+	getFolder(view: appointment, traverseMountpoints: true) {
+		folders {
+			linkedFolders {
+				...calendarFields
+			}
+			folders {
+				...calendarFields
+			}
+		}
+	}
+}

@@ -1,0 +1,39 @@
+@import '~@zimbra/x-ui/refs.less';
+
+.linkEditorDialog {
+	label {
+		display: block;
+		margin-top: 22px;
+		margin-bottom: 2px;
+		&:first-child {
+			margin-top: 8px;
+		}
+	}
+	input {
+		width: 100%;
+		border: 1px solid @border-color-primary;
+		border-radius: 3px;
+		padding: 10px 10px 7px 10px;
+	}
+	.linkForm{
+		.linkButton {
+			display: inline-block;
+			font-family: @branding-font-family;
+			font-weight: normal;
+			margin: 12px 0 0;
+			padding-left: 0;
+			padding-bottom: 0;
+
+			&:not([href]) {
+				color: @placeholder-color;
+			}
+
+			&[href] {
+				&:hover, &:focus {
+					color: lighten(@link-color, 10%);
+				}
+			}
+		}
+	}
+
+}

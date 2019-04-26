@@ -1,0 +1,142 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.item,
+.itemInner {
+	display: flex;
+	align-items: center;
+	flex: 1;
+}
+
+.item {
+	padding: 4px 0px 2px 16px;
+	position: relative;
+	user-select: none;
+
+	@media(max-width: @screen-sm-max) {
+		height: 44px;
+		padding: 0 0 0 50px;
+	}
+
+	.name {
+		color: @gray-darker;
+		flex: 1;
+		font-weight: 500;
+		width: 100%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow-x: hidden;
+
+		[class*=coloredCheckbox]{
+			input[type='checkbox'] {
+				& + i {
+					&:before { color: @gray-light; }
+				}
+				&:checked,
+				&:indeterminate {
+					& + i:before { content: "\e979"; color: @gray-light; }
+				}
+			}
+		}
+
+		@media(max-width: @screen-sm-max) {
+			padding: 11px 35px 11px 0;
+			border-bottom: 1px solid @border-color-primary;
+			font-size: 13px;
+		}
+	}
+
+	a {
+		@media(max-width: @screen-md-max) {
+			color: @gray-darkest;
+		}
+	}
+
+	.contextMenuIcon {
+		float: right;
+		opacity: 1;
+		position: absolute;
+		right: 10px;
+		top: 13px;
+
+		&:focus{
+			opacity: 1;
+		}
+	}
+
+
+	.actionsMenuIcon {
+		opacity: 0;
+		transition: all 200ms ease-in-out;
+	}
+	&:hover .actionsMenuIcon {
+		opacity: 1;
+	}
+}
+
+.contextMenu {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.group {
+	display: block;
+	position: relative;
+}
+
+.groupToggle {
+	margin-right: 8px;
+	width: 10px;
+}
+
+.groupHeader {
+	padding: @spacing-sm 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-family: @branding-font-family-bold;
+	position: relative;
+	line-height: 1;
+
+
+	.groupName {
+		flex: 1;
+		font-weight: 500;
+	}
+
+	.sectionActionButton {
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	&:hover .sectionActionButton {
+		opacity: 1;
+	}
+}
+
+.groupList,
+.list {
+	padding: 0;
+
+	@media(max-width: @screen-md-max) {
+		margin: 0;
+	}
+}
+
+.colorPicker {
+	margin-left: 16px;
+}
+
+.actionsMenuButton {
+	float: right;
+	button {
+		vertical-align: top;
+	}
+}
+
+.actionsMenu {
+	position: fixed !important;
+	top: initial !important;
+	left: initial !important;
+	max-width: 188px;
+}

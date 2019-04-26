@@ -1,0 +1,70 @@
+#import "../fragments/calendar.graphql"
+
+query FoldersQuery {
+	taskFolders {
+		...calendarFields
+		tasks {
+			tasks {
+				date
+				excerpt
+				folderId
+				id
+				instances {
+					dueDate
+					tzoDue
+				}
+				inviteId
+				modifiedSequence
+				name
+				percentComplete
+				priority
+				revision
+				status
+			}
+		}
+	}
+}
+
+query TaskQuery($id: ID!) {
+	task: getMessage(id: $id) {
+		id
+		date
+		folderId
+		invitations {
+			components {
+				description {
+					_content
+				}
+				end {
+					date
+				}
+				name
+				percentComplete
+				priority
+				status
+			}
+		}
+		modifiedSequence
+		revision
+	}
+}
+
+mutation TaskCreateMutation($task: CalendarItemInput!) {
+	createTask(task: $task)
+}
+
+mutation TaskModifyMutation($task: CalendarItemInput!) {
+	modifyTask(task: $task)
+}
+
+mutation TaskCancelMutation($inviteId: ID!) {
+	cancelTask(inviteId: $inviteId)
+}
+
+mutation TaskHardDeleteMutation($id: ID!) {
+	itemAction(id: $id, op: "delete")
+}
+
+mutation TaskMoveMutation($id: ID!, $folderId: ID!) {
+	itemAction(id: $id, folderId: $folderId, op: "move")
+}

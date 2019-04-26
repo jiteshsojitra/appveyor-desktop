@@ -1,0 +1,7 @@
+mutation AddRecoveryAddress($recoveryAccount: String!) {
+	setRecoveryAccount(
+		op: sendCode,
+		recoveryAccount: $recoveryAccount,
+		channel: email
+	)
+}

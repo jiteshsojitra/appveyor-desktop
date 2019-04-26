@@ -1,0 +1,12 @@
+#import "../../fragments/message.graphql"
+
+mutation saveLocalFolderEmails($accountName: String, $name: String, $dataDirPath: String, $data: [String]) {
+	saveLocalFolderEmails(
+		accountName: $accountName,
+		name: $name,
+		dataDirPath: $dataDirPath,
+		data: $data
+	) @client {
+		...messageFields
+	}
+}

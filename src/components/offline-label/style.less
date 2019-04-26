@@ -1,0 +1,33 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.offline {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	margin: 0 10px;
+
+	@media (max-width: @screen-sm-max) {
+		position: fixed;
+		top: auto;
+		right: 10px;
+		bottom: 10px;
+		z-index: 1001;
+	}
+
+	.spinner {
+		border-top-color: @brand-primary;
+		border-right-color: fade(@brand-primary, 25%);
+		border-bottom-color: fade(@brand-primary, 50%);
+		font-size: @icon-size-md;
+		vertical-align: middle;
+	}
+
+	.text {
+		color: @gray-darker;
+		padding: @spacing-xs @spacing-sm;
+		background: @gold;
+		border: 1px solid @body-bg;
+		border-radius: 15px;
+	}
+}

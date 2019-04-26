@@ -1,0 +1,9 @@
+mutation modifyAppointment($appointment: CalendarItemInput!, $accountName: String) {
+	modifyAppointment(appointment: $appointment, accountName: $accountName) {
+		appointmentId
+		calendarItemId
+		inviteId
+		modifiedSequence
+		revision
+	}
+}

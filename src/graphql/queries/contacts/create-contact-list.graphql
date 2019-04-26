@@ -1,0 +1,7 @@
+#import "../../fragments/contact.graphql"
+
+mutation createContactList($contact: CreateContactInput!) {
+	createContactList(contact: $contact) {
+		...contactFields
+	}
+}

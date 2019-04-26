@@ -1,0 +1,310 @@
+@import '~@zimbra/x-ui/refs.less';
+@import '~@zimbra/x-ui/helpers.less';
+
+.message {
+	display: flex;
+	width: 100%;
+	margin: 0;
+	padding: 6px 7px 6px 12px;
+	border-bottom: 1px solid @gray-lighter;
+	transition: height 150ms ease;
+	cursor: pointer;
+	border-left: 4px solid transparent;
+
+	@media (max-width: @screen-sm-max) {
+		padding-left: 16px;
+	}
+
+	&.narrow {
+		height: 72px;
+
+		&.noSnippet {
+			height: 53px;
+		}
+	}
+
+	&.wide {
+		padding-top: 5px;
+		padding-bottom: 5px;
+
+		&.relaxed {
+			padding-top: 9px;
+			padding-bottom: 9px;
+		}
+
+		&.slim {
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
+	}
+
+	&:hover {
+		background-color: @list-hover-bg;
+		.unreadControl,
+		.inlineControl {
+			opacity: 1;
+		}
+	}
+
+	&.unread {
+		.sender,
+		.wideListItemSenderCol,
+		.subject {
+			font-weight: bold;
+			color: #000;
+		}
+	}
+
+	&.urgent {
+		background-color: #f9e7e7;
+
+		&.selected, {
+			border-left: 4px solid @brand-primary;
+		}
+	}
+
+	&.conversationMessage {
+		contain: layout;
+	}
+
+	&.conversationSelected {
+		background-color: @gray-lightest;
+	}
+
+	&.unread.selected,
+	&.selected {
+		background-color: @gray-lightest;
+		border-left: 4px solid @brand-primary;
+
+		> .subject {
+			color: black;
+		}
+		> .indicators,
+		> .excerpt {
+			color: @gray-light;
+		}
+
+		.label {
+			background-color: fade(@gray-light, 30%);
+		}
+	}
+
+	.sender,
+	.subject,
+	.excerpt {
+		flex: 1;
+	}
+
+	.sender,
+	.subject {
+		margin: 0;
+		white-space: nowrap;
+		font-weight: normal;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.sender {
+		font-size: 14px;
+	}
+	.subject {
+		color: @text-color;
+		font-size: 13px;
+	}
+
+	.excerpt {
+		font-weight: normal;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		color: lighten(@gray, 25%);
+		overflow: hidden;
+	}
+
+	&.wide .excerpt {
+		color: @placeholder-color;
+	}
+
+	time {
+		flex-shrink: 0;
+	}
+
+	&.narrow time {
+		color: lighten(@gray, 33%);
+		font-size: 11px;
+	}
+
+	.wideListItemTimeCol {
+		display: flex;
+		justify-content: flex-end;
+		padding-left: 24px;
+		min-width: 130px;
+		text-align: right;
+	}
+
+	&.wide {
+
+		time {
+			min-width: 80px;
+		}
+
+		.size {
+			min-width: 55px;
+		}
+	}
+
+	.indicators {
+		position: relative;
+		padding: 0 5px;
+		float: right;
+		clear: right;
+		font-size: 70%;
+		line-height: 1.8;
+		color: lighten(@gray, 33%);
+		text-align: right;
+
+		&:before {
+			content: ' ';
+			position: absolute;
+			top: 0;
+			left: -25px;
+			height: 20px;
+			width: 20px;
+		}
+
+		&.attach:before {
+			.icon();
+			background-position: 0 -51px;
+			zoom: 0.75;
+		}
+	}
+
+	.message-count {
+		padding-top: 10px;
+	}
+
+	.label {
+		display: inline-block;
+		padding: 2px 4px;
+		font-size: 11px;
+		line-height: 1;
+		min-width: 1.5em;
+		color: @text-color;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: baseline;
+		border-radius: 0.25em;
+		background-color: @gray-lighter;
+	}
+}
+
+.messageActions {
+	height: 100%;
+	padding-top: 6px;
+	margin-right: 12px;
+}
+
+.messageContent {
+	flex: 1;
+	overflow: auto;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	height: 1.4rem;
+}
+
+.narrow .unreadControl {
+	margin-left: 2px;
+	margin-bottom: 8px;
+}
+
+.wide .unreadControl {
+	margin-right: 6px;
+}
+
+.attachment {
+	display: inline-block;
+	padding-right: 8px;
+	font-size: 16px;
+}
+
+.messageTime {
+	position: relative;
+	padding-left: 0 5px;
+	float: right;
+	text-align: right;
+}
+
+.messageCount,
+.inlineControl {
+	margin-left: 8px;
+}
+
+.inlineControl {
+	font-size: 15px;
+	opacity: 0;
+	color: @gray-light;
+}
+
+.message .starred {
+	color: @favorite-indicator-active;
+}
+
+.draft {
+	color: @color-light-negative;
+}
+
+.wideListItem,
+.wideListItemSenderCol {
+	display: flex;
+	align-items: center;
+	line-height: 1.2;
+}
+
+.narrowListItem,
+.wideListItem {
+	display: flex;
+	flex: auto;
+	flex-wrap: nowrap;
+	width: 100%;
+}
+
+.wideListItemSubject {
+	max-width: 40%;
+}
+
+.wideListItemSenderCol {
+	flex-basis: 22%;
+	margin-right: 24px;
+
+	// Flexbox spec says:
+	// By default, flex items won’t shrink below their minimum content size (the length of the longest word or fixed-size element). To change this, set the min-width or min-height property.
+	//
+	// Set the min-width so this container will stay at 22% width.
+	min-width: 1px;
+}
+
+[class*=choiceInputContainer].wideArea {
+	input[type='checkbox'],
+	input[type='radio'] {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+[class*=choiceInputContainer].wideCheckbox {
+	flex-shrink: 0;
+	margin-right: 24px;
+}
+
+.wideListItemSender {
+	flex: 1;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.wideSubject {
+	padding-right: 8px;
+}

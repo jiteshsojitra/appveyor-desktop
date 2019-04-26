@@ -1,0 +1,41 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.progress {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 1px;
+	width: 100%;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: 100% 100%;
+	transition: all 150ms ease;
+	overflow: hidden;
+	z-index: 10;
+	.strict();
+
+	&.enabled {
+		opacity: 0.6;
+		transform: scaleY(1);
+		transition: opacity 150ms ease;
+	}
+
+	&.done {
+		opacity: 0 !important;
+	}
+
+	&:not(.enabled) .inner {
+		transition: none;
+	}
+
+	.inner {
+		position: absolute;
+		top: 0;
+		left: -100%;
+		height: 100%;
+		width: 100%;
+		// background: @brand-tertiary;
+		background: white;
+		transition: transform 400ms ease;
+	}
+}

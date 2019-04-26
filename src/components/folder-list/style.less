@@ -1,0 +1,352 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+@active-background: @translucent-white;
+
+.divider {
+	.listItemDivider();
+}
+
+.item {
+	.listItem();
+	padding: 7px 8px 7px 32px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	user-select: none;
+
+	@media(max-width: @screen-sm-max) {
+		height: 44px;
+		padding-top: 0;
+		padding-right: 0;
+		padding-bottom: 0;
+	}
+
+	&.hasBadge {
+		font-family: @branding-font-family-bold;
+		font-weight: normal;
+
+		@media(max-width: @screen-sm-max) {
+			font-family: @branding-font-family-regular;
+			color: @brand-tertiary;
+		}
+	}
+
+	// show outline around drop target
+	&.dropTarget:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: @list-hover-bg;
+		z-index: 100;
+		transform-origin: center;
+		pointer-events: none;
+	}
+
+	// flash effect on drop
+	&.dropped:after {
+		animation: fadeOut 250ms ease forwards 1;
+		@keyframes fadeOut {
+			0% { opacity: 0; }
+			25% { opacity: 0; }
+			26% { opacity: 1; }
+			50% { opacity: 1; }
+			51% { opacity: 0; }
+			75% { opacity: 0; }
+			76% { opacity: 1; }
+			99% { opacity: 1; }
+			100% { opacity: 0; }
+		}
+	}
+}
+
+.hide {
+	display: none;
+}
+
+.badge {
+	margin-left: auto;
+	flex: 0 0 auto;
+	color: @gray;
+	font-weight: 700;
+	border-radius: 50px;
+	background: @active-background;
+	padding: 2px 8px;
+	font-size: 11px;
+	line-height: 1.2;
+
+	@media(max-width: @screen-sm-max) {
+		font-size: 10px;
+		font-weight: bold;
+		background-color: @gray-lighter;
+		border-radius: 14px;
+		padding: 3px 7px;
+		display: inline-block;
+		margin-left: 16px;
+		color: @gray-dark;
+	}
+}
+
+.itemLink {
+	display: flex;
+	flex: 1;
+	width: 80%;
+	color: @text-color;
+	padding: @spacing-xs @spacing-xs @spacing-xs @spacing-lg;
+	font-weight: 500;
+
+	@media(max-width: @screen-sm-max) {
+		padding-top: 12px;
+		padding-right: 10px;
+		padding-bottom: 12px;
+		padding-left: 0;
+		border-bottom: 1px solid @gray-lighter;
+	}
+
+	&[href]:focus,
+	&[href]:hover {
+		text-decoration: none;
+		color: black;
+	}
+
+	@media (min-width: @screen-sm) {
+		&.active {
+			color: black;
+			font-weight: 500;
+			background: @active-background;
+			border-radius: 2px;
+
+			.badge {
+				background: @brand-primary;
+				color: white;
+			}
+		}
+	}
+}
+
+.itemInner {
+	display: flex;
+	width: 100%;
+}
+
+.itemTitle {
+	align-items: center;
+	flex: 0 1 auto;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	@media(max-width: @screen-sm-max) {
+		flex-grow: 1;
+		font-size: 13px;
+		font-weight: 700;
+		color: @gray-darkest;
+
+		.active & {
+ 			color: @brand-primary;
+ 		}
+	}
+}
+
+.item:hover .refresh {
+	display: block;
+}
+
+button.refresh {
+	display: none;
+	border-radius: 50%;
+	color: @gray-light;
+	background-color: white;
+	overflow: hidden;
+	width: 25px;
+
+	&.refreshing {
+		display: block;
+	}
+
+	&:not(:disabled):hover,
+	&:not(:disabled):focus {
+		color: @gray-darker;
+		background-color: white;
+	}
+
+	@media(max-width: @screen-sm-max) {
+		right: 8px;
+		top: 10px;
+	}
+
+}
+
+@keyframes rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+.refreshing {
+	animation: rotate 1s linear infinite;
+}
+
+div.folderCollapsibleControl {
+	// text-align: center;
+	// line-height: 28px;
+	// width: 28px;
+	// height: 32px;
+	// position: absolute;
+	// left: -7px;
+	// top: 0;
+	margin-left: -20px;
+
+	@media(max-width: @screen-sm-max) {
+		left: 22px;
+		top: 6px;
+	}
+}
+
+div.folderCollapsibleControl--depth1 {
+	&.grouped {
+		left: 14px;
+
+		@media(max-width: @screen-sm-max) {
+			left: 36px;
+		}
+	}
+}
+
+div.folderCollapsibleControl--depth2 {
+	left: 14px;
+
+	&.grouped {
+		left: 28px;
+
+		@media(max-width: @screen-sm-max) {
+			left: 50px;
+		}
+	}
+}
+
+div.folderCollapsibleControl--depth3 {
+	left: 28px;
+
+	&.grouped {
+		left: 32px;
+	}
+}
+
+.groupToggle {
+	padding: @spacing-xs @spacing-xs @spacing-xs @spacing-lg;
+	font-family: @branding-font-family-bold;
+	font-weight: 500;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+	height: 32px;
+	display: flex;
+	align-items: center;
+
+	@media(max-width: @screen-sm-max) {
+		font-family: @branding-font-family-bold;
+		padding: 0 0 0 50px;
+		height: 44px;
+	}
+}
+
+.customFolderToggle {
+	display: flex;
+	flex: 1;
+
+	@media(max-width: @screen-sm-max) {
+		padding: 11px 10px 11px 0;
+		border-bottom: 1px solid @gray-lighter;
+		font-size: 13px;
+		font-weight: 700;
+		color: @gray-darkest;
+	}
+
+	&:hover .folderGroupAction {
+		display: block;
+	}
+}
+
+.customFolderToggleName {
+	flex: 1;
+}
+
+.topLevelInput {
+	margin-left: 16px;
+}
+
+.folderGroupAction {
+	line-height: 1;
+	margin-left: 4px;
+
+	@media(min-width: @screen-md) {
+		display: none;
+	}
+
+	&:hover {
+		color: black;
+	}
+}
+
+
+
+.item {
+	.folderItemAction {
+		display: none;
+		padding: 0 4px;
+
+		&:hover {
+			color: black;
+		}
+	}
+
+	&:hover .folderItemAction {
+		display: block;
+	}
+}
+
+.item--depth1 {
+	padding: 0;
+
+	@media(max-width: @screen-sm-max) {
+		padding-left: 50px;
+	}
+
+	&.grouped {
+		padding-left: @spacing-md;
+
+		@media(max-width: @screen-sm-max) {
+			padding-left: 64px;
+		}
+	}
+}
+
+.item--depth2 {
+	padding-left: @spacing-md;
+
+	@media(max-width: @screen-sm-max) {
+		padding-left: 64px;
+	}
+
+	&.grouped {
+		padding-left: @spacing-xl;
+
+		@media(max-width: @screen-sm-max) {
+			padding-left: 78px;
+		}
+	}
+}
+
+.item--depth3 {
+	padding-left: @spacing-xl;
+
+	&.grouped {
+		padding-left: 48px;
+
+		@media(max-width: @screen-sm-max) {
+			padding-left: 92px;
+		}
+	}
+}

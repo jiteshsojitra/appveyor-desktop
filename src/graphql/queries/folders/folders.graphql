@@ -1,0 +1,11 @@
+#import "../../fragments/folder.graphql"
+
+mutation FolderActionMutation($action: FolderActionInput!) {
+	folderAction(action: $action)
+}
+
+mutation FolderCreateMutation($name: String!, $view: FolderView) {
+	createFolder(name: $name, view: $view) {
+		...folderFields
+	}
+}

@@ -1,0 +1,44 @@
+@import '../../style/helpers.less';
+
+.scrollableList {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	border-right: 1px solid rgba(0, 0, 0, 0.15);
+	overflow: auto;
+	outline: none;
+	padding-bottom: 50px;
+}
+
+.dateRowLabel {
+	padding: 8px 16px;
+	border-bottom: 1px solid @gray-lighter;
+	position: sticky;
+	top: 0px;
+	box-sizing: border-box;
+	z-index: 1;
+	background: white;
+}
+
+.wideDateRowLabel {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.messageGroup {
+	// To prevent retina screen rendering bugs in Chrome with retina screens
+	// https://bugs.chromium.org/p/chromium/issues/detail?id=673538
+	transform: scale(1);
+	margin-bottom: 45px;
+}
+
+.footer {
+	box-sizing: border-box;
+	width: 100%;
+	height: 75%;
+	min-height: 500px;
+	padding: 50px 0;
+	background: #fff;
+	color: @gray-light;
+	text-align: center;
+}

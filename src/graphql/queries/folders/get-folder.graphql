@@ -1,0 +1,43 @@
+#import "../../fragments/folder.graphql"
+
+query getFolder(
+	$visible: Boolean,
+	$needGranteeName: Boolean,
+	$view: FolderView,
+	$depth: Int,
+	$traverseMountpoints: Boolean,
+	$folder: GetFolderFolderInput
+) {
+	getFolder(
+		visible: $visible,
+		needGranteeName: $needGranteeName,
+		view: $view,
+		depth: $depth,
+		traverseMountpoints: $traverseMountpoints,
+		folder: $folder
+	) {
+		# Fetch up to five levels of nested folders
+		folders {
+			search {
+				...folderFields
+			}
+			...folderFields
+			folders {
+				...folderFields
+				folders {
+					...folderFields
+					folders {
+						...folderFields
+						folders {
+							...folderFields
+						}
+					}
+				}
+			}
+			linkedFolders {
+				...folderFields
+			}
+		}
+		
+	}
+}

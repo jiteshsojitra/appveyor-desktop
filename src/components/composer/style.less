@@ -1,0 +1,506 @@
+@import '~@zimbra/x-ui/refs.less';
+@import '~@zimbra/x-ui/helpers.less';
+
+.composer {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	position: relative;
+
+	.closeButton {
+		position: absolute;
+		top: 18px;
+		right: 14px;
+		z-index: 1;
+	}
+
+	textarea, rich-text-area {
+		padding: 18px 40px;
+		flex: 1 0 auto;
+		outline: none;
+		border: none !important;
+		resize: none !important;
+	}
+
+
+	.tokenInput {
+		@media (max-width: (@screen-xs - 1)) {
+			position: initial !important;
+		}
+	}
+
+	.inner {
+		display: flex;
+		flex: 1 1 auto;
+		width: 100%;
+
+		.left,
+		.right {
+			vertical-align: top;
+		}
+
+		.left {
+			display: flex;
+			flex: 1 1 auto;
+			width: 100%;
+			transition: width 100ms ease-in-out;
+			position: relative;
+
+			&.mediaMenuOpen {
+				width: calc(100% * (2 / 3));
+			}
+		}
+
+		.right {
+			background-color: @gray-lightest;
+			position: relative;
+
+			&:not(.mediaMenuOpen) {
+				width: 0;
+				overflow: hidden;
+			}
+
+			&.rightPane {
+				position: fixed;
+				.toolbarTop();
+				background-color: @gray-lightest;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				z-index: 10;
+			}
+
+			> div {
+				height: 100%;
+				padding: 15px 0;
+				@media (max-width: @screen-sm-max) {
+					padding-top: 0px;
+				}
+				position: absolute;
+				width: 100%;
+			}
+		}
+
+
+		.subject,
+		.from {
+			display: flex;
+			align-items: center;
+			padding: 17px 0 8px;
+			width: 100%;
+			background: #FFF;
+			color: #000;
+			border: none;
+			outline: none;
+			resize: none;
+			line-height: @line-height-base;
+		}
+
+		.subject {
+			box-shadow: inset 0 0 0 999px #FFF;
+		}
+
+		.fromValueWrapper {
+			flex: 1;
+			p {
+				font-weight: normal;
+				text-transform: none;
+				text-overflow: unset;
+			}
+		}
+
+		.fromValue {
+			margin-left: @spacing-md;
+		}
+
+		.selectFromValue {
+			margin-left: @spacing-md;
+
+			.selectFromOption {
+				text-align: left;
+				text-transform: none;
+				background: #FFF;
+				color: @gray-base;
+
+				&:hover,
+				&:focus {
+					background: @gray-lighter;
+				}
+
+				> div[class*="itemTitle"] {
+					float: left;
+					padding-left: 0;
+				}
+			}
+
+			.selectFromOptionItem {
+				display: flex;
+				font-weight: normal;
+			}
+
+			.selectFromtoggleButtonClass {
+				width: 100%;
+
+				&:focus {
+					color: inherit;
+				}
+			}
+		}
+
+		.smimeOperationBtn {
+			height: auto;
+		}
+
+		.requestReadReceiptOpBtn {
+			height: auto;
+			padding-right: 0;
+		}
+
+		.header {
+			padding: 13px 40px 0;
+			@media (max-width: @screen-sm-max) {
+				padding: 3px 16px 0px;
+				border-bottom: none;
+			}
+			border-bottom: 1px solid @border-color-primary;
+		}
+
+		.fields {
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			width: 100%;
+
+			.item {
+				display: block;
+				border-bottom: 1px solid @border-color-primary;
+				position: relative;
+
+				@media (min-width: @screen-md) {
+					&:last-child {
+						border-bottom: 0;
+					}
+				}
+			}
+		}
+
+		.body {
+			position: relative;
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			background: #FFF;
+			height: 350px;
+		}
+	}
+
+	.editor {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		overflow: auto;
+	}
+
+	.footer {
+		padding: 10px;
+	}
+
+	.toggleCc {
+		color: @text-color;
+		margin: 0;
+		position: absolute;
+		right: 0;
+		bottom: 14px;
+		font-size: 11px;
+
+		&:hover, &:focus {
+			color: @brand-tertiary;
+		}
+	}
+
+	.subjectInput {
+		position: relative;
+	}
+
+	.actionMenuAttachments {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.actionMenuAttachmentsPopover {
+		right: 0;
+		left: initial !important;
+	}
+
+	.actionMenuAttachmentsButton {
+		color: #333;
+		font-size: 13px;
+	}
+}
+
+.composer rich-text-area :global {
+	@media (max-width: @screen-sm-max) {
+		padding: 12px 16px 24px 16px;
+	}
+
+	[emoji] {
+		width: 18px;
+		height: 18px;
+	}
+	[embedded-link-card] {
+		position: relative;
+		margin-top: 12px;
+	}
+
+	[embedded-link-card]:hover [action-item-wrapper] {
+		background: rgba(0,0,0,0.1);
+	}
+
+	[embedded-link-card] .square-btn {
+		background: rgba(255,255,255,0.9);
+		box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+		border: 0;
+		border-radius: 3px;
+		color: #000;
+		cursor: pointer;
+		display: none;
+		font-size: 24px;
+		height: 32px;
+		line-height: 24px;
+		padding: 0;
+		text-align: center;
+		vertical-align: middle;
+		width: 32px;
+	}
+
+	[embedded-link-card] .square-btn + .square-btn {
+		margin-left: 8px;
+	}
+
+	[embedded-link-card]:hover button,
+	[embedded-link-card]:hover .square-btn {
+		display: inline-block;
+	}
+
+	[embedded-image] {
+		position: relative;
+		display: inline-block;
+	}
+
+	[embedded-image]:not([emoji]):not([bitmoji]) {
+		border: solid 1px #ccc;
+	}
+
+	[embedded-image] img {
+		max-width: 100%;
+		display: block;
+	}
+
+	[embedded-image-overlay] {
+		background-color: rgba(0,0,0,.3);
+		display: none;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		@media (max-width: @screen-sm-max) {
+			display: block;
+			width: 100%;
+			[button-toggle-shrink-image] {
+				display: none;
+			}
+		}
+	}
+
+	[embedded-image]:hover [embedded-image-overlay] {
+		display: block;
+		width: 100%;
+	}
+
+	[embedded-image-overlay] > div {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		white-space: nowrap;
+	}
+
+	[embedded-image-overlay] .square-btn {
+		background: #eee;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+		font-size: 28px;
+		height: 32px;
+		padding: 0;
+		vertical-align: middle;
+		width: 32px;
+	}
+
+	[action-item-wrapper] {
+		position: absolute;
+		text-align: right;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: 8px;
+	}
+
+	[button-resize-card-options] {
+		position: relative;
+		overflow: visible;
+
+		ul {
+			list-style: none;
+		}
+	}
+
+	[embedded-link-card] [button-move-inline] {
+	    color: #000;
+	    font-size: 13px;
+		line-height: 15px;
+		padding: 0 10px;
+	    width: auto;
+	}
+
+	[button-resize-card-options]:hover .dropdown-menu {
+		display: block;
+	}
+	.dropdown-menu {
+		background: #fff;
+		border-radius: 3px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.4);
+		display: none;
+		left: 0;
+		list-style: none;
+		margin: 0;
+		overflow: hidden;
+		padding: 10px 0;
+		position: absolute;
+		top: 100%;
+		z-index: 1;
+	}
+
+	.dropdown-menu-section {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.dropdown-menu li {
+		overflow: hidden;
+		padding: 0;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.dropdown-menu button {
+		background: none;
+		border: 0;
+		color: #000;
+		cursor: pointer;
+		display: block;
+		font-size: 13px;
+		height: 25px;
+		line-height: 25px;
+		width: 160px;
+		padding: 0 12px 0 25px;
+		position: relative;
+		text-align: left;
+	}
+	.dropdown-menu li:hover {
+		background: fade(@brand-primary, 8%);
+	}
+
+	.dropdown-menu-section + .dropdown-menu-section {
+		border-top: 1px solid #eee;
+		padding-top: 10px;
+		margin-top: 10px;
+	}
+
+	.dropdown-menu span {
+		height: 0;
+		position: absolute;
+		left: 8px;
+		top: 0;
+		font-size: 12px;
+	}
+	.footerLinks [embedded-card] {
+		margin-right: 5px;
+	}
+}
+
+@media (min-width: @screen-md) {
+	.composer {
+		.inner {
+			.right {
+				transition: width 450ms ease 20ms, padding 100ms linear;
+
+				&.mediaMenuOpen {
+					width: calc(100% / 3);
+					max-width: 400px;
+				}
+
+				&.rightPane {
+					width: 0;
+					max-width: 400px;
+					&.mediaMenuOpen {
+						width: ~"calc(33.33% - " @sidebar-width/2 ~")";
+					}
+					margin-left: -36px;
+					position: fixed;
+					top: @toolbar-height + @external-header-height + @search-header-height;
+					background-color: @gray-lightest;
+					right: 0;
+					left: auto;
+					bottom: 0;
+					z-index: 1;
+				}
+
+			}
+		}
+	}
+}
+
+@media (min-width: @screen-xs) and (max-width: @screen-sm-max) {
+	.composer {
+		.inner {
+			.right {
+				&.mediaMenuOpen {
+					position: absolute;
+					top: -(@mobile-toolbar-height);
+					bottom: 0;
+					right: 0;
+					width: 374px;
+ 					box-shadow: -2px 2px 4px 0 rgba(0, 0, 0, 0.3);
+				}
+			}
+		}
+	}
+}
+
+
+@media (max-width: (@screen-xs - 1)) {
+	.composer {
+		.inner {
+			.right {
+				&.mediaMenuOpen {
+					position: absolute;
+					top: -(@mobile-toolbar-height);
+					bottom: 0;
+					right: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+}
+.selectedOperation {
+	padding-right: 5px;
+}
+span.shieldIcon {
+	padding-right: 5px;
+	vertical-align: text-bottom;
+}

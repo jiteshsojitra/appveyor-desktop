@@ -1,0 +1,3 @@
+mutation sendShareNotification($shareNotification: ShareNotificationInput!) {
+	sendShareNotification(shareNotification: $shareNotification)
+}

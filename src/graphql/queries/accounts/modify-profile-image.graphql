@@ -1,0 +1,12 @@
+
+mutation modifyProfileImage(
+	$content: String,
+	$contentType: String
+) {
+	modifyProfileImage(
+		content: $content
+		contentType: $contentType
+	) {
+		itemId
+	}
+}

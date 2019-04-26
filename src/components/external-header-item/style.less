@@ -1,0 +1,16 @@
+@external-header-fg: white;
+
+@import (reference) '~@zimbra/x-ui/helpers.less';
+
+.externalHeaderItem {
+	color: @external-header-fg;
+	text-decoration: none;
+	display: inline-block;
+	padding: 0.2rem 0.6rem;
+
+	&:focus[href],
+	&:hover[href] {
+		color: @external-header-fg;
+		text-decoration: underline;
+	}
+}

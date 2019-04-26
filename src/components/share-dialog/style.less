@@ -1,0 +1,74 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.cardGroup {
+	width: 100%;
+	flex: auto;
+}
+
+.shareList {
+	font-size: 12px;
+	color: @gray-light;
+}
+
+.emailForm,
+.emailInput {
+	width: 100%;
+}
+
+.emailInput {
+	border: 0;
+	outline: none;
+}
+
+div.invalid {
+	border: solid 1px @brand-danger;
+}
+
+.accessTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.section {
+	margin-bottom: 28px;
+	overflow-y: auto;
+	max-height: 230px;
+}
+
+.sectionTitle {
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.accessTableRow td {
+	border-bottom: 1px solid @border-color-primary;
+	padding-left: 24px;
+
+	&:first-child {
+		padding-left: 0;
+	}
+}
+
+.contactPreview {
+	display: flex;
+	align-items: center;
+}
+
+.contactPreviewName {
+	font-weight: bold;
+}
+
+.contactPreviewAddress {
+	color: @gray-light;
+}
+
+.avatar {
+	width: 36px;
+	height: 36px;
+	margin: 6px 0 6px 6px;
+	margin-right: 8px;
+}
+
+.disablePublicSharing {
+	color: @gray-light;
+}

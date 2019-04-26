@@ -1,0 +1,128 @@
+@contact-card-gray: #999;
+
+@import '~@zimbra/x-ui/helpers.less';
+
+.contactCard {
+	padding: 0;
+	max-width: 440px !important;
+	background: #FFF;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+	border-radius: 4px;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: visible;
+	font-size: 13px;
+	font-weight: normal;
+	color: #000;
+	cursor: default;
+	animation: card-in 200ms cubic-bezier(.2,1.5,.6,1) forwards 1;
+	transform-origin: 40px -5px;
+	@keyframes card-in {
+		from { opacity: 0; transform: scale(0.1); }
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	&.loading > * {
+		opacity: 0.8;
+	}
+
+	.details {
+		position: relative;
+		padding: 16px;
+		min-height: calc(168px - 35);
+		overflow: hidden;
+		flex: 0 1 50%;
+	}
+
+	h3 {
+		font-size: 16px;
+		font-weight: 700;
+		text-transform: capitalize;
+		color: inherit;
+		overflow: hidden;
+		word-break: break-word;
+	}
+	h4 {
+		font-size: 100%;
+		font-weight: normal;
+		color: @contact-card-gray;
+	}
+	dl.cardInfo {
+		display: block;
+		position: relative;
+		padding: 3px 0;
+		overflow: hidden;
+		dt {
+			float: left;
+			font-size: 16px;
+			width: @icon-size-md;
+			margin-right: 4px;
+			text-align: center;
+			color: @contact-card-gray;
+		}
+		dd {
+			display: block;
+			min-height: 18px;
+			padding: 5px 0 0;
+			color: inherit;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-word;
+			a, a:hover, a[href] {
+				color: black;
+				font-weight: inherit;
+			}
+		}
+	}
+	.avatarWrapper {
+		display: flex;
+		flex: 1 1 50%;
+		overflow: hidden;
+		justify-content: flex-end;
+		align-items: center;
+		border-radius: 0 4px 0 0;
+		position: relative;
+		.avatar {
+			height: 150px;
+			width: 150px;
+			font-size: 50px;
+			border-radius: 50%;
+			transform: scale(1.6);
+		}
+		.spinner {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+
+	.footer {
+		position: relative;
+		padding: 0 @spacing-md;
+		background: @background-gray;
+		border-radius: 0 0 4px 4px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex: 1 1 100%;
+
+		.sMimePubCertVerified {
+			color: @gray-base;
+		}
+
+		.sMimePubCertExpired {
+			color: @brand-danger;
+		}
+
+		.smimePubCertShieldIcon {
+			transform: translate(-2px, -2px);
+			display: inline-block;
+		}
+	}
+
+}

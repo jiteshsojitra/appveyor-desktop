@@ -1,0 +1,96 @@
+@import '../../style/helpers.less';
+
+.button {
+	margin: 0 8px 0 0;
+	font-family: @font-family-sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	-webkit-font-smoothing: auto;
+}
+
+.closeButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+}
+
+
+.infoLine {
+	margin-bottom: 6px;
+	color: @gray-base;
+}
+
+.alignCenter {
+	display: flex;
+	align-items: center;
+}
+
+.eventName {
+	font-size: 16px;
+}
+
+.eventDesc {
+	display: block;
+	line-height: 18px;
+	height: 54px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.alarm,
+.repeatIcon {
+	margin-left: 8px;
+}
+
+.mainInfo {
+	padding-bottom: 4px;
+	border-bottom: 1px solid @gray-lighter;
+}
+
+.moreInfo {
+	flex: auto;
+	padding: 12px 0;
+}
+
+.colorIcon {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-bottom: 2px;
+	margin-right: 8px;
+	border-radius: 50%;
+}
+
+.repeatIcon {
+	margin-right: 8px;
+	display: inline-block;
+	width: 14px;
+	height: 16px;
+	right:8px;
+	color: @gray-darkest;
+	font-family:'zimbra-icons';
+	background-position-x: 0;
+	background-repeat: no-repeat;
+	background-size: 14px;
+	content: '\e965'
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 26px 24px;
+	width: 432px;
+	min-height: 276px;
+	overflow: hidden;
+	background: @body-bg;
+	font-size: 13px;
+	border-radius: 2px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.36);
+	z-index: 7;
+}

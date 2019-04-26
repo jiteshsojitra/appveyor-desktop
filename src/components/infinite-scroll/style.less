@@ -1,0 +1,21 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.virtualList {
+	.fill();
+	.scroll();
+	&.isLoading {
+		bottom: 30px;
+	}
+
+	> div {
+		margin: 0 20px;
+		max-width: ~"calc(100% - 40px)";
+	}
+}
+
+.loading {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+}

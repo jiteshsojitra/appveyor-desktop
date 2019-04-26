@@ -1,0 +1,29 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.breadcrumb {
+	margin: 0;
+	margin-bottom: 15px;
+	padding: 0;
+	li {
+		display: inline;
+		font-size: 13px;
+		color: #454545;
+		a {
+			&:hover {
+				cursor: pointer;
+			}
+			text-transform: none;
+			color: @brand-tertiary;
+		}
+		&:not(:last-child) {
+			position: relative;
+			margin-right: 13px;
+			&::after {
+				content: '>';
+				position: absolute;
+				right: -10px;
+				bottom: -2px;
+			}
+		}
+	}
+}

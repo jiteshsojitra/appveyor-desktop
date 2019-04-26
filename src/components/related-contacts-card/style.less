@@ -1,0 +1,48 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+a.relatedContact {
+	display: flex;
+	width: 100%;
+	border: 1px solid @border-color-primary;
+	background-color: #fff;
+	margin-bottom: 4px;
+	overflow: hidden;
+	color: @text-color;
+
+	&:focus,
+	&:hover {
+		text-decoration: none;
+		color: @text-color;
+	}
+}
+
+.info {
+	padding: 6px;
+	overflow: hidden;
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+}
+
+.name {
+	font-weight: bold;
+	color: @gray-darkest;
+	margin-bottom: 2px;
+}
+
+.name,
+.email {
+	line-height: 1;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.showAll {
+	color: @link-color;
+	text-align: right;
+	cursor: pointer;
+	padding-right: 4px;
+}

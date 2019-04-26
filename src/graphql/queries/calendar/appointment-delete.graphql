@@ -1,0 +1,3 @@
+mutation deleteAppointment($appointment: DeleteAppointmentInput!) {
+	deleteAppointment(appointment: $appointment)
+}

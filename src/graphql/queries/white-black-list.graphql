@@ -1,0 +1,14 @@
+query getWhiteBlackList {
+	getWhiteBlackList {
+		whiteList {
+			addr {
+				_content
+			}
+		}
+		blackList {
+			addr {
+				_content
+			}
+		}
+	}
+}

@@ -1,0 +1,48 @@
+.popover {
+	position: fixed;
+	z-index: 1001;
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	&.isAbove {
+		transform: translateY(3%);
+		box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.175);
+		&::after {
+			content: '';
+			width: 0;
+			height: 0;
+			border-left: 12px solid transparent;
+			border-right: 12px solid transparent;
+			border-bottom: 12px solid #ffffff;
+			position: absolute;
+			top: -8px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+	&.isBelow {
+		transform: translateY(-3%);
+		&::after {
+			content: '';
+			width: 0;
+			height: 0;
+			border-left: 12px solid transparent;
+			border-right: 12px solid transparent;
+			border-top: 12px solid #ffffff;
+			position: absolute;
+			bottom: -8px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+}
+
+.backdrop {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}

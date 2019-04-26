@@ -1,0 +1,36 @@
+@header-bg: @gray-lightest;
+@header-fg: @gray-darker;
+
+@import '~@zimbra/x-ui/helpers.less';
+
+.primaryLogo {
+	text-align: left;
+}
+
+.primaryLogoInner {
+	width: 200px;
+}
+
+
+.header {
+	display: none;
+	align-items: center;
+	width: 100%;
+	min-width: 1024px; // temporary until the header is responsive
+	height: @search-header-height;
+	background-color: @header-bg;
+	color: @header-fg;
+	white-space: nowrap;
+	position: relative;
+	padding: 0 @spacing-md;
+	z-index: 1;
+	box-shadow: 0 2px 4px rgba(0,0,0,.2); 
+	justify-content: space-between;
+	&.headerSearch{
+		justify-content: initial;
+	}
+	@media(min-width: @screen-sm) {
+		display: flex;
+	}
+}
+

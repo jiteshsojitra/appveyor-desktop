@@ -1,0 +1,12 @@
+fragment mimePartFields on MimePart {
+	body
+	content
+	contentId
+	contentType
+	contentDisposition
+	part
+	size
+	filename
+	url
+	messageId
+}

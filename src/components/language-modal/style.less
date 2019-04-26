@@ -1,0 +1,33 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.languageModal {
+	.languageModalContent {
+		margin: @spacing-xs 0 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.languageList {
+		@media (min-width: @screen-md) {
+			max-height: 285px;
+			border-top: 1px solid @gray-lightest;
+			border-bottom: 1px solid @gray-lightest;
+
+			.loaderWrapper {
+				height: 100px;
+			}
+		}
+
+		overflow: auto;
+		padding: 0 @spacing-lg;
+		list-style: none;
+		flex: 1;
+
+		li {
+			padding: @spacing-xs 0;
+			label {
+				cursor: pointer;
+			}
+		}
+	}
+}

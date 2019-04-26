@@ -1,0 +1,6 @@
+query downloadMessage($id: ID!, $isSecure: Boolean = true) {
+	downloadMessage(id: $id, isSecure: $isSecure) {
+		id
+		content
+	}
+}

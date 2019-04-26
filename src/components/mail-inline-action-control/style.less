@@ -1,0 +1,18 @@
+@import '~@zimbra/x-ui/refs.less';
+@import '~@zimbra/x-ui/helpers.less';
+
+.mailInlineActionControl {
+	opacity: 0;
+	outline: none;
+	color: @gray-darkest;
+	transition: color 150ms ease, opacity 150ms ease;
+
+	&:hover {
+		opacity: 1;
+		color: darken(@gray-darkest, 20%);
+	}
+
+	&.active {
+		opacity: 1;
+	}
+}

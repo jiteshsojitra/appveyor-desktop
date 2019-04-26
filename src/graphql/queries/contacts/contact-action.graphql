@@ -1,0 +1,18 @@
+mutation contactAction(
+	$id: ID,
+	$ids: [ID!],
+	$folderId: ID,
+	$op: String!
+) {
+	contactAction(
+		id: $id,
+		ids: $ids,
+		folderId: $folderId,
+		op: $op
+	) {
+		action {
+			id
+			op
+		}
+	}
+}

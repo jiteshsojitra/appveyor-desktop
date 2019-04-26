@@ -1,0 +1,22 @@
+#import "../../fragments/folder.graphql"
+
+query getSearchFolder {
+	getSearchFolder {
+		# Fetch up to five levels of nested folders
+		folders {
+			...folderFields
+			folders {
+				...folderFields
+				folders {
+					...folderFields
+					folders {
+						...folderFields
+						folders {
+							...folderFields
+						}
+					}
+				}
+			}
+		}
+	}
+}

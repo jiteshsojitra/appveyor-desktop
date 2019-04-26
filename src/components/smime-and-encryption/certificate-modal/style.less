@@ -1,0 +1,32 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.settings {
+	.certificateWrapper {
+		width: 770px;
+		.certInfoMainWrapper {
+			.section {
+				margin-bottom: @spacing-lg;
+				&:last-child {
+					margin-bottom: 0;
+				}
+				.title {
+					display: block;
+					margin-bottom: @spacing-sm;
+				}
+				.certInfoWrapper {
+					.certInfo {
+						display: flex;
+						margin-bottom: calc(@spacing-sm - 3);
+						.name {
+							width: 200px;
+						}
+						.val {
+							flex: 1;
+							word-break: break-all;
+						}
+					}
+				}
+			}
+		}
+	}
+}

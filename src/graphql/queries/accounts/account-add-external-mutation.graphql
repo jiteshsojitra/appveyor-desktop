@@ -1,0 +1,3 @@
+mutation addExternalAccount($externalAccount: ExternalAccountAddInput!) {
+	addExternalAccount(externalAccount: $externalAccount)
+}

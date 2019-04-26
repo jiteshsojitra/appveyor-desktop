@@ -1,0 +1,40 @@
+@import '../../style/helpers.less';
+
+.container {
+	height: 40px;
+	background-color: white;
+	padding: 0px 16px;
+	margin-bottom: 4px;
+}
+
+.button {
+	height: 40px;
+}
+
+@media (min-width: @screen-xs) and (max-width: @screen-xs-max) {
+	.container {
+		margin: 0px 8px;
+	}
+	.container,
+	.button {
+		height: 52px;
+	}
+}
+
+@media (max-width: @screen-xs) {
+	.container {
+		margin-top: -3px;
+	}
+}
+
+.icon,
+.label {
+	color: @brand-tertiary;
+}
+
+.label {
+	font-size: 13px;
+	margin-left: 8px;
+	position: relative;
+	top: 1px;
+}

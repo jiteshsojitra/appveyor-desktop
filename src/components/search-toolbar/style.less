@@ -1,0 +1,60 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.toolbar {
+	.toolbarHeight();
+	display: flex;
+	align-items: center;
+	padding: 0;
+	border-bottom: 1px solid @gray-lighter;
+	background: @read-pane-toolbar-color;
+	.tabSearchHeader{
+		flex: initial;
+		height: 100%;
+	}
+}
+
+.tabs {
+	border: 1px solid @gray-lighter;
+	border-radius: 2px;
+	list-style: none;
+	margin: 0 32px 0 14px;
+	padding: 0;
+	@media (max-width: @screen-xs-max) {
+		width: 100%;
+		margin: 0;
+		background: white;
+	}
+	.tabItem {
+		cursor: pointer;
+		border-right: 1px solid @gray-lighter;
+		padding: 8px 16px;
+		height: 32px;
+		background-color: transparent;
+		font-size: 13px;
+		color: @gray-darkest;
+		display: inline-block;
+		transition: background 150ms ease;
+		&:hover {
+			background-color: @gray-lighter;
+			text-shadow: 0px 0px 0px black;
+		}
+		&:last-child {
+			border-right: none;
+		}
+		&.selectedItem {
+			background-color: @gray-lighter;
+			text-shadow: 0px 0px 0px black;
+		}
+		@media (max-width: @screen-xs-max) {
+			height: 100%;
+			border: none;
+			width: calc(100% / 3);
+		    text-align: center;
+			padding:18px 16px;
+			&.selectedItem {
+				background-color: white;
+				border-bottom:3px solid @brand-primary;
+			}
+		}
+	}
+}

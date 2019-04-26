@@ -1,0 +1,7 @@
+#import "../../fragments/message.graphql"
+
+query getLocalFolderEmail($id: String!) {
+	localFolderEmail(id: $id) @client {
+		...messageFields
+	}
+}

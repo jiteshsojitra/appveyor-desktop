@@ -1,0 +1,66 @@
+@import '~@zimbra/x-ui/refs.less';
+
+div.tokenInput[class] {
+	height: 32px;
+	border: solid 1px @gray-lighter;
+	border-radius: 3px;
+	margin: 0;
+	padding-left: @spacing-xs;
+}
+
+.checkboxes {
+	input {
+		vertical-align: middle;
+	}
+	label {
+		padding: 0 0 0 @spacing-xs;
+	}
+}
+
+.listItem {
+	align-items: center;
+	display: flex;
+	border-bottom: 1px solid @gray-lighter;
+	padding-bottom: 5px;
+	margin-right: @spacing-sm;
+
+	&:last-child {
+		margin-bottom: @spacing-md;
+	}
+
+	.contact {
+		flex: 1;
+		font-size: 13px;
+		margin: 0 @spacing-md 0 @spacing-sm;
+		overflow: hidden;
+		white-space: nowrap;
+
+		.name {
+			font-weight: bold;
+			color: @text-color;
+
+		}
+		.address {
+			color: @gray-light;
+		}
+
+		.name, .address {
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+.avatar {
+	width: 36px;
+	height: 36px;
+	background: @gray-lighter;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+}
+
+.addDelegates {
+	display: block;
+	margin: 0 0 @spacing-sm 0;
+}

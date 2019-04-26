@@ -1,0 +1,8 @@
+mutation ValidateRecoveryAddress($recoveryAccount: String!, $recoveryAccountVerificationCode: String!) {
+	setRecoveryAccount(
+		op: validateCode,
+		recoveryAccount: $recoveryAccount,
+		recoveryAccountVerificationCode: $recoveryAccountVerificationCode,
+		channel: email
+	)
+}

@@ -1,0 +1,3 @@
+mutation deleteSignature($signature: NameIdInput!) {
+	deleteSignature(signature: $signature)
+}

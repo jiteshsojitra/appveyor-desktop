@@ -1,0 +1,12 @@
+query getSMimePublicCertsQuery($contactAddr: String!, $store: String = "CONTACT,GAL,LDAP") {
+	getSMimePublicCerts(contactAddr: $contactAddr, store: $store) {
+		certs {
+			email
+			cert {
+				store
+				field
+				_content
+			}
+		}
+	}
+}

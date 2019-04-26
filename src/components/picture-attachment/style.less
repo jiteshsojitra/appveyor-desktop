@@ -1,0 +1,48 @@
+@import '~@zimbra/x-ui/refs.less';
+
+.pictureAttachment {
+	align-items: stretch;
+	height: 112px;
+	cursor: pointer;
+	display: flex;
+	flex-shrink: 0;
+	padding: 0;
+	width: 112px;
+	position: relative;
+	overflow: hidden;
+
+	.mainInfo {
+		padding: 4px;
+		background-color: rgba(242, 242, 242, 0.9);
+		color: #000000;
+		font-size: 11px;
+		white-space: nowrap;
+		overflow: hidden;
+		height: 50px;
+		width: 100%;
+		position: absolute;
+		top: 100%;
+		transition: all 150ms ease-in-out;
+		.subInfoContainer {
+			display: flex;
+			.leftSide {
+				flex: 9 0 auto;
+			}
+			.rightSide {
+				flex: 1 0 auto;
+				display: flex;
+				button {
+					margin: 2px 0;
+					padding: 0;
+				}
+			}
+		}
+	}
+
+	&:hover,
+	&:focus {
+		.mainInfo {
+			transform: translateY(-100%);
+		}
+	}
+}

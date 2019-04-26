@@ -1,0 +1,101 @@
+@import '~@zimbra/x-ui/helpers.less';
+
+.navItem {
+	font-family: @branding-font-family-regular;
+	display: flex;
+	align-items: center;
+	position: relative;
+	box-sizing: border-box;
+	padding: @spacing-sm @spacing-md;
+	text-decoration: none;
+	color: @text-color;
+	white-space: nowrap;
+	-webkit-appearance: none;
+	user-select: none;
+	cursor: pointer;
+	overflow: hidden;
+	border-bottom: 4px solid transparent;
+
+	.icon {
+		position: relative;
+		display: inline-block;
+		line-height: 1;
+		font-size: 16px;
+		color: @gray-dark;
+		margin-right: @spacing-sm;
+
+		path {
+			fill: @brand-primary;
+		}
+
+		:global(.fa) {
+			font-size: 100%;
+		}
+
+		:global(.blocks_icon) {
+			// I seriously cannot figure out what is causing this.
+			position: relative;
+			top: -2px;
+			display: inline-block;
+		}
+
+		.iconText {
+			position: absolute;
+			display: block;
+			left: 0;
+			top: 0;
+			width: 100%;
+			text-align: center;
+			// font-size: 10px;
+			font-size: 62%;
+			font-weight: bold;
+			line-height: 29px;
+		}
+	}
+
+	.iconDisabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	&.iconRight > .inner {
+		margin-right: 10px;
+	}
+
+	.inner {
+		padding: 0;
+		font-weight: inherit;
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	&.sidebarEnable {
+		border-left: 4px solid transparent;
+		border-bottom: none;
+
+		&:hover, &:focus, &.active {
+			text-decoration: none;
+			border-left-color: @brand-primary;
+		}
+
+		&.active {
+			border-bottom: none;
+		}
+	}
+
+	a[href]& {
+		&:hover, &:focus, &.active {
+			color: black;
+			text-decoration: none;
+			border-bottom-color: @brand-primary;
+			.icon {
+				color: @brand-primary;
+			}
+		}
+	}
+	&.disabled {
+		color: @gray-light;
+		cursor: default;
+	}
+}

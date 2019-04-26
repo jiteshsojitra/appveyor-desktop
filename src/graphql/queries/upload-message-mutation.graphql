@@ -1,0 +1,3 @@
+mutation uploadMessage( $value: String! ) {
+    uploadMessage( value: $value )
+}
