@@ -10,6 +10,12 @@ environment:
   MSVC_DEFAULT_OPTIONS: ON
   nodejs_version: "11.0.0"
   APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
+  
+clone_folder: c:\projects\myproject
+
+cache:
+  - packages -> **\packages.config
+  - node_modules
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -30,7 +36,16 @@ test_script:
 
 artifacts:
   - path: test-reports
-    name: report.txt
+    name: result
+    
+notifications:
+  - provider: Email
+    to:
+      - user1@email.com
+      - user2@email.com
+    subject: 'Build {{status}}'
+    message: "{{message}}, {{commitId}}, ..."
+    on_build_status_changed: true
    
 on_finish:
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
