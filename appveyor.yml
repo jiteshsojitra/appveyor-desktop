@@ -69,3 +69,5 @@ artifacts:
 on_finish:
   - echo '\nClose remote desktop connection -----'
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - sh: |
+      find "$APPVEYOR_BUILD_FOLDER" -type f -name 'report.txt' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/spectron/$APPVEYOR_JOB_ID"
