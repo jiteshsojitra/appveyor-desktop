@@ -33,8 +33,8 @@ test_script:
   - ps: cd $env:REPO_DIR
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron
-  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME SET SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD SET TEST_SUITE=$env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
-  - ps: set ZIMBRA_PROXY_URL=$env:ZIMBRA_PROXY_URL SET SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME SET SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD SET TEST_SUITE=$env:TEST_SUITE SET HTML_REPORT_PATH=$env:test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
+  - cmd: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME SET SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD SET TEST_SUITE=$env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
+  - cmd: set ZIMBRA_PROXY_URL=$env:ZIMBRA_PROXY_URL SET SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME SET SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD SET TEST_SUITE=$env:TEST_SUITE SET HTML_REPORT_PATH=$env:test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
 
 artifacts:
   - path: test-reports
