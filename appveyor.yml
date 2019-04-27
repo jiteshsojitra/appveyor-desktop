@@ -14,7 +14,6 @@ environment:
 clone_folder: C:\projects\appveyor-desktop
 
 cache:
-  - packages -> **\packages.config
   - node_modules
 
 init:
@@ -23,7 +22,7 @@ init:
 
 install:
   - ps: cd C:\Users\appveyor\Desktop
-  - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
+  - ps: Start-FileDownload https://52616-126518968-gh.circle-artifacts.com/0/electron/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe?circle-token=15147e283947071011540e2f26a74bcd7b002c6f
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
 
 build_script:
@@ -34,7 +33,7 @@ test_script:
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
-  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
+  - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
 
 artifacts:
   - path: test-reports
