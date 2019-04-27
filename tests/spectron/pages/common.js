@@ -10,7 +10,7 @@ module.exports = {
 	locators: {
 		appTab: (tab) => '//span[@class="zimbra-client_menu-item_inner" and text()="' + tab + '"]',
 
-		mailServerUrl: 'input#server-url',
+		serverHostURL: 'input#server-url',
 		username: '//input[@class="zimbra-client_text-input_input"][@type="email"]',
 		password: '//input[@type="password"]',
 		signInButton: 'button=Sign in',
@@ -28,8 +28,8 @@ module.exports = {
 	},
 
 	async loginBeforeTestRun(account) {
-		if (await app.client.isExisting(this.locators.mailServerUrl)) {
-			await app.client.setValue(this.locators.mailServerUrl, SERVER_HOST_URL);
+		if (await app.client.isExisting(this.locators.serverHostURL)) {
+			await app.client.setValue(this.locators.serverHostURL, soap.serverHostURL);
 			await app.client.click(this.locators.continueBtn);
 			await app.client.pause(5000);
 		} else {
