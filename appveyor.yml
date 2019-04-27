@@ -66,15 +66,11 @@ test_script:
 
   - echo '----- Run desktop automation tests -----'
   - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
-
-after_test:
-  - echo %APPVEYOR_BUILD_FOLDER%
-  - cd %APPVEYOR_BUILD_FOLDER%\$env:TEXT_REPORT_PATH
   - ps: cat $env:TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
-    name: result
+    name: 'Test Result'
 
 #on_finish:
 #  - echo '\nClose remote desktop connection -----'
