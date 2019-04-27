@@ -30,7 +30,7 @@ cache:
 init:
   - ps: if($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') {
           echo '----- Initiate remote desktop connection -----'
-          powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
+          powershell -Command iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
         } else {
           echo '----- Remote desktop connection disabled -----'
         }
