@@ -6,7 +6,6 @@ image:
 platform: x64
 
 environment:
-  WORK_PATH: C:\Users\appveyor\Desktop\appveyor-desktop
   nodejs_version: "11.0.0"
   APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
   ZIMBRA_PROXY_URL: $env:ZIMBRA_PROXY_URL
@@ -15,7 +14,7 @@ environment:
   TEST_SUITE: $env:TEST_SUITE
   HTML_REPORT_PATH: $env:HTML_REPORT_PATH
 
-clone_folder: C:\Users\appveyor\Desktop\appveyor-desktop
+clone_folder: C:\projects
 
 cache:
   - node_modules
@@ -26,6 +25,7 @@ init:
 
 install:
   - ps: cd C:\Users\appveyor\Desktop\appveyor-desktop
+  - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
   - ps: Start-FileDownload https://52616-126518968-gh.circle-artifacts.com/0/electron/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe?circle-token=15147e283947071011540e2f26a74bcd7b002c6f
 
@@ -33,7 +33,7 @@ build_script:
   - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru  
 
 test_script:
-  - ps: cd C:\Users\appveyor\Desktop\appveyor-desktop
+  - ps: cd C:\projects\appveyor-desktop
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
