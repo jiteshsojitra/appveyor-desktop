@@ -32,11 +32,11 @@ cache:
 #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 before_build:
-  - ps: Write-Output "`r`n----- Check out code and install nodejs -----"
+  - echo '----- Check out code and install nodejs -----'
   - ps: Install-Product node $env:nodejs_version
 
 install:
-  - echo '`r`n----- Download desktop build -----'
+  - echo '----- Download desktop build -----'
   - ps: cd $env:DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
