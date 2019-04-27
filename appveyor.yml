@@ -28,12 +28,8 @@ cache:
   - node_modules
 
 init:
-  - ps: if($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') {
-          echo '----- Initiate remote desktop connection -----'
-          powershell -Command iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-        } else {
-          echo '----- Remote desktop connection disabled -----'
-        }
+  - ps: echo '----- Initiate remote desktop connection -----'
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 before_build:
   - echo '----- Check out code and install nodejs -----'
