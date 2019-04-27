@@ -32,7 +32,7 @@ build_script:
 test_script:
   - ps: cd C:\projects\appveyor-desktop  
   - ps: npm install
-  - ps: npm install -g mocha spectron
+  - ps: npm install -g --save-dev mocha spectron
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
 
