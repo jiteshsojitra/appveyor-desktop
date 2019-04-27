@@ -29,7 +29,7 @@ module.exports = {
 
 	async loginBeforeTestRun(account) {
 		if (await app.client.isExisting(this.locators.serverHostURL)) {
-			await app.client.setValue(this.locators.serverHostURL, soap.serverHostURL);
+			await app.client.setValue(this.locators.serverHostURL, (soap.serverHostURL).toString());
 			await app.client.click(this.locators.continueBtn);
 			await app.client.pause(5000);
 		} else {

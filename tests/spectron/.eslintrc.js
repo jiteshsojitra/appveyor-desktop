@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	"rules": {
 		"no-console": "off",
 		"prettier/prettier": "off",
