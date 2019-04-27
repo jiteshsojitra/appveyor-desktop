@@ -1,4 +1,4 @@
-version: {branch}.1.0.{build}
+version: {branch}-1.0.{build}
 
 image:
   - Visual Studio 2017
