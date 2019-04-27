@@ -24,6 +24,7 @@ init:
 install:
   - ps: cd C:\Users\appveyor\Desktop
   - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
+  - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
 
 build_script:
   - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru  
@@ -31,18 +32,18 @@ build_script:
 test_script:
   - ps: cd C:\projects\appveyor-desktop  
   - ps: npm install
-  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; mocha tests/spectron/conf/configure.js
-  - ps: set SERVER_ADMIN_USERNAME=$env:SERVER_ADMIN_USERNAME ; set SERVER_ADMIN_PASSWORD=$env:SERVER_ADMIN_PASSWORD ; set TEST_SUITE=Smoke ; set HTML_REPORT_PATH=test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
+  - ps: npm install -g mocha spectron
+  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
+  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
 
 artifacts:
   - path: test-reports
     name: result
     
 notifications:
-  - provider: Email
+  - provider: jiteshsojitra@gmail.com
     to:
-      - user1@email.com
-      - user2@email.com
+      - jiteshsojitra@gmail.com
     subject: 'Build {{status}}'
     message: "{{message}}, {{commitId}}, ..."
     on_build_status_changed: true
