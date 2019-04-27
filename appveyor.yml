@@ -14,10 +14,7 @@ environment:
   TEST_SUITE: $env:TEST_SUITE
   HTML_REPORT_PATH: $env:HTML_REPORT_PATH
 
-clone_folder: C:\projects
-
-cache:
-  - node_modules
+clone_folder: C:\projects\appveyor-desktop
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
