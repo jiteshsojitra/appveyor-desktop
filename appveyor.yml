@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: {branch}-1.0.{build}
 
 image:
   - Visual Studio 2017
@@ -27,9 +27,9 @@ cache:
   - packages -> **\packages.config
   - node_modules
 
-init:
-  - ps: echo '----- Initiate remote desktop connection -----'
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#init:
+#  - ps: echo '----- Initiate remote desktop connection -----'
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 before_build:
   - echo '----- Check out code and install nodejs -----'
@@ -71,8 +71,6 @@ artifacts:
   - path: test-reports\spectron
     name: result
 
-on_finish:
-  - echo '\nClose remote desktop connection -----'
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - sh: |
-      find "$APPVEYOR_BUILD_FOLDER" -type f -name 'report.txt' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/spectron/$APPVEYOR_JOB_ID"
+#on_finish:
+#  - echo '\nClose remote desktop connection -----'
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
