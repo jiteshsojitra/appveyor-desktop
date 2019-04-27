@@ -112,9 +112,7 @@ module.exports = {
 				IS_LAB_RUN = true;
 			}
 			await app.start();
-			app.browserWindow.isMaximized().then((isMax) => {
-			    expect(isMax).to.be.true;
-			})
+			app.browserWindow.maximize();
 		}
 	},
 
