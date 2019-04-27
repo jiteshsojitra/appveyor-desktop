@@ -58,7 +58,7 @@ test_script:
 
 artifacts:
   - echo '\nUpload artifacts...'
-  - path: test-reports/spectron
+  - path: test-reports\spectron
     name: result
 
 on_finish:
