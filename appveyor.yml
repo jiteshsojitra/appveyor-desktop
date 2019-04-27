@@ -17,7 +17,6 @@ environment:
   HTML_REPORT_PATH: $env:HTML_REPORT_PATH
 
 init:
-  - ps: echo $env:SERVER_ADMIN_USERNAME
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: Install-Product node $env:nodejs_version
 
