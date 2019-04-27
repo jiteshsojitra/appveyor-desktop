@@ -28,12 +28,15 @@ module.exports = {
 	},
 
 	async configureDesktopClient() {
+		await startApplication();
 		await app.client.pause(3000);
 		if (await app.client.isExisting(this.locators.zimbraProxyURL)) {
 			await app.client.setValue(this.locators.zimbraProxyURL, soap.zimbraProxyURL);
 			await app.client.click(this.locators.continueButton);
-			await app.client.pause(5000);
+			await app.client.pause(2000);
+			await app.client.waitUntil(async () => await app.client.isExisting(this.locators.username), utils.elementExistTimeout);
 		}
+		await stopApplication();
 	},
 
 	async loginBeforeTestRun(account) {
