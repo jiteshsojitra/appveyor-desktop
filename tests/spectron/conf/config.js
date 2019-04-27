@@ -2,14 +2,14 @@
 const TEST_SUITE = String(process.env.TEST_SUITE || '').trim();
 
 // Server info
-const serverHostURL = 'https://zimbra-api-proxy-aws.herokuapp.com/@ne';
+const zimbraProxyURL = 'https://zimbra-api-proxy-aws.herokuapp.com/@ne';
 const serverHost = 'ec2-18-220-167-111.us-east-2.compute.amazonaws.com';
 const clientPort = '443';
 const adminPort = '7071';
 const testDomain = 'testdomain.com';
 
 let localRunConfig = {
-	serverHostURL,
+	zimbraProxyURL,
 	serverHost,
 	clientPort,
 	adminPort,
@@ -32,7 +32,7 @@ let localRunConfig = {
 
 // eslint-disable-next-line no-unused-vars
 let smokeSuiteConfig = {
-	serverHostURL,
+	zimbraProxyURL,
 	serverHost,
 	clientPort,
 	adminPort,
@@ -54,7 +54,7 @@ let smokeSuiteConfig = {
 
 // eslint-disable-next-line no-unused-vars
 let bhrSuiteConfig = {
-	serverHostURL,
+	zimbraProxyURL,
 	serverHost,
 	clientPort,
 	adminPort,
@@ -76,7 +76,7 @@ let bhrSuiteConfig = {
 
 // eslint-disable-next-line no-unused-vars
 let functionalSuiteConfig = {
-	serverHostURL,
+	zimbraProxyURL,
 	serverHost,
 	clientPort,
 	adminPort,
@@ -98,7 +98,7 @@ let functionalSuiteConfig = {
 
 // eslint-disable-next-line no-unused-vars
 let fullSuiteConfig = {
-	serverHostURL,
+	zimbraProxyURL,
 	serverHost,
 	clientPort,
 	adminPort,

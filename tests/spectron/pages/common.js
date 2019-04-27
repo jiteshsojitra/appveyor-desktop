@@ -10,7 +10,7 @@ module.exports = {
 	locators: {
 		appTab: (tab) => '//span[@class="zimbra-client_menu-item_inner" and text()="' + tab + '"]',
 
-		serverHostURL: 'input#server-url',
+		zimbraProxyURL: 'input#server-url',
 		username: '//input[@class="zimbra-client_text-input_input"][@type="email"]',
 		password: '//input[@type="password"]',
 		signInButton: 'button=Sign in',
@@ -28,32 +28,32 @@ module.exports = {
 	},
 
 	async loginBeforeTestRun(account) {
-		if (await app.client.isExisting(this.locators.serverHostURL)) {
-			await app.client.setValue(this.locators.serverHostURL, (soap.serverHostURL).toString());
-			await app.client.click(this.locators.continueBtn);
+		if (await app.client.isExisting(this.locators.zimbraProxyURL)) {
+			await app.client.setValue(this.locators.zimbraProxyURL, soap.zimbraProxyURL);
+			await app.client.click(this.locators.continueButton);
 			await app.client.pause(5000);
-		} else {
-			await this.reloadApp();
-			if (await app.client.isExisting(this.locators.dialogCloseButton)) {
-				await app.client.click(this.locators.dialogCloseButton);
-			}
-			if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
-				for (let i=0; i<=2; i++) {
-					await this.coreLogoutFromClient();
-					if (await app.client.isExisting(this.locators.username) === true) {
-						break;
-					} else {
-						await this.reloadApp();
-					}
-				}
-			}
+		}
+
+		await this.reloadApp();
+		if (await app.client.isExisting(this.locators.dialogCloseButton)) {
+			await app.client.click(this.locators.dialogCloseButton);
+		}
+		if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
 			for (let i=0; i<=2; i++) {
+				await this.coreLogoutFromClient();
 				if (await app.client.isExisting(this.locators.username) === true) {
-					await this.coreLoginToClient(account);
 					break;
 				} else {
 					await this.reloadApp();
 				}
+			}
+		}
+		for (let i=0; i<=2; i++) {
+			if (await app.client.isExisting(this.locators.username) === true) {
+				await this.coreLoginToClient(account);
+				break;
+			} else {
+				await this.reloadApp();
 			}
 		}
 	},

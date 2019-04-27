@@ -8,8 +8,8 @@ const get = require('lodash');
 let restUploadRequest = require('request');
 let requestPromise = require('request-promise-native');
 
+const ZIMBRA_PROXY_URL = process.env.ZIMBRA_PROXY_URL || config.zimbraProxyURL;
 const SERVER_HOST = process.env.SERVER_HOST || config.serverHost;
-const SERVER_HOST_URL = process.env.SERVER_HOST_URL || config.serverHostURL;
 const SERVER_ADMIN_PORT = process.env.SERVER_ADMIN_PORT || config.adminPort;
 const SERVER_CLIENT_PORT = process.env.SERVER_CLIENT_PORT || config.clientPort;
 const SERVER_ADMIN_USERNAME = process.env.SERVER_ADMIN_USERNAME || config.adminUser;
@@ -22,8 +22,8 @@ if (!SERVER_ADMIN_USERNAME || !SERVER_ADMIN_PASSWORD) {
 }
 
 module.exports = {
+	zimbraProxyURL: ZIMBRA_PROXY_URL,
 	serverHost: SERVER_HOST,
-	serverHostURL: SERVER_HOST_URL,
 	adminPort: SERVER_ADMIN_PORT,
 	clientPort: SERVER_CLIENT_PORT,
 	adminUsername: SERVER_ADMIN_USERNAME,
