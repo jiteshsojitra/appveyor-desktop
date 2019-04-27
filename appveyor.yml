@@ -39,14 +39,6 @@ test_script:
 artifacts:
   - path: test-reports
     name: result
-    
-notifications:
-  - provider: jiteshsojitra@gmail.com
-    to:
-      - jiteshsojitra@gmail.com
-    subject: 'Build {{status}}'
-    message: "{{message}}, {{commitId}}, ..."
-    on_build_status_changed: true
-   
+
 on_finish:
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
