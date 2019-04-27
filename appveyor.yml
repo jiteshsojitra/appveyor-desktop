@@ -18,9 +18,9 @@ environment:
   SCREENSHOTS_PATH: $env:SCREENSHOTS_PATH
   REPORT_FILE_PATH: $env:REPORT_FILE_PATH
 
-init:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - ps: Install-Product node $env:nodejs_version
+#init:
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#  - ps: Install-Product node $env:nodejs_version
 
 install:
   - ps: cd $env:DESKTOP_DIR
@@ -42,5 +42,5 @@ artifacts:
   - path: $env:HTML_REPORT_PATH
     name: result
 
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
