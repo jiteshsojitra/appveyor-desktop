@@ -11,7 +11,7 @@ environment:
   nodejs_version: "11.0.0"
   APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
   
-clone_folder: c:\projects\myproject
+clone_folder: C:\projects\appveyor-desktop
 
 cache:
   - packages -> **\packages.config
