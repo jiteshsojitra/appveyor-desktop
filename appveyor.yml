@@ -28,8 +28,8 @@ cache:
 
 init:
   ps |
-  - echo '`nInitiate remote desktop connection...'
-  - iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+    echo '`nInitiate remote desktop connection...'
+    iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 before_build:
   - echo '\nCheck out code and install nodejs...'
