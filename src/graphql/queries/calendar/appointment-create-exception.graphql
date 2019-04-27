@@ -1,3 +1,0 @@
-mutation createAppointmentException($appointment: CalendarItemInput!, $accountName: String) {
-	createAppointmentException(appointment: $appointment, accountName: $accountName)
-}

@@ -1,3 +1,0 @@
-mutation modifyIdentity($id: ID!, $attrs: IdentityAttrsInput!) {
-	modifyIdentity(id: $id, attrs: $attrs)
-}

@@ -1,3 +1,0 @@
-mutation sendDeliveryReport($messageId: ID!) {
-	sendDeliveryReport(messageId: $messageId)
-}

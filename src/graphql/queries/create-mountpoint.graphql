@@ -1,4 +1,0 @@
-
-mutation CreateMountpoint($link: NewMountpointSpec!) {
-	createMountpoint(link: $link)
-}

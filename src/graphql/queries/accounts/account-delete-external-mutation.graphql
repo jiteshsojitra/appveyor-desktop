@@ -1,3 +1,0 @@
-mutation deleteExternalAccount($id: ID!) {
-	deleteExternalAccount(id: $id)
-}

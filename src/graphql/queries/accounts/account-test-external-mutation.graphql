@@ -1,6 +1,0 @@
-mutation testExternalAccount($externalAccount: ExternalAccountTestInput!) {
-	testExternalAccount(externalAccount: $externalAccount) {
-		success
-		error
-	}
-}

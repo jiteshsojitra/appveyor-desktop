@@ -1,3 +1,0 @@
-mutation checkCalendar($id: ID!, $value: Boolean!) {
-	checkCalendar(id: $id, value: $value)
-}

@@ -1,7 +1,0 @@
-#import "../fragments/message.graphql"
-
-query getMessage($id: ID!, $ridZ: String, $header: [MailItemHeaderInput], ) {
-	message: getMessage(id: $id, ridZ: $ridZ, header: $header) {
-		...messageFields
-	}
-}

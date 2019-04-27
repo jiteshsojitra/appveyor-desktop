@@ -1,3 +1,0 @@
-mutation modifyFilterRules($filters: [FilterInput!]) {
-	modifyFilterRules(filters: $filters)
-}

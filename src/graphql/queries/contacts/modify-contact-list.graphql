@@ -1,5 +1,0 @@
-mutation modifyContactList($contact: ModifyContactInput!) {
-	modifyContactList(contact: $contact) {
-		id
-	}
-}

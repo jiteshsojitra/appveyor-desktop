@@ -1,6 +1,0 @@
-query GetRecoveryAddress($email: String!) {
-	recoverAccount(op: getRecoveryAccount, email: $email, channel: email) {
-		recoveryAccount
-		recoveryAttemptsLeft
-	}
-}

@@ -1,3 +1,0 @@
-mutation modifySearchFolder($search: SearchFolderInput!) {
-	modifySearchFolder(search: $search)
-}

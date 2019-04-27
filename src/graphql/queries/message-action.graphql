@@ -1,3 +1,0 @@
-mutation messageAction($ids: [ID!]!, $op: String!) {
-	messageAction(ids: $ids, op: $op)
-}

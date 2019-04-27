@@ -1,8 +1,0 @@
-mutation ModifyZimletPrefs ( $zimlets: [ZimletPreferenceInput!]) {
-    modifyZimletPrefs(zimlets: $zimlets) {
-        zimlet {
-            name
-            presence
-        }
-    }
-}

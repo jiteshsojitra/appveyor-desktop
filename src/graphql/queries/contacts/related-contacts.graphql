@@ -1,7 +1,0 @@
-query relatedContacts($email: String!) {
-	relatedContacts(email: $email) {
-		email
-		scope
-		p
-	}
-}

@@ -1,3 +1,0 @@
-mutation changeFolderColor($id: ID!, $color: Int!) {
-	changeFolderColor(id: $id, color: $color)
-}

@@ -1,3 +1,0 @@
-mutation prefEnableOutOfOfficeAlertOnLogin($value: Boolean!) {
-	prefEnableOutOfOfficeAlertOnLogin(value: $value)
-}

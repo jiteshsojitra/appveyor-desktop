@@ -1,3 +1,0 @@
-mutation conversationAction($ids: [ID!]!, $op: String!) {
-	conversationAction(ids: $ids, op: $op)
-}

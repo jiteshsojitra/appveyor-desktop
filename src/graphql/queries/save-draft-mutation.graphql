@@ -1,9 +1,0 @@
-#import "../fragments/message.graphql"
-
-mutation saveDraft( $message: SendMessageInput! ) {
-	saveDraft( message: $message ) {
-		message {
-			...messageFields
-		}
-	}
-}

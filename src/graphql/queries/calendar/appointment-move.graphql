@@ -1,3 +1,0 @@
-mutation AppointmentMoveMutation($id: ID!, $folderId: ID!) {
-	itemAction(id: $id, folderId: $folderId, op: "move")
-}

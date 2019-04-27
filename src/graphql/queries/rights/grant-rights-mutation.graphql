@@ -1,8 +1,0 @@
-mutation grantRights($input: GrantRightsInput!) {
-	grantRights(input: $input) {
-		access {
-			right
-			address
-		}
-	}
-}

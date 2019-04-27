@@ -1,3 +1,0 @@
-mutation modifyExternalAccount($id: ID!, $type: AccountType, $attrs: ExternalAccountModifyAttrsInput!) {
-	modifyExternalAccount(id: $id, type: $type, attrs: $attrs)
-}

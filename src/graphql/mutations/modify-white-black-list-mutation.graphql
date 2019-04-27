@@ -1,3 +1,0 @@
-mutation modifyWhiteBlackList ( $whiteBlackList: WhiteBlackListInput!) {
-	modifyWhiteBlackList( whiteBlackList: $whiteBlackList )
-}

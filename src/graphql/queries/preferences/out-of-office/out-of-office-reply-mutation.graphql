@@ -1,3 +1,0 @@
-mutation prefOutOfOfficeReply($value: String!) {
-	prefOutOfOfficeReply(value: $value)
-}

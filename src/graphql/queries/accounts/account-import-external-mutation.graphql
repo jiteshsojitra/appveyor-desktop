@@ -1,3 +1,0 @@
-mutation importExternalAccount($externalAccount: ExternalAccountImportInput!) {
-	importExternalAccount(externalAccount: $externalAccount)
-}

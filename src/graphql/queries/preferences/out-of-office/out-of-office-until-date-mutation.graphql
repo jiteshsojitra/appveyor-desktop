@@ -1,3 +1,0 @@
-mutation prefOutOfOfficeUntilDate($value: String!) {
-	prefOutOfOfficeUntilDate(value: $value)
-}

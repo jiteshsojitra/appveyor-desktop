@@ -1,7 +1,0 @@
-query getAvailableLocales {
-	getAvailableLocales {
-		id
-		name
-		localName
-	}
-}

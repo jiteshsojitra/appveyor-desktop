@@ -1,8 +1,0 @@
-query getRights($input: GetRightsInput!) {
-	getRights(input: $input) {
-		access {
-			right
-			address
-		}
-	}
-}
