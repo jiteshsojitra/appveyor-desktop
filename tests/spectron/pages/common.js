@@ -27,17 +27,21 @@ module.exports = {
 		addTaskbutton: 'div.zimbra-client_tasks_taskList button.zimbra-client_tasks_toggleAdd',
 	},
 
-	async loginBeforeTestRun(account) {
+	async configureDesktopClient() {
+		await app.client.pause(3000);
 		if (await app.client.isExisting(this.locators.zimbraProxyURL)) {
 			await app.client.setValue(this.locators.zimbraProxyURL, soap.zimbraProxyURL);
 			await app.client.click(this.locators.continueButton);
 			await app.client.pause(5000);
 		}
+	},
 
+	async loginBeforeTestRun(account) {
 		await this.reloadApp();
 		if (await app.client.isExisting(this.locators.dialogCloseButton)) {
 			await app.client.click(this.locators.dialogCloseButton);
 		}
+
 		if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
 			for (let i=0; i<=2; i++) {
 				await this.coreLogoutFromClient();
@@ -48,6 +52,7 @@ module.exports = {
 				}
 			}
 		}
+
 		for (let i=0; i<=2; i++) {
 			if (await app.client.isExisting(this.locators.username) === true) {
 				await this.coreLoginToClient(account);
@@ -83,7 +88,7 @@ module.exports = {
 	},
 
 	async startApplication() {
-		if (IS_LAB_RUN === false) {
+		if (IS_LAB_RUN === false || process.env.APPVEYOR) {
 			if (app.isRunning()) {
 				await app.stop();
 			}
@@ -96,7 +101,7 @@ module.exports = {
 	},
 
 	async stopApplication() {
-		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null) {
+		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null || process.env.APPVEYOR) {
 			await app.stop();
 			if (app.isRunning()) {
 				this.wait(8000);

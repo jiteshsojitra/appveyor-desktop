@@ -5,7 +5,7 @@
   "module": "src/index.js",
   "version": "0.0.1",
   "scripts": {
-    "pretest:spectron": "cross-env TEST_SUITE='Full' mocha tests/spectron/conf/configure.js",
+    "pretest:spectron": "cross-env TEST_SUITE='Full' mocha tests/spectron/conf/configure.js -f Configure",
     "test:spectron:full": "cross-env TEST_SUITE='Full' HTML_REPORT_PATH='test-reports/spectron' mocha --recursive tests/spectron/tests -f '|' --retries 1 --reporter mochawesome --reporter-options reportDir=test-reports/spectron | tee test-reports/spectron/report.txt"
   },
   "keywords": [
