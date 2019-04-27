@@ -61,11 +61,11 @@ describe('Create smime mail', function() {
 
 		// Compose message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN);
+		await mail.selectSmimeType(option.O_SIGN);
 		await mail.enterMailSubject(mailSubject);
-		await mail.enterHTMLbodyContent(option.O_BOLD, boldMessage);
+		await mail.enterHtmlBodyContent(option.O_BOLD, boldMessage);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -85,11 +85,11 @@ describe('Create smime mail', function() {
 
 		// Compose message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN_AND_ENCRYPT);
+		await mail.selectSmimeType(option.O_SIGN_AND_ENCRYPT);
 		await mail.enterMailSubject(mailSubject);
-		await mail.enterHTMLbodyContent(option.O_BOLD, boldMessage);
+		await mail.enterHtmlBodyContent(option.O_BOLD, boldMessage);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();

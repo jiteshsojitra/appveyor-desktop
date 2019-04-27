@@ -58,7 +58,7 @@ describe('Create mail', function() {
 		composeFieldText.should.contain(mailCcAccount.userName, 'Verify cc account address');
 		composeFieldText.should.contain(messageObject.body, 'Verify mail body content');
 
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 		await mail.selectFolder(folder.F_SENT);
 		await app.client.waitForExist(mail.locators.messageSubjectSelector(messageObject.subject));
 		await mail.isMessagePresent(messageObject.subject).should.eventually.equal(true, 'Verify message is present in Sent folder');
@@ -83,7 +83,7 @@ describe('Create mail', function() {
 		await mail.enterMailSubject(messageObject.subject);
 		await mail.enterPlainTextBodyContent(messageObject.body);
 		await mail.enterRecipient(textfield.T_TO, messageObject.toRecipients);
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		await mail.selectFolder(folder.F_SENT);
 		await app.client.waitForExist(mail.locators.messageSubjectSelector(messageObject.subject));

@@ -83,8 +83,7 @@ describe('Smime settings', function() {
 	it('Functional | Set sign default operation and verify in composing a mail | C1936508', async() => {
 		// Modify default smime setting as signed
 		await settings.modifyDefaultSmimeSetting(option.O_SIGN);
-		await utils.sleep(4000);
 		await mail.clickNewMessageButton();
-		await mail.getComposeMailSMIMEOperation().should.eventually.contains('Sign', 'Verify smime operation selected while composing a mail');
+		await mail.getComposeMailSmimeOperation().should.eventually.contains('Sign', 'Verify smime operation selected while composing a mail');
 	});
 });

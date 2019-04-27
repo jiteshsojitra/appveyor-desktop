@@ -90,12 +90,12 @@ describe('Create smime mail with attachment', function() {
 
 		// Compose message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN);
+		await mail.selectSmimeType(option.O_SIGN);
 		await mail.enterMailSubject(messageObject.subject);
 		await mail.enterPlainTextBodyContent(messageObject.body);
 		await mail.enterRecipient(textfield.T_TO, messageObject.toRecipients);
 		await mail.attachPhotoFromEmail();
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -116,12 +116,12 @@ describe('Create smime mail with attachment', function() {
 
 		// Compose message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN_AND_ENCRYPT);
+		await mail.selectSmimeType(option.O_SIGN_AND_ENCRYPT);
 		await mail.enterMailSubject(messageObject.subject);
 		await mail.enterPlainTextBodyContent(messageObject.body);
 		await mail.enterRecipient(textfield.T_TO, messageObject.toRecipients);
 		await mail.attachPhotoFromEmail();
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();

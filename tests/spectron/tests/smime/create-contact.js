@@ -115,7 +115,7 @@ describe('Create smime contact', function() {
 
 		// Compose message with smime
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN_AND_ENCRYPT);
+		await mail.selectSmimeType(option.O_SIGN_AND_ENCRYPT);
 		await mail.enterPlainTextBodyContent(messageBody);
 		await mail.enterMailSubject(messageSubject);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);

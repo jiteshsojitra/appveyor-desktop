@@ -47,7 +47,7 @@ describe('Draft smime mail', function() {
 
 		// Compose a signed message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN);
+		await mail.selectSmimeType(option.O_SIGN);
 		await mail.enterMailSubject(mailSubject);
 		await mail.enterPlainTextBodyContent(bodyText1);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);
@@ -64,7 +64,7 @@ describe('Draft smime mail', function() {
 		await utils.pressKey('Enter');
 
 		// Send the message
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -86,7 +86,7 @@ describe('Draft smime mail', function() {
 
 		// Compose a signed message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN_AND_ENCRYPT);
+		await mail.selectSmimeType(option.O_SIGN_AND_ENCRYPT);
 		await mail.enterMailSubject(mailSubject);
 		await mail.enterPlainTextBodyContent(bodyText1);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);
@@ -103,7 +103,7 @@ describe('Draft smime mail', function() {
 		await utils.pressKey('Enter');
 
 		// Send the message
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -127,7 +127,7 @@ describe('Draft smime mail', function() {
 
 		// Compose a signed message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN);
+		await mail.selectSmimeType(option.O_SIGN);
 		await mail.enterMailSubject(mailSubject);
 		await mail.enterPlainTextBodyContent(bodyText1);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);
@@ -145,7 +145,7 @@ describe('Draft smime mail', function() {
 		await utils.pressKey('Enter');
 
 		// Send the message
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -170,7 +170,7 @@ describe('Draft smime mail', function() {
 
 		// Compose a signed message
 		await mail.clickNewMessageButton();
-		await mail.selectSMIMEType(option.O_SIGN_AND_ENCRYPT);
+		await mail.selectSmimeType(option.O_SIGN_AND_ENCRYPT);
 		await mail.enterMailSubject(mailSubject);
 		await mail.enterPlainTextBodyContent(bodyText1);
 		await mail.enterRecipient(textfield.T_TO, toRecipients);
@@ -188,7 +188,7 @@ describe('Draft smime mail', function() {
 		await utils.pressKey('Enter');
 
 		// Send the message
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -221,7 +221,7 @@ describe('Draft smime mail', function() {
 		// Reply to the message
 		await mail.selectMessage(messageObject.subject);
 		await mail.clickMessageViewerButton(button.B_REPLY);
-		await mail.selectSMIMEType(option.O_SIGN);
+		await mail.selectSmimeType(option.O_SIGN);
 		await mail.enterPlainTextBodyContent(replyMessage.body);
 		await mail.waitForAutoSaveDraftRequest();
 
@@ -234,7 +234,7 @@ describe('Draft smime mail', function() {
 		await utils.pressKey('Enter');
 
 		// Send the message
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();
@@ -264,7 +264,7 @@ describe('Draft smime mail', function() {
 
 		await mail.selectMessage(mimeMessageSubject);
 		await mail.clickMessageViewerButton(button.B_FORWARD);
-		await mail.selectSMIMEType(forwardMessage.messageType);
+		await mail.selectSmimeType(forwardMessage.messageType);
 		await mail.enterRecipient(textfield.T_TO, forwardMessage.toRecipients);
 		await mail.enterPlainTextBodyContent(forwardMessage.body);
 		await mail.waitForAutoSaveDraftRequest();
@@ -278,7 +278,7 @@ describe('Draft smime mail', function() {
 		await utils.pressKey('Enter');
 
 		// Send the message
-		await mail.clickSendbutton();
+		await mail.clickSendButton();
 
 		// Verify received message
 		await common.logoutFromClient();

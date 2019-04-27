@@ -29,7 +29,11 @@ module.exports = {
 
 	async configureDesktopClient() {
 		await this.startApplication();
-		await app.client.pause(3000);
+		if (process.env.APPVEYOR) {
+			await app.client.pause(2000);
+		} else {
+			await app.client.pause(3000);
+		}
 		if (await app.client.isExisting(this.locators.zimbraProxyURL)) {
 			await app.client.setValue(this.locators.zimbraProxyURL, soap.zimbraProxyURL);
 			await app.client.click(this.locators.continueButton);
@@ -69,7 +73,11 @@ module.exports = {
 	async loginToClient(account) {
 		await app.client.waitUntil(async () => await app.client.isExisting(this.locators.username), utils.elementExistTimeout);
 		await this.coreLoginToClient(account);
-		await app.client.pause(2000);
+		if (process.env.APPVEYOR) {
+			await app.client.pause(1000);
+		} else {
+			await app.client.pause(2000);
+		}
 	},
 
 	async coreLoginToClient(account) {
@@ -95,7 +103,11 @@ module.exports = {
 			if (app.isRunning()) {
 				await app.stop();
 			}
-			this.wait(8000);
+			if (process.env.APPVEYOR) {
+				this.wait(5000);
+			} else {
+				this.wait(8000);
+			}
 			if (typeof process.env.TEST_SUITE !== 'undefined' && process.env.TEST_SUITE !== null) {
 				IS_LAB_RUN = true;
 			}
@@ -107,7 +119,11 @@ module.exports = {
 		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null || process.env.APPVEYOR) {
 			await app.stop();
 			if (app.isRunning()) {
-				this.wait(8000);
+				if (process.env.APPVEYOR) {
+					this.wait(5000);
+				} else {
+					this.wait(8000);
+				}
 				await app.stop();
 			}
 		}
@@ -147,7 +163,11 @@ module.exports = {
 
 	async reloadApp() {
 		await app.client.refresh();
-		await app.client.pause(4000);
+		if (process.env.APPVEYOR) {
+			this.wait(2000);
+		} else {
+			this.wait(4000);
+		}
 	},
 
 	async createAccount() {

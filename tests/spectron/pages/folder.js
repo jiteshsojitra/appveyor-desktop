@@ -37,7 +37,11 @@ module.exports = {
 		await app.client.click(mail.locators.moveButton);
 		await app.client.waitForExist(mail.locators.popoverContextMenuItem(folderName), utils.elementExistTimeout);
 		await app.client.click(mail.locators.popoverContextMenuItem(folderName));
-		await utils.sleep(3000);
+		if (process.env.APPVEYOR) {
+			await utils.sleep(2000);
+		} else {
+			await utils.sleep(3000);
+		}
 	},
 
 	async moveFolderToLocalFolder(mailFolder) {

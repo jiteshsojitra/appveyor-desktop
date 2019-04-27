@@ -66,7 +66,11 @@ module.exports = {
 	async saveContact() {
 		await app.client.pause(1000);
 		await app.client.click(this.locators.saveButton);
-		await app.client.pause(3000);
+		if (process.env.APPVEYOR) {
+			await utils.sleep(2000);
+		} else {
+			await utils.sleep(3000);
+		}
 	},
 
 	async getContactCardDetails(name) {
@@ -86,7 +90,11 @@ module.exports = {
 
 	async deleteContactIfPresent(email) {
 		await common.navigateApp(button.B_CONTACT_APP);
-		await app.client.pause(3000);
+		if (process.env.APPVEYOR) {
+			await utils.sleep(2000);
+		} else {
+			await utils.sleep(3000);
+		}
 		await this.removeContact(email);
 		await common.navigateApp(button.B_MAIL_APP);
 		await app.client.pause(2000);
@@ -105,7 +113,11 @@ module.exports = {
 
 	async deleteAllContacts() {
 		await common.navigateApp(button.B_CONTACT_APP);
-		await app.client.pause(3000);
+		if (process.env.APPVEYOR) {
+			await utils.sleep(2000);
+		} else {
+			await utils.sleep(3000);
+		}
 		await this.deleteAllContactsFromActionBar();
 		await common.navigateApp(button.B_MAIL_APP);
 	},
@@ -113,7 +125,11 @@ module.exports = {
 	async clickSideBarContactItem(itemText) {
 		await app.client.waitForExist(this.locators.sidebarContactItem(itemText));
 		await app.client.click(this.locators.sidebarContactItem(itemText));
-		await app.client.pause(3000);
+		if (process.env.APPVEYOR) {
+			await utils.sleep(2000);
+		} else {
+			await utils.sleep(3000);
+		}
 	},
 
 	async openNewContact() {
