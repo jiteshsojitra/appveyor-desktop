@@ -28,35 +28,34 @@ module.exports = {
 	},
 
 	async loginBeforeTestRun(account) {
-		await this.reloadApp();
-		if (await app.client.isExisting(this.locators.dialogCloseButton)) {
-			await app.client.click(this.locators.dialogCloseButton);
-		}
-		if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
+		if (await app.client.isExisting(this.locators.mailServerUrl)) {
+			await app.client.setValue(this.locators.mailServerUrl, SERVER_HOST_URL);
+			await app.client.click(this.locators.continueBtn);
+			await app.client.pause(5000);
+		} else {
+			await this.reloadApp();
+			if (await app.client.isExisting(this.locators.dialogCloseButton)) {
+				await app.client.click(this.locators.dialogCloseButton);
+			}
+			if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
+				for (let i=0; i<=2; i++) {
+					await this.coreLogoutFromClient();
+					if (await app.client.isExisting(this.locators.username) === true) {
+						break;
+					} else {
+						await this.reloadApp();
+					}
+				}
+			}
 			for (let i=0; i<=2; i++) {
-				await this.coreLogoutFromClient();
 				if (await app.client.isExisting(this.locators.username) === true) {
+					await this.coreLoginToClient(account);
 					break;
 				} else {
 					await this.reloadApp();
 				}
 			}
 		}
-		for (let i=0; i<=2; i++) {
-			if (await app.client.isExisting(this.locators.username) === true) {
-				await this.coreLoginToClient(account);
-				break;
-			} else {
-				await this.reloadApp();
-			}
-		}
-		/*
-		if (await app.client.isExisting(this.locators.mailServerUrl)) {
-			await app.client.setValue(this.locators.mailServerUrl, SERVER_HOST_URL);
-			await app.client.click(this.locators.continueBtn);
-			await app.client.pause(5000);
-		}
-		*/
 	},
 
 	async loginToClient(account) {
