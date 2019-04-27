@@ -111,7 +111,10 @@ module.exports = {
 			if (typeof process.env.TEST_SUITE !== 'undefined' && process.env.TEST_SUITE !== null) {
 				IS_LAB_RUN = true;
 			}
-			return await app.start();
+			await app.start();
+			app.browserWindow.isMaximized().then((isMax) => {
+			    expect(isMax).to.be.true;
+			})
 		}
 	},
 
