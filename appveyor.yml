@@ -19,7 +19,7 @@ environment:
   REPORT_FILE_PATH: $env:REPORT_FILE_PATH
 
 init:
-  - ps: cd $env:APPVEYOR
+  - ps: echo $env:APPVEYOR
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: Install-Product node $env:nodejs_version
 
