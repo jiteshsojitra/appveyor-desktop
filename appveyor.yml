@@ -6,26 +6,47 @@ image:
 platform: x64
 
 environment:
+  WORK_PATH: C:\projects\appveyor-desktop
   MSVC_DEFAULT_OPTIONS: ON
+  nodejs_version: "11.0.0"
+  APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
+  
+clone_folder: C:\projects\appveyor-desktop
+
+cache:
+  - packages -> **\packages.config
+  - node_modules
 
 init:
-  - cmd: cmake --version  
-
-clone_folder: c:\projects\myproject
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: Install-Product node $env:nodejs_version
 
 install:
-  #------------------
-  # Windows 10
-  #------------------
-  # update vcpkg
-  - cmd: cd C:\tools\vcpkg
-  - cmd: git pull
-  - cmd: vcpkg install --recurse --triplet %VCPKG_ARCH% assimp boost-system boost-filesystem ccd eigen3 fcl
-  - cmd: vcpkg integrate install
-  - cmd: cd "%APPVEYOR_BUILD_FOLDER%"
+  - ps: cd C:\Users\appveyor\Desktop
+  - ps: Start-FileDownload 'https://zimbraqa.s3.ap-south-1.amazonaws.com/CircleCI/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe'
+  - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
 
 build_script:
-  #------------------
-  # Windows 10
-  #------------------
-  - cmd: mkdir build && cd build  
+  - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru  
+
+test_script:
+  - ps: cd C:\projects\appveyor-desktop  
+  - ps: npm install
+  - ps: npm install -g mocha spectron
+  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
+  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH test-reports/spectron ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1
+
+artifacts:
+  - path: test-reports
+    name: result
+    
+notifications:
+  - provider: jiteshsojitra@gmail.com
+    to:
+      - jiteshsojitra@gmail.com
+    subject: 'Build {{status}}'
+    message: "{{message}}, {{commitId}}, ..."
+    on_build_status_changed: true
+   
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
