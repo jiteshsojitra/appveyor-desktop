@@ -36,7 +36,7 @@ test_script:
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron mochawesome
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js
-  - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:SCREENSHOTS_PATH $env:SCREENSHOTS_PATH ; Set-Item Env:REPORT_FILE_PATH $env:REPORT_FILE_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --exit --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:REPORT_FILE_PATH
+  - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:SCREENSHOTS_PATH $env:SCREENSHOTS_PATH ; Set-Item Env:REPORT_FILE_PATH $env:REPORT_FILE_PATH ; mocha --recursive tests\spectron\tests\mail -f Smoke --retries 1 --exit --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:REPORT_FILE_PATH
 
 artifacts:
   - path: $env:HTML_REPORT_PATH
