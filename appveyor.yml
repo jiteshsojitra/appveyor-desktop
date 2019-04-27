@@ -22,8 +22,8 @@ init:
 
 install:
   - ps: cd C:\Users\appveyor\Desktop
-  - ps: Start-FileDownload https://52616-126518968-gh.circle-artifacts.com/0/electron/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe?circle-token=15147e283947071011540e2f26a74bcd7b002c6f
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
+  - ps: Start-FileDownload https://52616-126518968-gh.circle-artifacts.com/0/electron/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe?circle-token=15147e283947071011540e2f26a74bcd7b002c6f
 
 build_script:
   - ps: Start-Process .\Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe /S -NoNewWindow -Wait -PassThru  
