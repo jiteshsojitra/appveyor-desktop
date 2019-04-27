@@ -70,7 +70,7 @@ test_script:
 
 artifacts:
   - path: test-reports\spectron
-    name: 'Test Result'
+    name: ${APPVEYOR_REPO_BRANCH}-1.0.{build}
 
 #on_finish:
 #  - echo '\nClose remote desktop connection -----'
