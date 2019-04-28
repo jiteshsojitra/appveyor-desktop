@@ -26,7 +26,6 @@ branches:
     - master
 
 init:
-  - ps: echo $TEST_SUITE
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
           powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection...'"
@@ -56,7 +55,7 @@ build_script:
   - ps: cd $env:REPO_DIR
   - ps: npm install
 
-  - ps: Add-AppveyorMessage "Installing build pre-requisites"
+  - ps: Add-AppveyorMessage "Installing required pre-requisites"
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
@@ -78,14 +77,14 @@ artifacts:
     name: ${APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}
     
 on_success:
-  - ps: Add-AppveyorMessage "Tests passed"
+  - ps: Add-AppveyorMessage "Job passed"
   - ps: >-
       Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
         powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration 0"
       }
 
 on_failure:
-  - ps: Add-AppveyorMessage "Tests failed"
+  - ps: Add-AppveyorMessage "Job failed"
   - ps: >-
       Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'failing'} | ForEach-Object {
         powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome FAILED -Duration 0"
@@ -95,7 +94,7 @@ on_finish:
   - ps: >-
       if (Test-Path $env:TEXT_REPORT_PATH) {
         powershell -Command "cat $env:TEXT_REPORT_PATH"
-        powershell -Command "Push-AppveyorArtifact {APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}.zip"
+        powershell -Command "Push-AppveyorArtifact {APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}"
       } else {
         powershell -Command "Add-AppveyorMessage 'Couldn't find test report file'"
       }
