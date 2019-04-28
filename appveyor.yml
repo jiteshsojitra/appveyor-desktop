@@ -74,9 +74,7 @@ test_script:
         Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
         Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
         Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
-        mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE |
-          --retries 2 --no-deprecation --reporter mochawesome |
-          --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+        mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
                                      
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
         Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
@@ -89,9 +87,7 @@ test_script:
         Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
         Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
         Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
-        mocha --recursive tests\spectron\tests\calendar\create-folder.js |
-          --retries 2 --no-deprecation --reporter mochawesome |
-          --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+        mocha --recursive tests\spectron\tests\calendar\create-folder.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
