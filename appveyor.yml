@@ -74,20 +74,20 @@ test_script:
 
 artifacts:
   - path: test-reports\spectron
-    name: ${APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}
+    name: ${APPVEYOR_BUILD_VERSION}
     
 on_success:
   - ps: Add-AppveyorMessage "Job passed"
   - ps: >-
       Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
-        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration 0"
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome passed"
       }
 
 on_failure:
   - ps: Add-AppveyorMessage "Job failed"
   - ps: >-
       Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'failing'} | ForEach-Object {
-        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome FAILED -Duration 0"
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome failed"
       }
 
 on_finish:
