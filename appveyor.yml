@@ -68,26 +68,26 @@ test_script:
       Add-AppveyorTest -Name Desktop -Outcome Running
 
       Add-Content environment.txt "
-        Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
-        Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
-        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
-        Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
-        Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
-        Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
-        mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+      Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
+      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
+      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
+      Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
+      Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
+      Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
+      mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
                                      
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
-        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
-        Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
-        mocha tests/spectron/conf/configure.js -f Configure
+      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
+      Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
+      mocha tests/spectron/conf/configure.js -f Configure
         
       Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
-        Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
-        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
-        Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
-        Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
-        Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
-        mocha --recursive tests\spectron\tests\calendar\create-folder.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
+      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
+      Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
+      Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
+      Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
+      mocha --recursive tests\spectron\tests\calendar\view-event.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
@@ -102,10 +102,10 @@ on_finish:
       }
       
   - ps: |
-      $reportFile = Get-Content $env:TEXT_REPORT_PATH
-      $isFailingPresent = $reportFile | %{$_ -match "failing"}
+      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+      $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
 
-      if ($isFailingPresent -contains $true) {
+      if ($IS_TEST_FAILED -contains $true) {
         Add-AppveyorMessage "Job failed"
         Update-AppveyorTest -Name Desktop -Outcome Failed
       } else {
