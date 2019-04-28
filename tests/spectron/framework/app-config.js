@@ -12,7 +12,10 @@ function getAppPath() {
 
 const app = new Application({
 	path: getAppPath(),
-	startTimeout: 20000
+	startTimeout: 20000,
+	webdriverOptions: {
+		"deprecationWarnings": false
+	}
 });
 
 module.exports = app;
