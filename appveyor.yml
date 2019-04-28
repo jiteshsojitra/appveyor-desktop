@@ -10,6 +10,7 @@ environment:
   nodejs_version: $env:NODEJS_VERSION
   APPVEYOR_RDP_ENABLED: $env:APPVEYOR_RDP_ENABLED
   APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
+  BUILD_NOTIFICATION_EMAIL: $env:BUILD_NOTIFICATION_EMAIL
   REPO_DIR: $env:REPO_DIR
   DESKTOP_DIR: $env:DESKTOP_DIR
   TEST_SUITE: $env:TEST_SUITE
@@ -77,6 +78,8 @@ artifacts:
 
 notifications:
   - provider: Email
+    to:
+      - $env:BUILD_NOTIFICATION_EMAIL
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true
