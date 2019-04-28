@@ -84,8 +84,15 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
       mocha tests/spectron/conf/configure.js -f Configure
       
-      Exit-AppveyorBuild
-
+      # Run desktop client tests
+      Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
+      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
+      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
+      Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
+      Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
+      Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
+      mocha --recursive tests\spectron\tests\calendar\create-folder.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      
 artifacts:
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}
@@ -105,10 +112,10 @@ on_finish:
 
       if ($IS_TEST_FAILED -contains $true) {
         Add-AppveyorMessage "Job failed"
-        Update-AppveyorTest -Name Desktop -Outcome Failed
+        Update-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Failed
       } else {
         Add-AppveyorMessage "Job passed"
-        Update-AppveyorTest -Name Desktop -Outcome Passed
+        Update-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Passed
       }
   
   - ps: |
