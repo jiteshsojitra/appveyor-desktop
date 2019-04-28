@@ -30,7 +30,7 @@ cache:
 init:
   - ps: if($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
           echo '----- Initiate remote desktop connection -----' 
-          - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1')) 
+          iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1')) 
         } else { 
           echo '----- Remote desktop connection disabled -----' 
         }
@@ -70,12 +70,17 @@ test_script:
 
   - echo '----- Run desktop automation tests -----'
   - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
-  - ps: cat $env:TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
     name: ${APPVEYOR_REPO_BRANCH}-1.0.{build}
 
-#on_finish:
-#  - echo '\nClose remote desktop connection -----'
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+  - echo '----- Test output -----'
+  - ps: cat $env:TEXT_REPORT_PATH
+  
+  - echo '----- Push artifact -----'
+  - ps: Push-AppveyorArtifact ${APPVEYOR_REPO_BRANCH}-1.0.{build}
+
+  - echo '----- Close remote desktop connection -----'
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
