@@ -83,5 +83,8 @@ on_finish:
   - echo '----- Push artifact -----'
   - ps: Push-AppveyorArtifact ${APPVEYOR_REPO_BRANCH} + '-' + ${APPVEYOR_BUILD_VERSION} + '.zip'
 
-  - echo '----- Close remote desktop connection -----'
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: >-
+        if($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
+          echo '----- Close remote desktop connection -----'
+          powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
+        }
