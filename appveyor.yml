@@ -40,7 +40,7 @@ before_build:
   - ps: cd $env:REPO_DIR
   - ps: >-
         Get-Content README.md | Where-Object {$_ -match 'npm'} | ForEach-Object {
-          powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome $_ -Duration 2"
+          powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome PASSED -Duration 2"
         }
 
 install:
@@ -90,9 +90,6 @@ on_failure:
 on_finish:
   - echo '----- Test output -----'
   - ps: cat $env:TEXT_REPORT_PATH
-  - ps: Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
-        >>  powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome $_ -Duration Success"
-        >> }
   - ps: Add-AppveyorTest -Name Spectron -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration 10
 
   - ps: >-
