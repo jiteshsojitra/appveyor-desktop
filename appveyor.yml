@@ -99,8 +99,7 @@ artifacts:
 
 on_finish:
   - ps: cd $env:REPO_DIR
-  - ps: Write-Host ${APPVEYOR_BUILD_VERSION}
-  - ps: Push-AppveyorArtifact test-reports\spectron
+  - ps: Push-AppveyorArtifact $env:TEXT_REPORT_PATH
   - ps: |
       if (Test-Path $env:TEXT_REPORT_PATH) {
         cat $env:TEXT_REPORT_PATH
