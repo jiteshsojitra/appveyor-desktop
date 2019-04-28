@@ -28,16 +28,16 @@ branches:
 init:
   - ps: >-
       if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-        powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection...'"
+        powershell -Command "Add-AppveyorMessage 'Start remote desktop connection'"
         powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
       }
 
 before_build:
-  - ps: Add-AppveyorMessage "Checking out code and installing nodejs"
+  - ps: Add-AppveyorMessage "Check out project code"
   - ps: Install-Product node $NODEJS_VERSION
 
 install:
-  - ps: Add-AppveyorMessage "Downloading and installing desktop build"
+  - ps: Add-AppveyorMessage "Download and install desktop build"
   - ps: cd $env:DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name $env:APPVEYOR_PROJECT_NAME -Target $env:REPO_DIR | out-null
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
@@ -47,7 +47,7 @@ install:
   - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
-  - ps: Add-AppveyorMessage "Building project code and installing pre-requisites"
+  - ps: Add-AppveyorMessage "Build code and install pre-requisites"
   - ps: cd $env:REPO_DIR
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron mochawesome
@@ -76,10 +76,10 @@ on_finish:
       }
       
   - ps: >-
-      cd $env:REPO_DIR
-      $reportFile = Get-Content $env:TEXT_REPORT_PATH
-      $isPassingPresent = $reportFile | %{$_ -match "passing"}
-      $isFailingPresent = $reportFile | %{$_ -match "failing"}
+      powershell -Command "cd $env:REPO_DIR"
+      $reportFile = powershell -Command "Get-Content $env:TEXT_REPORT_PATH"
+      $isPassingPresent = powershell -Command "$reportFile | %{$_ -match "passing"}"
+      $isFailingPresent = powershell -Command "$reportFile | %{$_ -match "failing"}"
 
       if ($isFailingPresent -contains $true) {
         powershell -Command "Job failed"
@@ -91,5 +91,6 @@ on_finish:
   
   - ps: >-
       if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
+        powershell -Command "Add-AppveyorMessage 'Stop remote desktop connection'"
         powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
       }
