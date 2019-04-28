@@ -87,7 +87,7 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
-      mocha --recursive tests\spectron\tests\mail\create-mail.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests\calendar\create-folder.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
@@ -95,6 +95,7 @@ artifacts:
 
 on_finish:
   - ps: |
+      Push-AppveyorArtifact ${APPVEYOR_BUILD_VERSION}
       if (Test-Path $env:TEXT_REPORT_PATH) {
         cat $env:TEXT_REPORT_PATH
       } else {
