@@ -40,6 +40,7 @@ install:
   - ps: |
       $DESKTOP_BUILD_URL = "https://52616-126518968-gh.circle-artifacts.com/0/electron/Zimbra_X_Desktop_0.0.1_e8e01cc_20190426094759.exe?circle-token=" + $env:CIRCLE_TOKEN
 
+      # Download and install desktop build
       Add-AppveyorMessage "Download and install desktop build"
       cd $env:USER_DESKTOP_DIR
       New-Item -ItemType SymbolicLink -Name $env:APPVEYOR_PROJECT_NAME -Target $env:REPO_DIR | out-null
@@ -67,6 +68,7 @@ test_script:
       New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
       Add-AppveyorTest -Name Desktop -Outcome Running
 
+      # Create environment to debug tests in remote machine
       Add-Content environment.txt "
       Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
@@ -75,12 +77,14 @@ test_script:
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
       mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
-                                     
+      
+      # Configure desktop client
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
       Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
       mocha tests/spectron/conf/configure.js -f Configure
-        
+      
+      # Run desktop client tests
       Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
       Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
