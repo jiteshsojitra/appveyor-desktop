@@ -79,6 +79,10 @@ artifacts:
 on_finish:
   - echo '----- Test output -----'
   - ps: cat $env:TEXT_REPORT_PATH
+  
+  - ps: Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
+        >>  powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome $_ -Duration Success"
+        >> }
 
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
