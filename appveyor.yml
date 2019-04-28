@@ -75,11 +75,17 @@ test_script:
 artifacts:
   - path: test-reports\spectron
     name: ${APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}
+    
+on_success:
+  - ps: Add-AppveyorMessage "Build passed"
+
+on_failure
+  - ps: Add-AppveyorMessage "Build failed"
 
 on_finish:
   - echo '----- Test output -----'
   - ps: cat $env:TEXT_REPORT_PATH
-  - ps: Add-AppveyorTest -Name Spectron -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration Success
+  - ps: Add-AppveyorTest -Name Spectron -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration 10
 
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
