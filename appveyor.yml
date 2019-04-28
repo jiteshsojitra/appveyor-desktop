@@ -66,7 +66,7 @@ test_script:
   - ps: |
       Add-AppveyorMessage "Running desktop automation tests, please wait..."
       New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
-      Add-AppveyorTest -Name Desktop -Outcome Running
+      Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Running
 
       # Create environment to debug tests in remote machine
       Add-Content environment.txt "
