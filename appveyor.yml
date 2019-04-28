@@ -26,15 +26,16 @@ branches:
     - master
 
 init:
-  - ps: >-
+  - ps: |
       if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-        powershell -Command "Add-AppveyorMessage 'Start remote desktop connection'"
-        powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
+        Add-AppveyorMessage "Start remote desktop connection"
+        iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
 
 before_build:
-  - ps: Add-AppveyorMessage "Check out project code"
-  - ps: Install-Product node $NODEJS_VERSION
+  - ps: |
+      Add-AppveyorMessage "Check out project code"
+      Install-Product node $NODEJS_VERSION
 
 install:
   - ps: Add-AppveyorMessage "Download and install desktop build"
@@ -59,7 +60,7 @@ before_test:
 test_script:
   - ps: Add-AppveyorMessage "Running desktop automation tests, please wait..."
   - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
-  - os: Add-AppveyorTest -Name Desktop -Outcome Running
+  - ps: Add-AppveyorTest -Name Desktop -Outcome Running
 
   - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
@@ -70,31 +71,27 @@ artifacts:
     name: ${APPVEYOR_BUILD_VERSION}
 
 on_finish:
-  - ps: >-
+  - ps: |
       if (Test-Path $env:TEXT_REPORT_PATH) {
-        powershell -Command "cat $env:TEXT_REPORT_PATH"
+        cat $env:TEXT_REPORT_PATH
       } else {
-        powershell -Command "Add-AppveyorMessage 'Couldn't find test report file'"
+        Add-AppveyorMessage "Couldn't find test report file"
       }
       
   - ps: |
-      echo $env:REPO_DIR;
-      cd $env:REPO_DIR;
       $reportFile = Get-Content $env:TEXT_REPORT_PATH
-      echo $reportFile
       $isFailingPresent = $reportFile | %{$_ -match "failing"}
-      echo $isFailingPresent
 
       if ($isFailingPresent -contains $true) {
-        powershell -Command "Job failed"
-        powershell -Command "Update-AppveyorTest -Name Desktop -Outcome Failed"
+        Add-AppveyorMessage "Job failed"
+        Update-AppveyorTest -Name Desktop -Outcome Failed
       } else {
-        powershell -Command "Job passed"
-        powershell -Command "Update-AppveyorTest -Name Desktop -Outcome Passed"
+        Add-AppveyorMessage "Job passed"
+        Update-AppveyorTest -Name Desktop -Outcome Passed
       }
   
-  - ps: >-
+  - ps: |
       if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-        powershell -Command "Add-AppveyorMessage 'Stop remote desktop connection'"
-        powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
+        Add-AppveyorMessage "Stop remote desktop connection"
+        $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
