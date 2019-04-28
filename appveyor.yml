@@ -42,9 +42,9 @@ install:
   - ps: cd $env:DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
-  - ps: $DESKTOP_BUILD_FILENAME = $DESKTOP_BUILD_URL -split '/'
-  - ps: $DESKTOP_BUILD_FILENAME = $DESKTOP_BUILD_FILENAME[5] -split '\?'
-  - ps: Start-FileDownload ${DESKTOP_BUILD_URL}
+  - ps: $GET_DESKTOP_BUILD_FILE = $env:DESKTOP_BUILD_URL -split '/'
+  - ps: $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split '\?'
+  - ps: Start-FileDownload $env:DESKTOP_BUILD_URL
 
   - echo '----- Install desktop build -----'
   - ps: Start-Process .\${DESKTOP_BUILD_FILENAME}[0] /S -NoNewWindow -Wait -PassThru
