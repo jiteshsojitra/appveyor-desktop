@@ -7,7 +7,7 @@ platform:
   - x64
 
 environment:
-  nodejs_version: $env:NODEJS_VERSION
+  NODEJS_VERSION: $env:NODEJS_VERSION
   APPVEYOR_RDP_ENABLED: $env:APPVEYOR_RDP_ENABLED
   APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
   BUILD_NOTIFICATION_EMAIL: $env:BUILD_NOTIFICATION_EMAIL
@@ -34,7 +34,7 @@ init:
 
 before_build:
   - ps: Add-AppveyorMessage "Checking out code and installing nodejs"
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node $NODEJS_VERSION
 
 install:
   - ps: Add-AppveyorMessage "Downloading and installing desktop build"
