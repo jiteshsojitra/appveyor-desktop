@@ -55,7 +55,7 @@ build_script:
   - ps: cd $env:REPO_DIR
   - ps: npm install
 
-  - ps: Add-AppveyorMessage "Installing required pre-requisites"
+  - ps: Add-AppveyorMessage "Installing build pre-requisites"
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
