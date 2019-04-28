@@ -57,12 +57,10 @@ before_test:
   - ps: Set-ScreenResolution 1920 1080
  
 test_script:
-  - ps: Add-AppveyorMessage "Configuring test suite"
+  - ps: Add-AppveyorMessage "Running desktop automation tests, please wait..."
   - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
   - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
-
-  - ps: Add-AppveyorMessage "Running desktop automation tests, please wait..."
   - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
@@ -78,6 +76,7 @@ on_finish:
       }
       
   - ps: >-
+      cd $env:REPO_DIR
       $reportFile = Get-Content $env:TEXT_REPORT_PATH
       $isPassingPresent = $reportFile | %{$_ -match "passing"}
       $isFailingPresent = $reportFile | %{$_ -match "failing"}
