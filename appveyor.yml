@@ -98,6 +98,7 @@ artifacts:
     name: ${APPVEYOR_BUILD_VERSION}
 
 on_finish:
+  - ps: cd $env:REPO_DIR
   - ps: Write-Host ${APPVEYOR_BUILD_VERSION}
   - ps: Push-AppveyorArtifact test-reports\spectron
   - ps: |
