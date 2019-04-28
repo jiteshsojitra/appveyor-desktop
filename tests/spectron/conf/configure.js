@@ -56,7 +56,7 @@ describe('Configure desktop client', function() {
 		await soap.injectMime(await soap.getAccountAuthToken(currentUser), filePath);
 	});
 
-	it('Configure | Setting up zimbra proxy URL when starting desktop client first time', async() => {
+	it('Configure | Start desktop client first time to set up zimbra proxy URL', async() => {
 		console.log('     Setting zimbra proxy URL...'); // eslint-disable-line
 		await common.configureDesktopClient();
 	});
