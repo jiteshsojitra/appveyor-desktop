@@ -25,7 +25,7 @@ branches:
     - master
 
 init:
-  - Add-AppveyorMessage "RDP check"
+  - ps: Add-AppveyorMessage 'RDP check'
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
           echo '----- Initiate remote desktop connection -----' 
