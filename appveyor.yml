@@ -81,7 +81,7 @@ on_finish:
   - ps: cat $env:TEXT_REPORT_PATH
   
   - ps: Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
-        >>  powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome $_ -Duration Success"
+        >>  powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome $_ -Duration Success"
         >> }
 
   - ps: >-
