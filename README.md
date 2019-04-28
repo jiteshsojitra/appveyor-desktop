@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/in3wi2uwq6p1cq37?svg=true)](https://ci.appveyor.com/project/jiteshsojitra/appveyor-desktop)
+
 ## Configurations:
 
 Install latest node, npm, spectron and install required packages along with dependencies. Please see zm-x-web project README for basic configuration first.
@@ -18,6 +20,7 @@ Pre-requisite to run the ZimbraX Desktop tests on a local machine (Windows/Mac):
 4. `SERVER_HOST_URL` environment variable is set or entered in config.js file.
 
 ## Run spectron tests
+
 To run all the tests in a test file using mocha command
 ```
 mocha <path-to-the-testcase-file>
