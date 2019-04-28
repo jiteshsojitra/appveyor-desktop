@@ -84,25 +84,17 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
       mocha tests/spectron/conf/configure.js -f Configure
       
-      # Run desktop client tests
-      Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; 
-      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; 
-      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; 
-      Set-Item Env:TEST_SUITE $env:TEST_SUITE ; 
-      Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; 
-      Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; 
-      mocha --recursive tests\spectron\tests\calendar\create-folder.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      Exit-AppveyorBuild
 
 artifacts:
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}
 
 on_finish:
-  - ps: cd $env:REPO_DIR
-  - ps: Push-AppveyorArtifact $env:TEXT_REPORT_PATH
   - ps: |
       if (Test-Path $env:TEXT_REPORT_PATH) {
         cat $env:TEXT_REPORT_PATH
+        Push-AppveyorArtifact $env:TEXT_REPORT_PATH
       } else {
         Add-AppveyorMessage "Couldn't find test report file"
       }
