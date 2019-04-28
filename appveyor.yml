@@ -28,18 +28,18 @@ branches:
 init:
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-          ps: Add-AppveyorMessage 'Initiating remote desktop connection' 
+          powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection'"
           powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
         } else { 
-          ps: Add-AppveyorMessage 'Remote desktop connection disabled'
+          powershell -Command "Add-AppveyorMessage 'Remote desktop connection disabled'"
         }
 
 before_build:
-  - ps: Add-AppveyorMessage 'Check out code and install nodejs'
+  - ps: Add-AppveyorMessage "Check out code and install nodejs"
   - ps: Install-Product node $env:nodejs_version
 
 install:
-  - ps: Add-AppveyorMessage 'Downloading desktop build'
+  - ps: Add-AppveyorMessage "Downloading desktop build"
   - ps: cd $env:DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop | out-null
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
@@ -47,29 +47,29 @@ install:
   - ps: $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split '\?'
   - ps: Start-FileDownload $env:DESKTOP_BUILD_URL
 
-  - ps: Add-AppveyorMessage 'Installing desktop build'
+  - ps: Add-AppveyorMessage "Installing desktop build"
   - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
-  - ps: Add-AppveyorMessage 'Building project code'
+  - ps: Add-AppveyorMessage "Building project code"
   - ps: cd $env:REPO_DIR
   - ps: npm install
 
-  - ps: Add-AppveyorMessage 'Installing pre-requisites'
+  - ps: Add-AppveyorMessage "Installing pre-requisites"
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
-  - ps: Add-AppveyorMessage 'Setting up screen resolution'
+  - ps: Add-AppveyorMessage "Setting up screen resolution"
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
   - ps: Set-ScreenResolution 1920 1080
  
 test_script:
-  - ps: Add-AppveyorMessage 'Configuring test suite'
+  - ps: Add-AppveyorMessage "Configuring test suite"
   - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
   - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
 
-  - ps: Add-AppveyorMessage 'Running desktop automation tests'
+  - ps: Add-AppveyorMessage "Running desktop automation tests"
   - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
@@ -77,14 +77,14 @@ artifacts:
     name: ${APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}
     
 on_success:
-  - ps: Add-AppveyorMessage 'Tests passed'
+  - ps: Add-AppveyorMessage "Tests passed"
   - ps: >-
       Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
         powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration 0"
       }
 
 on_failure:
-  - ps: Add-AppveyorMessage 'Tests failed'
+  - ps: Add-AppveyorMessage "Tests failed"
   - ps: >-
       Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'failing'} | ForEach-Object {
         powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome FAILED -Duration 0"
@@ -101,6 +101,6 @@ on_finish:
   
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-          echo '----- Close remote desktop connection -----'
+          Add-AppveyorMessage "Close remote desktop connection"
           powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
         }
