@@ -47,7 +47,7 @@ install:
   - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
-  - ps: Add-AppveyorMessage "Building code"
+  - ps: Add-AppveyorMessage "Building project code and installing pre-requisites"
   - ps: cd $env:REPO_DIR
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron mochawesome
@@ -73,7 +73,6 @@ on_finish:
   - ps: >-
       if (Test-Path $env:TEXT_REPORT_PATH) {
         powershell -Command "cat $env:TEXT_REPORT_PATH"
-        powershell -Command "Add-AppveyorMessage " + "cat $env:TEXT_REPORT_PATH"
       } else {
         powershell -Command "Add-AppveyorMessage 'Couldn't find test report file'"
       }
