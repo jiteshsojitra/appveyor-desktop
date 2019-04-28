@@ -37,7 +37,7 @@ before_build:
   - ps: Install-Product node $env:nodejs_version
 
 install:
-  - ps: Add-AppveyorMessage "Downloading and installing desktop build - " + $DESKTOP_BUILD_URL
+  - ps: Add-AppveyorMessage "Downloading and installing desktop build - " + $env:DESKTOP_BUILD_URL
   - ps: cd $env:DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop | out-null
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
