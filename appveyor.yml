@@ -27,39 +27,32 @@ branches:
 
 init:
   - ps: >-
-        if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-          powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection...'"
-          powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
-        } else { 
-          powershell -Command "Add-AppveyorMessage 'Remote desktop connection disabled'"
-        }
+      if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
+        powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection...'"
+        powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
+      }
 
 before_build:
   - ps: Add-AppveyorMessage "Checking out code and installing nodejs"
   - ps: Install-Product node $env:nodejs_version
 
 install:
-  - ps: Add-AppveyorMessage "Downloading desktop build"
+  - ps: Add-AppveyorMessage "Downloading and installing desktop build - " + $DESKTOP_BUILD_URL
   - ps: cd $env:DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop | out-null
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
   - ps: $GET_DESKTOP_BUILD_FILE = $env:DESKTOP_BUILD_URL -split '/'
   - ps: $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split '\?'
   - ps: Start-FileDownload $env:DESKTOP_BUILD_URL
-
-  - ps: Add-AppveyorMessage "Installing desktop build"
   - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
-  - ps: Add-AppveyorMessage "Building project code"
+  - ps: Add-AppveyorMessage "Building code"
   - ps: cd $env:REPO_DIR
   - ps: npm install
-
-  - ps: Add-AppveyorMessage "Installing build pre-requisites"
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
-  - ps: Add-AppveyorMessage "Setting up screen resolution"
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
   - ps: Set-ScreenResolution 1920 1080
  
@@ -75,32 +68,31 @@ test_script:
 artifacts:
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}
-    
-on_success:
-  - ps: Add-AppveyorMessage "Job passed"
-  - ps: >-
-      Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'passing'} | ForEach-Object {
-        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome passed"
-      }
-
-on_failure:
-  - ps: Add-AppveyorMessage "Job failed"
-  - ps: >-
-      Get-Content $env:TEXT_REPORT_PATH | Where-Object {$_ -match 'failing'} | ForEach-Object {
-        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome failed"
-      }
 
 on_finish:
   - ps: >-
       if (Test-Path $env:TEXT_REPORT_PATH) {
         powershell -Command "cat $env:TEXT_REPORT_PATH"
-        powershell -Command "Push-AppveyorArtifact ${APPVEYOR_BUILD_VERSION}"
+        powershell -Command "Add-AppveyorMessage " + "cat $env:TEXT_REPORT_PATH"
       } else {
         powershell -Command "Add-AppveyorMessage 'Couldn't find test report file'"
       }
+      
+  - ps: >-
+      $file = Get-Content $env:TEXT_REPORT_PATH
+      $isPassingPresent = $file | %{$_ -match "passing"}
+      $isFailingPresent = $file | %{$_ -match "failing"}
+
+      if ($isFailingPresent -contains $true) {
+        powershell -Command "Job failed"
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Failed"
+        
+      } else if ($isFailingPresent -contains $true) {
+        powershell -Command "Job passed"
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Passed"
+      }
   
   - ps: >-
-        if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-          Add-AppveyorMessage "Close remote desktop connection"
-          powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
-        }
+      if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
+        powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
+      }
