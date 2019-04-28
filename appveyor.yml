@@ -26,16 +26,17 @@ branches:
     - master
 
 init:
+  - ps: echo $TEST_SUITE
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
-          powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection'"
+          powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection...'"
           powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
         } else { 
           powershell -Command "Add-AppveyorMessage 'Remote desktop connection disabled'"
         }
 
 before_build:
-  - ps: Add-AppveyorMessage "Check out code and install nodejs"
+  - ps: Add-AppveyorMessage "Checking out code and installing nodejs"
   - ps: Install-Product node $env:nodejs_version
 
 install:
@@ -55,7 +56,7 @@ build_script:
   - ps: cd $env:REPO_DIR
   - ps: npm install
 
-  - ps: Add-AppveyorMessage "Installing pre-requisites"
+  - ps: Add-AppveyorMessage "Installing build pre-requisites"
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
@@ -69,7 +70,7 @@ test_script:
   - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
 
-  - ps: Add-AppveyorMessage "Running desktop automation tests"
+  - ps: Add-AppveyorMessage "Running desktop automation tests, please wait..."
   - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
