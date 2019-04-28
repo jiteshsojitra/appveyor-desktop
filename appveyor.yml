@@ -38,9 +38,10 @@ before_build:
   - echo '----- Check out code and install nodejs -----'
   - ps: Install-Product node $env:nodejs_version
   - ps: cd $env:REPO_DIR
-  - ps: Get-Content README.md | Where-Object {$_ -match 'npm'} | ForEach-Object {
-        >>  powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome $_ -Duration Success"
-        >> }
+  - ps: >-
+        Get-Content README.md | Where-Object {$_ -match 'npm'} | ForEach-Object {
+          powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome $_ -Duration 2"
+        }
 
 install:
   - echo '----- Download desktop build -----'
