@@ -95,8 +95,8 @@ artifacts:
 
 on_finish:
   - ps: |
-      echo ${APPVEYOR_BUILD_VERSION}
-      Push-AppveyorArtifact ${APPVEYOR_BUILD_VERSION}
+      Write-Host ${APPVEYOR_BUILD_VERSION}
+      Push-AppveyorArtifact ${APPVEYOR_BUILD_VERSION}.zip
       if (Test-Path $env:TEXT_REPORT_PATH) {
         cat $env:TEXT_REPORT_PATH
       } else {
