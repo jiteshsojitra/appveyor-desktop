@@ -79,7 +79,7 @@ artifacts:
 on_success:
   - ps: Add-AppveyorMessage "Build passed"
 
-on_failure
+on_failure:
   - ps: Add-AppveyorMessage "Build failed"
 
 on_finish:
