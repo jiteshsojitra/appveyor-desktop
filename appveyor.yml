@@ -38,41 +38,59 @@ before_build:
       Install-Product node $NODEJS_VERSION
 
 install:
-  - ps: Add-AppveyorMessage "Download and install desktop build"
-  - ps: cd $env:DESKTOP_DIR
-  - ps: New-Item -ItemType SymbolicLink -Name $env:APPVEYOR_PROJECT_NAME -Target $env:REPO_DIR | out-null
-  - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
-  - ps: $GET_DESKTOP_BUILD_FILE = $env:DESKTOP_BUILD_URL -split '/'
-  - ps: $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split '\?'
-  - ps: Start-FileDownload $env:DESKTOP_BUILD_URL
-  - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
+  - ps: |
+      Add-AppveyorMessage "Download and install desktop build"
+      cd $env:DESKTOP_DIR
+      New-Item -ItemType SymbolicLink -Name $env:APPVEYOR_PROJECT_NAME -Target $env:REPO_DIR | out-null
+      Remove-Item .\Tools , ".\Visual Studio 2015.lnk" , ".\Visual Studio 2017.lnk" -Recurse -Force
+      $GET_DESKTOP_BUILD_FILE = $env:DESKTOP_BUILD_URL -split "/"
+      $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split "\?"
+      Start-FileDownload $env:DESKTOP_BUILD_URL
+      Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
-  - ps: Add-AppveyorMessage "Build code and install pre-requisites"
-  - ps: cd $env:REPO_DIR
-  - ps: npm install
-  - ps: npm install -g --save-dev mocha spectron mochawesome
+  - ps: |
+      Add-AppveyorMessage "Build code and install pre-requisites"
+      cd $env:REPO_DIR
+      npm install
+      npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
-  - ps: Set-ScreenResolution 1920 1080
+  - ps: |
+      iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
+      Set-ScreenResolution 1920 1080
  
 test_script:
-  - ps: Add-AppveyorMessage "Running desktop automation tests, please wait..."
-  - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
-  - ps: Add-AppveyorTest -Name Desktop -Outcome Running
+  - ps: |
+      Add-AppveyorMessage "Running desktop automation tests, please wait..."
+      New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
+      Add-AppveyorTest -Name Desktop -Outcome Running
 
-  - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; |
-                                     Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; |
-                                     Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; |
-                                     Set-Item Env:TEST_SUITE $env:TEST_SUITE ; |
-                                     Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; |
-                                     Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; |
-                                     mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE |
-                                     --retries 2 --no-deprecation --reporter mochawesome |
-                                     --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
-  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
-  - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\calendar\create-folder.js --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      Add-Content environment.txt "|
+        Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; |
+        Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; |
+        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; |
+        Set-Item Env:TEST_SUITE $env:TEST_SUITE ; |
+        Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; |
+        Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; |
+        mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE |
+          --retries 2 --no-deprecation --reporter mochawesome |
+          --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+                                     
+      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; |
+        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; |
+        Set-Item Env:TEST_SUITE $env:TEST_SUITE ; |
+        mocha tests/spectron/conf/configure.js -f Configure
+        
+      Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; |
+        Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; |
+        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; |
+        Set-Item Env:TEST_SUITE $env:TEST_SUITE ; |
+        Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; |
+        Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; |
+        mocha --recursive tests\spectron\tests\calendar\create-folder.js |
+          --retries 2 --no-deprecation --reporter mochawesome |
+          --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
