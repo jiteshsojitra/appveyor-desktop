@@ -27,7 +27,7 @@ branches:
 
 init:
   - ps: >-
-      if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
+      if ($APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
         powershell -Command "Add-AppveyorMessage 'Initiating remote desktop connection...'"
         powershell -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
       }
@@ -38,17 +38,17 @@ before_build:
 
 install:
   - ps: Add-AppveyorMessage "Downloading and installing desktop build"
-  - ps: cd $env:DESKTOP_DIR
+  - ps: cd $DESKTOP_DIR
   - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop | out-null
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
-  - ps: $GET_DESKTOP_BUILD_FILE = $env:DESKTOP_BUILD_URL -split '/'
+  - ps: $GET_DESKTOP_BUILD_FILE = $DESKTOP_BUILD_URL -split '/'
   - ps: $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split '\?'
-  - ps: Start-FileDownload $env:DESKTOP_BUILD_URL
+  - ps: Start-FileDownload $DESKTOP_BUILD_URL
   - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
   - ps: Add-AppveyorMessage "Building project code and installing pre-requisites"
-  - ps: cd $env:REPO_DIR
+  - ps: cd $REPO_DIR
   - ps: npm install
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
@@ -58,12 +58,12 @@ before_test:
  
 test_script:
   - ps: Add-AppveyorMessage "Configuring test suite"
-  - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
-  - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
-  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
+  - ps: New-Item -ItemType Directory -Path $REPO_DIR\$HTML_REPORT_PATH -Force  | out-null
+  - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$HTML_REPORT_PATH > $TEXT_REPORT_PATH"
+  - ps: Set-Item Env:SERVER_ADMIN_USERNAME $SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
 
   - ps: Add-AppveyorMessage "Running desktop automation tests, please wait..."
-  - ps: Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+  - ps: Set-Item Env:ZIMBRA_PROXY_URL $ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $TEST_SUITE --retries 2 --no-deprecation --reporter mochawesome --reporter-options reportDir=$HTML_REPORT_PATH > $TEXT_REPORT_PATH
 
 artifacts:
   - path: test-reports\spectron
@@ -71,26 +71,26 @@ artifacts:
 
 on_finish:
   - ps: >-
-      if (Test-Path $env:TEXT_REPORT_PATH) {
-        powershell -Command "cat $env:TEXT_REPORT_PATH"
+      if (Test-Path $TEXT_REPORT_PATH) {
+        powershell -Command "cat $TEXT_REPORT_PATH"
       } else {
         powershell -Command "Add-AppveyorMessage 'Couldn't find test report file'"
       }
       
   - ps: >-
-      $reportFile = Get-Content $env:TEXT_REPORT_PATH
+      $reportFile = Get-Content $TEXT_REPORT_PATH
       $isPassingPresent = $reportFile | %{$_ -match "passing"}
       $isFailingPresent = $reportFile | %{$_ -match "failing"}
 
       if ($isFailingPresent -contains $true) {
         powershell -Command "Job failed"
-        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Failed"
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $TEXT_REPORT_PATH -Outcome Failed"
       } else {
         powershell -Command "Job passed"
-        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Passed"
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $TEXT_REPORT_PATH -Outcome Passed"
       }
   
   - ps: >-
-      if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
+      if ($APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
         powershell -Command "$blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))"
       }
