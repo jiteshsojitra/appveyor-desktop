@@ -1,4 +1,4 @@
-version: ${APPVEYOR_REPO_BRANCH}-1.0.{build}
+version: $APPVEYOR_REPO_BRANCH-1.0.{build}
 
 image:
   - Visual Studio 2017
