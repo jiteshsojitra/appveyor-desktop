@@ -75,6 +75,12 @@ artifacts:
   - path: test-reports\spectron
     name: ${APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}
 
+notifications:
+  - provider: Email
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
+
 on_finish:
   - echo '----- Test output -----'
   - ps: cat $env:TEXT_REPORT_PATH
