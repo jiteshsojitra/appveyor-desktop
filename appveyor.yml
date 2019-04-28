@@ -40,7 +40,7 @@ before_build:
 install:
   - echo '----- Download desktop build -----'
   - ps: cd $env:DESKTOP_DIR
-  - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop
+  - ps: New-Item -ItemType SymbolicLink -Name appveyor-desktop -Target C:\projects\appveyor-desktop | out-null
   - ps: Remove-Item .\Tools , '.\Visual Studio 2015.lnk' , '.\Visual Studio 2017.lnk' -Recurse -Force
   - ps: $GET_DESKTOP_BUILD_FILE = $env:DESKTOP_BUILD_URL -split '/'
   - ps: $DESKTOP_BUILD_FILENAME = $GET_DESKTOP_BUILD_FILE[5] -split '\?'
@@ -64,7 +64,7 @@ before_test:
  
 test_script:
   - echo '----- Configure test suite -----'
-  - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force
+  - ps: New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
   - ps: Add-Content environment.txt "Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ; Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ; Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ; mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
   - ps: Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ; Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ; Set-Item Env:TEST_SUITE $env:TEST_SUITE ; mocha tests/spectron/conf/configure.js -f Configure
 
