@@ -34,8 +34,6 @@ init:
         } else { 
           echo '----- Remote desktop connection disabled -----' 
         }
-        
-exit
 
 before_build:
   - echo '----- Check out code and install nodejs -----'
