@@ -78,15 +78,14 @@ on_finish:
       }
       
   - ps: >-
-      $file = Get-Content $env:TEXT_REPORT_PATH
-      $isPassingPresent = $file | %{$_ -match "passing"}
-      $isFailingPresent = $file | %{$_ -match "failing"}
+      $reportFile = Get-Content $env:TEXT_REPORT_PATH
+      $isPassingPresent = $reportFile | %{$_ -match "passing"}
+      $isFailingPresent = $reportFile | %{$_ -match "failing"}
 
       if ($isFailingPresent -contains $true) {
         powershell -Command "Job failed"
         powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Failed"
-        
-      } else if ($isFailingPresent -contains $true) {
+      } else {
         powershell -Command "Job passed"
         powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Passed"
       }
