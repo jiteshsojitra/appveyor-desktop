@@ -59,9 +59,9 @@ build_script:
   - ps: npm install -g --save-dev mocha spectron mochawesome
 
 before_test:
-  - echo '----- Set windows machine screen resolution -----'
+  - echo '----- Set screen resolution -----'
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
-  - ps: Set-ScreenResolution 1280 1024
+  - ps: Set-ScreenResolution 1920 1080
  
 test_script:
   - echo '----- Configure test suite -----'
