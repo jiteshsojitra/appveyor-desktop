@@ -25,7 +25,6 @@ branches:
     - master
 
 init:
-  - ps: Add-AppveyorMessage 'RDP check'
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
           echo '----- Initiate remote desktop connection -----' 
@@ -48,7 +47,7 @@ install:
   - ps: Start-FileDownload $env:DESKTOP_BUILD_URL
 
   - echo '----- Install desktop build -----'
-  - ps: Start-Process $DESKTOP_BUILD_FILENAME[0] /S -NoNewWindow -Wait -PassThru
+  - ps: Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
 
 build_script:
   - echo '----- Build project code -----'
