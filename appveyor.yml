@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: {APPVEYOR_BUILD_VERSION}
 
 image:
   - Visual Studio 2017
@@ -37,11 +37,6 @@ init:
 before_build:
   - echo '----- Check out code and install nodejs -----'
   - ps: Install-Product node $env:nodejs_version
-  - ps: cd $env:REPO_DIR
-  - ps: >-
-        Get-Content README.md | Where-Object {$_ -match 'npm'} | ForEach-Object {
-          powershell -Command "Add-AppveyorTest -Name Spectron -Framework Mocha -Filename report.txt -Outcome "echo $_" -Duration 2"
-        }
 
 install:
   - echo '----- Download desktop build -----'
@@ -82,15 +77,23 @@ artifacts:
     name: ${APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}
     
 on_success:
-  - ps: Add-AppveyorMessage "Build passed"
+  - ps: Add-AppveyorMessage "Tests passed"
+  - ps: >-
+      Get-Content README.md | Where-Object {$_ -match 'passing'} | ForEach-Object {
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename report.txt -Outcome PASSED -Duration 0"
+      }
 
 on_failure:
-  - ps: Add-AppveyorMessage "Build failed"
+  - ps: Add-AppveyorMessage "Tests failed"
+  - ps: >-
+      Get-Content README.md | Where-Object {$_ -match 'failing'} | ForEach-Object {
+        powershell -Command "Add-AppveyorTest -Name Desktop -Framework Mocha -Filename report.txt -Outcome FAILED -Duration 0"
+      }
 
 on_finish:
   - echo '----- Test output -----'
   - ps: cat $env:TEXT_REPORT_PATH
-  - ps: Add-AppveyorTest -Name Spectron -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome PASSED -Duration 10
+  - ps: Push-AppveyorArtifact test-reports\{APPVEYOR_REPO_BRANCH}-${APPVEYOR_BUILD_VERSION}.zip
 
   - ps: >-
         if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') { 
