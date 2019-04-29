@@ -2,19 +2,18 @@
 Get-Command -Module PKIClient;
 
 $plainPassword = 'test123';
-$securePassword = ConvertTo-SecureString -String $plainPassword -AsPlainText -Force;
+#$securePassword = ConvertTo-SecureString -String $plainPassword -AsPlainText -Force;
 $certificateLocation = 'Cert:\CurrentUser\My';
 
 # Install certificates
-certutil -addstore "Root" cacert.crt
-
 function Install-Certificate {
 	Param ([string]$username);
     	Write-Host Installing private certificate of $username;
     	certutil -f -p $plainPassword -enterprise -importpfx $username '';
-    	Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
-    	certutil.exe -p $plainPassword -user -importpfx $username
+    	#Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
+    	certutil -p $plainPassword -user -importpfx $username NoRoot
 }
+certutil -addstore "Root" cacert.crt >> “CertImport.log”
 
 # Smoke
 $smokeUsers = 'smokeuser';
