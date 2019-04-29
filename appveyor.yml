@@ -114,7 +114,6 @@ artifacts:
     
 deploy:
   # Deploy artifact to GitHub
-  release: ${APPVEYOR_BUILD_VERSION}
   description: 'Release description'
   provider: GitHub
   auth_token:
