@@ -10,6 +10,7 @@ function Install-Certificate {
 	Param ([string]$username);
     Write-Host Installing private certificate of $username;
     certutil -f -p $plainPassword -enterprise -importpfx $username '';
+    certutil -addstore "Root" cacert.crt
     Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
 }
 
