@@ -42,8 +42,8 @@ describe('Create smime contact', function() {
 		let firstName = `first${await utils.getUniqueString()}`;
 		let lastName = `last${await utils.getUniqueString()}`;
 		let contactDisplayName = `${firstName} ${lastName}`;
-		let certificateUser = 'smokeuser2';
-		let certificateFile = path.join(utils.baseDir, '/data/certs/' + certificateUser + '.cer');
+		let certificateUser = 'smokeuser5';
+		let certificateFile = path.join(utils.baseDir, '/data/certificates/' + certificateUser + '.cer');
 
 		// Create contact
 		await contacts.createContactWithSoap(config.user1, firstName, lastName, `${certificateUser}@${config.testDomain}`);
@@ -55,7 +55,7 @@ describe('Create smime contact', function() {
 
 		// Verify uploaded certificate
 		let contactDetails = await contacts.getContactCardDetails(contactDisplayName);
-		contactDetails.should.contain('Security Certificate', 'Verify label appears');
+		contactDetails.should.contain('Security Certificate', 'Verify certificate security appears');
 		contactDetails.should.contain('Certificate verified', 'Verify certificate status appears');
 		contactDetails.should.contain('View Certificate', 'Verify view certificate link appears');
 	});

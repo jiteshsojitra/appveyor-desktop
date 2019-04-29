@@ -150,11 +150,7 @@ module.exports = {
 			let subjectElement = this.locators.messageSubjectSelector(mailSubject);
 			await app.client.waitForExist(subjectElement);
 			await app.client.click(subjectElement);
-			if (process.env.APPVEYOR) {
-				await utils.sleep(2000);
-			} else {
-				await utils.sleep(3000);
-			}
+			await utils.sleep(3000);
 			await app.client.waitUntil(async () => !(await app.client.isExisting(this.locators.blockSpinner)), utils.elementExistTimeout);
 			await app.client.pause(2000);
 		}
@@ -186,21 +182,13 @@ module.exports = {
 		let condensedMessage = this.locators.condensedMessage + '[' + (index + 1) + ']';
 		await app.client.waitForExist(condensedMessage);
 		await app.client.click(condensedMessage);
-		if (process.env.APPVEYOR) {
-			await app.client.pause(2500);
-		} else {
-			await app.client.pause(4000);
-		}
+		await app.client.pause(4000);
 	},
 
 	async enterHtmlBodyContent(htmlType, value) {
 		await this.selectToolbarOption(htmlType);
 		await app.client.addValue(this.locators.messageBody, value);
-		if (process.env.APPVEYOR) {
-			await utils.sleep(2000);
-		} else {
-			await utils.sleep(3000);
-		}
+		await utils.sleep(3000);
 		await this.selectToolbarOption(htmlType);
 	},
 
@@ -272,11 +260,7 @@ module.exports = {
 			if (!(await app.client.getText(this.locators.notification)).includes('Message sent')) {
 				if (await app.client.isEnabled(this.locators.sendButton)) {
 					await app.client.click(this.locators.sendButton);
-					if (process.env.APPVEYOR) {
-						await utils.sleep(2000);
-					} else {
-						await utils.sleep(3000);
-					}
+					await utils.sleep(3000);
 				}
 				return false;
 			}
@@ -302,11 +286,7 @@ module.exports = {
 		if (isConversation === !isConversationEnable) {
 			await app.client.click(this.locators.groupByConversation);
 			await app.client.waitForExist(this.locators.messageListHeader, utils.elementExistTimeout);
-			if (process.env.APPVEYOR) {
-				await utils.sleep(2000);
-			} else {
-				await utils.sleep(3000);
-			}
+			await utils.sleep(3000);
 		} else {
 			await app.client.click(this.locators.sortButton).pause(1000);
 		}
@@ -349,22 +329,14 @@ module.exports = {
 		let senderAuthToken = await soap.getAccountAuthToken(sender);
 		await soap.sendMessage(senderAuthToken, toReceiver, subject, body);
 		await this.selectFolder(folderLabel.F_INBOX);
-		if (process.env.APPVEYOR) {
-			await utils.sleep(2000);
-		} else {
-			await utils.sleep(3000);
-		}
+		await utils.sleep(3000);
 	},
 
 	async injectMessage(account, filePath, mimeMessageSubject, folderName) {
 		let authToken = await soap.getAccountAuthToken(account);
 		await soap.injectMime(authToken, filePath, folderName);
 		await this.selectFolder(folderLabel.F_INBOX);
-		if (process.env.APPVEYOR) {
-			await utils.sleep(2000);
-		} else {
-			await utils.sleep(3000);
-		}
+		await utils.sleep(3000);
 	},
 
 	async proceedToLostAttachment() {
@@ -421,11 +393,7 @@ module.exports = {
 		await this.selectSmimeType(forwardMessage.messageType);
 		if (proceedToLostAttachment) {
 			await this.proceedToLostAttachment();
-			if (process.env.APPVEYOR) {
-				await utils.sleep(2000);
-			} else {
-				await utils.sleep(3000);
-			}
+			await utils.sleep(3000);
 		}
 
 		if (forwardMessage.newSubject !== null) {
@@ -444,11 +412,7 @@ module.exports = {
 			await this.enterRecipient(textfield.T_TO, forwardMessage.toRecipients);
 		}
 		await this.clickSendButton();
-		if (process.env.APPVEYOR) {
-			await utils.sleep(2000);
-		} else {
-			await utils.sleep(3000);
-		}
+		await utils.sleep(3000);
 	},
 
 	async setView(email, view) {
@@ -502,11 +466,7 @@ module.exports = {
 	},
 
 	async isAttachmentPresent(attachmentName) {
-		if (process.env.APPVEYOR) {
-			await utils.sleep(2000);
-		} else {
-			await utils.sleep(3000);
-		}
+		await utils.sleep(3000);
 		return await app.client.isExisting(this.locators.attachmentGrid + "//div[contains(text(),'" + attachmentName.substring(0,7) + "')]");
 	},
 
