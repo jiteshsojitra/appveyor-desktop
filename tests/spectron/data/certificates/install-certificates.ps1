@@ -5,13 +5,15 @@ $plainPassword = 'test123';
 $securePassword = ConvertTo-SecureString -String $plainPassword -AsPlainText -Force;
 $certificateLocation = 'Cert:\CurrentUser\My';
 
-# Function to install certificate
+# Install certificates
+certutil -addstore "Root" cacert.crt
+
 function Install-Certificate {
 	Param ([string]$username);
-    Write-Host Installing private certificate of $username;
-    certutil -f -p $plainPassword -enterprise -importpfx $username '';
-    certutil -addstore "Root" cacert.crt
-    Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
+    	Write-Host Installing private certificate of $username;
+    	certutil -f -p $plainPassword -enterprise -importpfx $username '';
+    	Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
+    	certutil.exe -p $plainPassword -user -importpfx $username
 }
 
 # Smoke
