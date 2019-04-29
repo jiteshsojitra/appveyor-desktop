@@ -14,6 +14,7 @@ environment:
   CIRCLE_TOKEN: $env:CIRCLE_TOKEN
   REPO_DIR: $env:REPO_DIR
   USER_DESKTOP_DIR: $env:USER_DESKTOP_DIR
+  USER_CERTIFICATES_DIR: $env:USER_CERTIFICATES_DIR
   TEST_SUITE: $env:TEST_SUITE
   ZIMBRA_PROXY_URL: $env:ZIMBRA_PROXY_URL
   SERVER_ADMIN_USERNAME: $env:SERVER_ADMIN_USERNAME
@@ -39,10 +40,6 @@ before_build:
       Add-AppveyorMessage "Check out project code"
       Install-Product node $NODEJS_VERSION
       
-      # Install certificates
-      cd $env:REPO_DIR
-      powershell.exe -noexit "& '.\tests\spectron\data\certificates\install-certificates.ps1'"
-
 install:
   - ps: |
       # Download and install desktop build
@@ -57,6 +54,11 @@ install:
       $DESKTOP_BUILD_FILENAME = $DESKTOP_BUILD_URL_CONTENT[5] -split "\?"
       Start-FileDownload $DESKTOP_BUILD_URL
       Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
+      
+      # Install private certificates
+      Add-AppveyorMessage "Install smime user certificates"
+      cd $env:USER_CERTIFICATES_DIR
+      powershell.exe .\install-certificates.ps1
 
 build_script:
   - ps: |
