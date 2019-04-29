@@ -12,6 +12,7 @@ environment:
   APPVEYOR_RDP_ENABLED: $env:APPVEYOR_RDP_ENABLED
   APPVEYOR_RDP_PASSWORD: $env:APPVEYOR_RDP_PASSWORD
   CIRCLE_TOKEN: $env:CIRCLE_TOKEN
+  GITHUB_TOKEN: $env:GITHUB_TOKEN
   REPO_DIR: $env:REPO_DIR
   USER_DESKTOP_DIR: $env:USER_DESKTOP_DIR
   USER_CERTIFICATES_DIR: $env:USER_CERTIFICATES_DIR
@@ -110,6 +111,26 @@ artifacts:
   # Publish artifact zip
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}.zip
+    
+deploy:
+  # Deploy artifact to GitHub
+  release: ${APPVEYOR_BUILD_VERSION}
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+    secure: $env:GITHUB_TOKEN
+  artifact: /.*\.test-reports/
+  draft: false
+  prerelease: false
+  on:
+    branch: master    
+    
+deploy:
+  # Deploy artifact to GitHub
+  - provider: GITHUB_ENVIRONMENT
+    name: ${APPVEYOR_BUILD_VERSION}
+    on:
+      branch: master    
 
 on_finish:
   - ps: |
