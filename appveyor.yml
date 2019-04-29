@@ -115,7 +115,7 @@ artifacts:
 deploy:
   # Deploy artifact to GitHub
   description: 'Release description'
-  provider: GitHub
+  provider: GitHub Releases
   auth_token:
     secure: $env:GITHUB_TOKEN
   artifact: /.*\.test-reports/
