@@ -20,6 +20,7 @@ Pre-requisite to run the ZimbraX Desktop tests on a local machine (Windows/Mac):
 Use mocha command to run the tests:
 ```
 mocha <path-to-the-testcase-file>
+
 mocha --recursive <path-to-the-testcases-folder> -f "<search-pattern>"
 ```
 ```
