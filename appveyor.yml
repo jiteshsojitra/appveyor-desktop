@@ -67,6 +67,9 @@ before_test:
       # Set machine screen resolution
       iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
       Set-ScreenResolution 1920 1080
+      
+      # Install certificates
+      powershell.exe -noexit "& '.\tests\spectron\data\certificates\install-certificates.ps1'"
 
 test_script:
   - ps: |
