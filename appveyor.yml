@@ -124,13 +124,6 @@ deploy:
   prerelease: false
   on:
     branch: master    
-    
-deploy:
-  # Deploy artifact to GitHub
-  - provider: GITHUB_ENVIRONMENT
-    name: ${APPVEYOR_BUILD_VERSION}
-    on:
-      branch: master    
 
 on_finish:
   - ps: |
