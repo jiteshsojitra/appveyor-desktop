@@ -26,12 +26,15 @@ branches:
     - master
 
 init:
-  - ps: |
+  - ps: |      
       # Enable remote desktop connection
       if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') {
         Add-AppveyorMessage "Start remote desktop connection"
         iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
+      # Install certificates
+      cd $env:REPO_DIR
+      powershell.exe -noexit "& '.\tests\spectron\data\certificates\install-certificates.ps1'"
 
 before_build:
   - ps: |
@@ -68,9 +71,6 @@ before_test:
       iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
       Set-ScreenResolution 1920 1080
       
-      # Install certificates
-      powershell.exe -noexit "& '.\tests\spectron\data\certificates\install-certificates.ps1'"
-
 test_script:
   - ps: |
       # Run desktop tests
