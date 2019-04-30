@@ -30,7 +30,7 @@ branches:
 init:
   - ps: |      
       # Enable remote desktop connection
-      if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') {
+      if ($env:DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Start remote desktop connection"
         iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
@@ -149,7 +149,7 @@ on_finish:
 
   - ps: |
       # Stop remote desktop connection
-      if ($env:APPVEYOR_RDP_ENABLED -eq 'TRUE') {
+      if ($env:DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Stop remote desktop connection"
         $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
