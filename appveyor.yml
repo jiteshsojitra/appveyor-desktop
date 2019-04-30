@@ -73,7 +73,7 @@ before_test:
   - ps: |
       # Set machine screen resolution
       iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
-      Set-ScreenResolution 1920 1080
+      Set-ScreenResolution 1920 1080 | out-null
       
 test_script:
   - ps: |
@@ -91,7 +91,7 @@ test_script:
         Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
         Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
         Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-        mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+        mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
       }
 
       # Configure desktop client
@@ -107,7 +107,7 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   # Publish artifact zip
