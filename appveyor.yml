@@ -105,17 +105,17 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   # Publish artifact zip
   - path: test-reports\spectron
-    name: ${APPVEYOR_BUILD_VERSION}.zip
+    name: ${APPVEYOR_BUILD_VERSION}
     
 deploy:
   # Deploy artifact to GitHub
-  description: 'Release description'
-  provider: GITHUB_ENVIRONMENT
+  release: ${APPVEYOR_BUILD_VERSION}
+  provider: GitHub
   auth_token:
     secure: $env:GITHUB_TOKEN
   artifact: /.*\.test-reports/
