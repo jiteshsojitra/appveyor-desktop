@@ -30,7 +30,7 @@ branches:
 init:
   - ps: |      
       # Enable remote desktop connection
-      if ($env:DEBUG -eq 'TRUE') {
+      if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Start remote desktop connection"
         iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
@@ -59,10 +59,7 @@ install:
       # Install private certificates
       Add-AppveyorMessage "Install smime user certificates"
       cd $env:USER_CERTIFICATES_DIR
-      if (!$env:DEBUG -eq 'TRUE') {
-        $output = " | out-null"
-      }
-      powershell.exe .\install-certificates.ps1 + $output
+      powershell.exe .\install-certificates.ps1
 
 build_script:
   - ps: |
@@ -86,14 +83,16 @@ test_script:
       Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Running
 
       # Create environment to debug tests in remote machine
-      Add-Content environment.txt "
-      Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
-      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
-      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
-      Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
-      Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
-      Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+      if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
+        Add-Content environment.txt "
+        Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
+        Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
+        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
+        Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
+        Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
+        Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
+        mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+      fi
 
       # Configure desktop client
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
@@ -152,7 +151,7 @@ on_finish:
 
   - ps: |
       # Stop remote desktop connection
-      if ($env:DEBUG -eq 'TRUE') {
+      if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Stop remote desktop connection"
         $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
