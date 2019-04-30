@@ -48,7 +48,7 @@ install:
       Add-AppveyorMessage "Download and install desktop build"
       cd $env:USER_DESKTOP_DIR
       New-Item -ItemType SymbolicLink -Name $env:APPVEYOR_PROJECT_NAME -Target $env:REPO_DIR | out-null
-      Remove-Item .\Tools , ".\Visual Studio 2015.lnk" , ".\Visual Studio 2017.lnk" -Recurse -Force
+      Remove-Item .\Tools , ".\Visual Studio 2015.lnk" , ".\Visual Studio 2017.lnk" -Recurse -Force | out-null
 
       # Get desktop filename from build URL
       $DESKTOP_BUILD_URL_CONTENT = $DESKTOP_BUILD_URL -split "/"
@@ -59,7 +59,10 @@ install:
       # Install private certificates
       Add-AppveyorMessage "Install smime user certificates"
       cd $env:USER_CERTIFICATES_DIR
-      powershell.exe .\install-certificates.ps1
+      if ($env:DEBUG -eq 'TRUE') {
+        $output = " | out-null"
+      }
+      powershell.exe .\install-certificates.ps1 + $output
 
 build_script:
   - ps: |
