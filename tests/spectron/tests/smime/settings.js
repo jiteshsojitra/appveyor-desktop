@@ -86,4 +86,9 @@ describe('Smime settings', function() {
 		await mail.clickNewMessageButton();
 		await mail.getComposeMailSmimeOperation().should.eventually.contains('Sign', 'Verify smime operation selected while composing a mail');
 	});
+
+
+	it('Smoke, BHR, Functional, Full | Stop desktop client', async() => {
+		await common.stopApplication();
+	});
 });

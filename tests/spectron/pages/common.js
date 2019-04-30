@@ -91,7 +91,7 @@ module.exports = {
 	},
 
 	async startApplication() {
-		if (IS_LAB_RUN === false || process.env.APPVEYOR) {
+		if (IS_LAB_RUN === false) {
 			if (app.isRunning()) {
 				await app.stop();
 			}
@@ -105,7 +105,7 @@ module.exports = {
 	},
 
 	async stopApplication() {
-		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null || process.env.APPVEYOR) {
+		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null) {
 			await app.stop();
 			if (app.isRunning()) {
 				this.wait(8000);
@@ -149,7 +149,7 @@ module.exports = {
 	async reloadApp() {
 		await app.client.refresh();
 		if (process.env.APPVEYOR) {
-			this.wait(3000);
+			this.wait(2000);
 		} else {
 			this.wait(4000);
 		}
