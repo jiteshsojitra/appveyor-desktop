@@ -59,7 +59,7 @@ install:
       # Install private certificates
       Add-AppveyorMessage "Install smime user certificates"
       cd $env:USER_CERTIFICATES_DIR
-      if ($env:DEBUG -eq 'TRUE') {
+      if (!$env:DEBUG -eq 'TRUE') {
         $output = " | out-null"
       }
       powershell.exe .\install-certificates.ps1 + $output
