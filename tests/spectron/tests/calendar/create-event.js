@@ -45,12 +45,6 @@ describe('Create event', function () {
 		utils.takeScreenShotOnFailed(this.currentTest);
 	});
 
-
-	it('Smoke, BHR, Functional, Full | Start desktop client', async() => {
-		await common.startApplication();
-	});
-
-
 	it('Smoke | Create basic event and send it to invitee | C972887', async () => {
 		let eventObject = Object.create(calendar.event);
 		eventObject.eventName = `event${await utils.getUniqueString()}`;
