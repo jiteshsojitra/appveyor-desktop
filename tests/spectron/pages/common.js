@@ -29,7 +29,7 @@ module.exports = {
 	},
 
 	async configureDesktopClient() {
-		await this.startApplication();
+		await app.start();
 		await app.client.pause(3000);
 		if (await app.client.isExisting(this.locators.zimbraProxyURL)) {
 			await app.client.setValue(this.locators.zimbraProxyURL, soap.zimbraProxyURL);
@@ -37,7 +37,7 @@ module.exports = {
 			await app.client.pause(2000);
 			await app.client.waitUntil(async () => await app.client.isExisting(this.locators.username), utils.elementExistTimeout);
 		}
-		await this.stopApplication();
+		await app.stop();
 	},
 
 	async loginBeforeTestRun(account) {
