@@ -23,6 +23,9 @@ environment:
   TEXT_REPORT_PATH: $env:TEXT_REPORT_PATH
   matrix:
     - TEST_SUITE: Full
+    - TEST_SUITE: Smoke
+    - TEST_SUITE: BHR
+    - TEST_SUITE: Functional
 
 matrix:
   fast_finish: false
@@ -82,6 +85,9 @@ before_test:
 test_script:
   - ps: |
       # Run desktop tests
+      if ($env:TEST_SUITE -eq 'Full') {
+        $env:TEST_SUITE = "Smoke | BHR | Functional"
+      }
       Add-AppveyorMessage "Running desktop automation tests, please wait..."
       New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
       Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Running
@@ -95,26 +101,23 @@ test_script:
         Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
         Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
         Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-        mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+        mocha --recursive tests\spectron\tests -g "$env:TEST_SUITE" --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
       }
 
       # Configure desktop client
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
       Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
-      mocha tests\spectron\conf\configure.js -f Configure
+      mocha tests\spectron\conf\configure.js -g Configure
 
       # Run desktop client tests
-      if ($env:TEST_SUITE -eq 'Full') {
-        $env:TEST_SUITE = "|"
-      }
       Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
       Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -f "$env:TEST_SUITE" --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   # Publish artifact zip
