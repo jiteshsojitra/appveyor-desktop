@@ -7,9 +7,6 @@ image:
 platform:
   - x64
 
-configuration:
-  - commit
-
 environment:
   NODEJS_VERSION: $env:NODEJS_VERSION
   APPVEYOR_RDP_ENABLED: $env:APPVEYOR_RDP_ENABLED
