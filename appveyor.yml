@@ -24,6 +24,8 @@ environment:
   matrix:
     - TEST_SUITE: Smoke
     - TEST_SUITE: BHR
+    - TEST_SUITE: Functional
+    - TEST_SUITE: Full
 
 matrix:
   fast_finish: false
