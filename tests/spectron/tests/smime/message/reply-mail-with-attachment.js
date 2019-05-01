@@ -122,7 +122,7 @@ describe('Reply smime mail with attachment in message view', function() {
 	});
 
 
-	it.skip('Functional | Reply signed message contains inline attachment as normal using message view | C1982093 | PREAPPS-2359', async() => {
+	it('Application-Bug-FXunctional | Reply signed message contains inline attachment as normal using message view | C1982093 | PREAPPS-2359', async() => {
 		let messageObject = await mail.sendMessage(option.O_SIGN, config.user2, true);
 		await common.logoutFromClient();
 		await common.loginToClient(config.user2);
@@ -286,7 +286,7 @@ describe('Reply smime mail with attachment in message view', function() {
 	});
 
 
-	it.skip('BHR | Reply encrypted message contains inline image attachment as normal using message view | C1976460 | PREAPPS-2359', async() => {
+	it('Application-Bug-BXHR | Reply encrypted message contains inline image attachment as normal using message view | C1976460 | PREAPPS-2359', async() => {
 		let messageObject = await mail.sendMessage(option.O_SIGN_AND_ENCRYPT, config.user2, true);
 		await common.logoutFromClient();
 		await common.loginToClient(messageObject.toRecipients);

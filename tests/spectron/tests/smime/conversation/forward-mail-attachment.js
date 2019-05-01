@@ -124,7 +124,7 @@ describe('Forward smime mail with attachment in conversation view', function() {
 	});
 
 
-	it.skip('BHR | Forward normal message contains file attachment as signed using conversation view | C1823086 | PREAPPS-1488', async() => {
+	it('Application-Bug-BXHR | Forward normal message contains file attachment as signed using conversation view | C1823086 | PREAPPS-1488', async() => {
 		let mimeFile = 'jpg-file-attachment.txt';
 		let filePath = path.join(utils.baseDir, '/data/mimes/' + mimeFile);
 		let mimeMessageSubject = 'JPG file attachment';
@@ -154,7 +154,7 @@ describe('Forward smime mail with attachment in conversation view', function() {
 	});
 
 
-	it.skip('BHR | Forward normal message contains file attachment as encrypted using conversation view | C1908560 | PREAPPS-1488', async() => {
+	it('Application-Bug-BXHR | Forward normal message contains file attachment as encrypted using conversation view | C1908560 | PREAPPS-1488', async() => {
 		let mimeFile = 'single-file-attachment.txt';
 		let filePath = path.join(utils.baseDir, '/data/mimes/' + mimeFile);
 		let mimeMessageSubject = 'Single file attachment';
@@ -276,7 +276,7 @@ describe('Forward smime mail with attachment in conversation view', function() {
 	});
 
 
-	it.skip('Functional | Forward signed message contains file attachment as normal using conversation view | C1650986 | PREAPPS-2359', async() => {
+	it('Application-Bug-FXunctional | Forward signed message contains file attachment as normal using conversation view | C1650986 | PREAPPS-2359', async() => {
 		let fileName = 'JPEG_Image.jpg';
 		let filePath = path.join(utils.baseDir, '/data/files/' + fileName);
 		let messageObject = await mail.sendMessage(option.O_SIGN, config.user2, false, filePath);
@@ -363,7 +363,7 @@ describe('Forward smime mail with attachment in conversation view', function() {
 	});
 
 
-	it.skip('Functional | Forward encrypted message contains file attachment as normal using conversation view | C1911986 | PREAPPS-1494', async() => {
+	it('Application-Bug-FXunctional | Forward encrypted message contains file attachment as normal using conversation view | C1911986 | PREAPPS-1494', async() => {
 		let fileName = 'JPEG_Image.jpg';
 		let filePath = path.join(utils.baseDir, '/data/files/' + fileName);
 		let messageObject = await mail.sendMessage(option.O_SIGN_AND_ENCRYPT, config.user2, false, filePath);

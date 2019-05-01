@@ -37,7 +37,7 @@ describe('Move local folder message', function() {
 	});
 
 
-	it.skip('Smoke | Move multiple messages via top toolbar move button to local folder using message view | C1832588 | PREAPPS-1808', async() => {
+	it('Application-Bug-SXmoke | Move multiple messages via top toolbar move button to local folder using message view | C1832588 | PREAPPS-1808', async() => {
 		let senderAuthToken = await soap.getAccountAuthToken(config.user1);
 		let mailsubject1 = `1subject${await utils.getUniqueString()}`;
 		let mailsubject2 = `2subject${await utils.getUniqueString()}`;
