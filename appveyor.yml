@@ -7,6 +7,10 @@ image:
 platform:
   - x64
 
+configuration:
+  - Debug
+  - Release
+
 environment:
   NODEJS_VERSION: $env:NODEJS_VERSION
   APPVEYOR_RDP_ENABLED: $env:APPVEYOR_RDP_ENABLED
@@ -16,12 +20,18 @@ environment:
   REPO_DIR: $env:REPO_DIR
   USER_DESKTOP_DIR: $env:USER_DESKTOP_DIR
   USER_CERTIFICATES_DIR: $env:USER_CERTIFICATES_DIR
-  TEST_SUITE: $env:TEST_SUITE
   ZIMBRA_PROXY_URL: $env:ZIMBRA_PROXY_URL
   SERVER_ADMIN_USERNAME: $env:SERVER_ADMIN_USERNAME
   SERVER_ADMIN_PASSWORD: $env:SERVER_ADMIN_PASSWORD
   HTML_REPORT_PATH: $env:HTML_REPORT_PATH
   TEXT_REPORT_PATH: $env:TEXT_REPORT_PATH
+  matrix:
+    - TEST_SUITE: Smoke
+    - TEST_SUITE: BHR
+    - TEST_SUITE: Functional
+
+matrix:
+  fast_finish: false
 
 branches:
   only:
@@ -107,7 +117,7 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH
+      mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   # Publish artifact zip
