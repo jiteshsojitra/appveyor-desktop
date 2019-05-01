@@ -117,7 +117,7 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests -g "$env:TEST_SUITE" --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
 
 artifacts:
   # Publish artifact zip
