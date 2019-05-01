@@ -89,6 +89,6 @@ describe('Smime settings', function() {
 
 
 	it('Smoke, BHR, Functional, Full | Stop desktop client', async() => {
-		await common.stopApplication();
+		await app.stop();
 	});
 });
