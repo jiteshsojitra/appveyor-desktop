@@ -108,6 +108,9 @@ test_script:
       mocha tests\spectron\conf\configure.js -f Configure
 
       # Run desktop client tests
+      if ($env:TEST_SUITE -eq 'Full') {
+        $env:TEST_SUITE = "|"
+      }
       Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
       Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
