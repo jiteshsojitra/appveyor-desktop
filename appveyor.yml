@@ -34,19 +34,19 @@ branches:
     - master
 
 init:
-  - ps: |      
+  - ps: |
       # Enable remote desktop connection
       if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Start remote desktop connection"
         iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
-      
+
 before_build:
   - ps: |
       # Checkout code
       Add-AppveyorMessage "Check out project code"
       Install-Product node $NODEJS_VERSION
-      
+
 install:
   - ps: |
       # Download and install desktop build
@@ -61,7 +61,7 @@ install:
       $DESKTOP_BUILD_FILENAME = $DESKTOP_BUILD_URL_CONTENT[5] -split "\?"
       Start-FileDownload $DESKTOP_BUILD_URL
       Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
-      
+
       # Install private certificates
       Add-AppveyorMessage "Install smime user certificates"
       cd $env:USER_CERTIFICATES_DIR
@@ -80,7 +80,7 @@ before_test:
       # Set machine screen resolution
       iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
       Set-ScreenResolution 1920 1080 | out-null
-      
+
 test_script:
   - ps: |
       # Run desktop tests
@@ -89,7 +89,6 @@ test_script:
       }
       Add-AppveyorMessage "Running desktop automation tests, please wait..."
       New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
-      Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Running
 
       # Create environment to debug tests in remote machine
       if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
@@ -100,7 +99,7 @@ test_script:
         Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
         Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
         Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-        mocha --recursive tests\spectron\tests -g "$env:TEST_SUITE" --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH"
+        mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH"
       }
 
       # Configure desktop client
@@ -122,7 +121,7 @@ artifacts:
   # Publish artifact zip
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}
-    
+
 deploy:
   # Deploy artifact to GitHub
   release: ${APPVEYOR_BUILD_VERSION}
@@ -133,30 +132,28 @@ deploy:
   draft: false
   prerelease: false
   on:
-    branch: master    
+    branch: master
 
 on_finish:
   - ps: |
-      # Publish report file
-      if (Test-Path $env:TEXT_REPORT_PATH) {
-        cat $env:TEXT_REPORT_PATH
-        Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
-      } else {
-        Add-AppveyorMessage "Couldn't find test report file"
-      }
-
-  - ps: |
-      # Push job status
-      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+      # Push message
       $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
-
       if ($IS_TEST_FAILED -contains $true) {
-        Add-AppveyorMessage "Job failed"
-        Update-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        Add-AppveyorMessage $env:TEST_SUITE + " job failed"
       } else {
-        Add-AppveyorMessage "Job passed"
-        Update-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Passed
+        Add-AppveyorMessage $env:TEST_SUITE + " job passed"
       }
+
+      # Push test status
+      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+      $TEXT_REPORT_FILE_CONTENT | foreach {
+        if ($_ -match '^    [0-9]') {
+          Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        }
+      }
+
+      # Push artifact
+      Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
 
   - ps: |
       # Stop remote desktop connection
