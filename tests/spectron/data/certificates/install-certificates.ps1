@@ -1,19 +1,27 @@
 # Automatically install private certificates in Windows OS
 Get-Command -Module PKIClient;
 
-$plainPassword = 'test123';
-#$securePassword = ConvertTo-SecureString -String $plainPassword -AsPlainText -Force;
-$certificateLocation = 'Cert:\CurrentUser\My';
+$password = 'test123';
+#$securePassword = ConvertTo-SecureString -String $password -AsPlainText -Force;
+#$certificateLocation = 'Cert:\CurrentUser\My';
+#Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
 
 # Install certificates
+if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
+	certutil -addstore "Root" cacert.crt;
+} else {
+	certutil -addstore "Root" cacert.crt > $null 2>&1;
+}
 function Install-Certificate {
 	Param ([string]$username);
-    	Write-Host Installing private certificate of $username;
-    	certutil -f -p $plainPassword -enterprise -importpfx $username '';
-    	#Import-PfxCertificate -FilePath $username -Password $securePassword -CertStoreLocation $certificateLocation;
-    	certutil -p $plainPassword -user -importpfx $username NoRoot
+	if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
+		certutil -f -p $password -enterprise -importpfx $username "";
+		certutil -p $password -user -importpfx $username NoRoot;
+	} else {
+		certutil -f -p $password -enterprise -importpfx $username "" > $null 2>&1;
+		certutil -p $password -user -importpfx $username NoRoot > $null 2>&1;
+	}
 }
-certutil -addstore "Root" cacert.crt >> “CertImport.log”
 
 # Smoke
 $smokeUsers = 'smokeuser';

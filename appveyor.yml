@@ -16,31 +16,37 @@ environment:
   REPO_DIR: $env:REPO_DIR
   USER_DESKTOP_DIR: $env:USER_DESKTOP_DIR
   USER_CERTIFICATES_DIR: $env:USER_CERTIFICATES_DIR
-  TEST_SUITE: $env:TEST_SUITE
   ZIMBRA_PROXY_URL: $env:ZIMBRA_PROXY_URL
   SERVER_ADMIN_USERNAME: $env:SERVER_ADMIN_USERNAME
   SERVER_ADMIN_PASSWORD: $env:SERVER_ADMIN_PASSWORD
   HTML_REPORT_PATH: $env:HTML_REPORT_PATH
   TEXT_REPORT_PATH: $env:TEXT_REPORT_PATH
+  matrix:
+    - TEST_SUITE: Smoke
+    - TEST_SUITE: BHR
+    - TEST_SUITE: Functional
+
+matrix:
+  fast_finish: false
 
 branches:
   only:
     - master
 
 init:
-  - ps: |      
+  - ps: |
       # Enable remote desktop connection
-      if ($env:DEBUG -eq 'TRUE') {
+      if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Start remote desktop connection"
         iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }
-      
+
 before_build:
   - ps: |
       # Checkout code
       Add-AppveyorMessage "Check out project code"
       Install-Product node $NODEJS_VERSION
-      
+
 install:
   - ps: |
       # Download and install desktop build
@@ -48,14 +54,14 @@ install:
       Add-AppveyorMessage "Download and install desktop build"
       cd $env:USER_DESKTOP_DIR
       New-Item -ItemType SymbolicLink -Name $env:APPVEYOR_PROJECT_NAME -Target $env:REPO_DIR | out-null
-      Remove-Item .\Tools , ".\Visual Studio 2015.lnk" , ".\Visual Studio 2017.lnk" -Recurse -Force
+      Remove-Item .\Tools , ".\Visual Studio 2015.lnk" , ".\Visual Studio 2017.lnk" -Recurse -Force | out-null
 
       # Get desktop filename from build URL
       $DESKTOP_BUILD_URL_CONTENT = $DESKTOP_BUILD_URL -split "/"
       $DESKTOP_BUILD_FILENAME = $DESKTOP_BUILD_URL_CONTENT[5] -split "\?"
       Start-FileDownload $DESKTOP_BUILD_URL
       Start-Process -FilePath $DESKTOP_BUILD_FILENAME[0] /S -Wait -WindowStyle Maximized -PassThru
-      
+
       # Install private certificates
       Add-AppveyorMessage "Install smime user certificates"
       cd $env:USER_CERTIFICATES_DIR
@@ -73,30 +79,34 @@ before_test:
   - ps: |
       # Set machine screen resolution
       iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
-      Set-ScreenResolution 1920 1080
-      
+      Set-ScreenResolution 1920 1080 | out-null
+
 test_script:
   - ps: |
       # Run desktop tests
+      if ($env:TEST_SUITE -eq 'Full') {
+        $env:TEST_SUITE = "Smoke | BHR | Functional"
+      }
       Add-AppveyorMessage "Running desktop automation tests, please wait..."
       New-Item -ItemType Directory -Path $env:REPO_DIR\$env:HTML_REPORT_PATH -Force  | out-null
-      Add-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Running
 
       # Create environment to debug tests in remote machine
-      Add-Content environment.txt "
-      Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
-      Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
-      Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
-      Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
-      Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
-      Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH"
+      if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
+        Add-Content environment.txt "
+        Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
+        Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
+        Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
+        Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
+        Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
+        Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
+        mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH"
+      }
 
       # Configure desktop client
       Set-Item Env:SERVER_ADMIN_USERNAME $env:SERVER_ADMIN_USERNAME ;
       Set-Item Env:SERVER_ADMIN_PASSWORD $env:SERVER_ADMIN_PASSWORD ;
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
-      mocha tests/spectron/conf/configure.js -f Configure
+      mocha tests\spectron\conf\configure.js -g Configure
 
       # Run desktop client tests
       Set-Item Env:ZIMBRA_PROXY_URL $env:ZIMBRA_PROXY_URL ;
@@ -105,51 +115,49 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests\mail -f $env:TEST_SUITE --retries 1 --no-deprecation --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH > $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH
 
 artifacts:
   # Publish artifact zip
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}
-    
+
 deploy:
   # Deploy artifact to GitHub
   release: ${APPVEYOR_BUILD_VERSION}
   provider: GitHub
   auth_token:
     secure: $env:GITHUB_TOKEN
-  artifact: /.*\.test-reports/
+  artifact: test-reports\spectron
   draft: false
   prerelease: false
   on:
-    branch: master    
+    branch: master
 
 on_finish:
   - ps: |
-      # Publish report file
-      if (Test-Path $env:TEXT_REPORT_PATH) {
-        cat $env:TEXT_REPORT_PATH
-        Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
-      } else {
-        Add-AppveyorMessage "Couldn't find test report file"
-      }
-
-  - ps: |
-      # Push job status
-      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+      # Push message
       $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
-
       if ($IS_TEST_FAILED -contains $true) {
-        Add-AppveyorMessage "Job failed"
-        Update-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        Add-AppveyorMessage $env:TEST_SUITE + " job failed"
       } else {
-        Add-AppveyorMessage "Job passed"
-        Update-AppveyorTest -Name Desktop -Framework Mocha -Filename $env:TEXT_REPORT_PATH -Outcome Passed
+        Add-AppveyorMessage $env:TEST_SUITE + " job passed"
       }
+
+      # Push test status
+      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+      $TEXT_REPORT_FILE_CONTENT | foreach {
+        if ($_ -match '^    [0-9]') {
+          Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        }
+      }
+
+      # Push artifact
+      Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
 
   - ps: |
       # Stop remote desktop connection
-      if ($env:DEBUG -eq 'TRUE') {
+      if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Stop remote desktop connection"
         $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
       }

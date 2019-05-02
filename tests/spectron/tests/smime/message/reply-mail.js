@@ -85,7 +85,7 @@ describe('Reply smime mail in message view', function() {
 	});
 
 
-	it.skip('Functional | Reply encrypted message as normal using message view | C1963925 | PREAPPS-2359', async() => {
+	it('Application-Bug-FXunctional | Reply encrypted message as normal using message view | C1963925 | PREAPPS-2359', async() => {
 		let messageObject = await mail.sendMessage(option.O_SIGN_AND_ENCRYPT, config.user2);
 		await common.logoutFromClient();
 		await common.loginToClient(config.user2);
@@ -236,7 +236,7 @@ describe('Reply smime mail in message view', function() {
 	});
 
 
-	it.skip('Functional | Reply signed message as normal using message view | C1650985 | PREAPPS-2359', async() => {
+	it('Application-Bug-FXunctional | Reply signed message as normal using message view | C1650985 | PREAPPS-2359', async() => {
 		let messageObject = await mail.sendMessage(option.O_SIGN, config.user2);
 		await common.logoutFromClient();
 		await common.loginToClient(config.user2);

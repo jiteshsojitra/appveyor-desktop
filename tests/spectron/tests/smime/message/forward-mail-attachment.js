@@ -97,7 +97,7 @@ describe('Forward smime mail with attachment in message view', function() {
 	});
 
 
-	it.skip('Functional | Forward signed message contains file attachment as normal using message view | C1990395 | PREAPPS-2359', async() => {
+	it('Application-Bug-FXunctional | Forward signed message contains file attachment as normal using message view | C1990395 | PREAPPS-2359', async() => {
 		let fileName = 'JPEG_Image.jpg';
 		let filePath = path.join(utils.baseDir, '/data/files/' + fileName);
 		let messageObject = await mail.sendMessage(option.O_SIGN, config.user2, false, filePath);
@@ -184,7 +184,7 @@ describe('Forward smime mail with attachment in message view', function() {
 	});
 
 
-	it.skip('Functional | Forward encrypted message contains file attachment as normal using message view | C2010542 | PREAPPS-2359', async() => {
+	it('Application-Bug-FXunctional | Forward encrypted message contains file attachment as normal using message view | C2010542 | PREAPPS-2359', async() => {
 		let authToken = await soap.getAccountAuthToken(config.user3);
 		let fileName = 'JPEG_Image.jpg';
 		let filePath = path.join(utils.baseDir, '/data/files/' + fileName);
@@ -306,7 +306,7 @@ describe('Forward smime mail with attachment in message view', function() {
 	});
 
 
-	it.skip('BHR | Forward normal message contains file attachment as encrypted using message view | C1990348 | PREAPPS-1488', async() => {
+	it('Application-Bug-BXHR | Forward normal message contains file attachment as encrypted using message view | C1990348 | PREAPPS-1488', async() => {
 		let mimeMessageSubject = 'Single file attachment';
 		let fileName = 'single-file-attachment.txt';
 		let filePath = path.join(utils.baseDir, '/data/mimes/' + fileName);
@@ -332,7 +332,7 @@ describe('Forward smime mail with attachment in message view', function() {
 	});
 
 
-	it.skip('BHR | Forward normal message contains file attachment as signed using message view | C1990347 | PREAPPS-1488', async() => {
+	it('Application-Bug-BXHR | Forward normal message contains file attachment as signed using message view | C1990347 | PREAPPS-1488', async() => {
 		let authToken = await soap.getAccountAuthToken(config.user2);
 		let mimeMessageSubject = 'Single file attachment';
 		let attachmentName = 'PDF_Document.pdf';

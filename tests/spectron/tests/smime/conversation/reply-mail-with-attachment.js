@@ -36,7 +36,7 @@ describe('Reply smime mail with attachment in conversation view', function() {
 	});
 
 
-	it.skip('Smoke | Reply signed message contains file attachment as signed using conversation view | C1921887 | PREAPPS-2361', async() => {
+	it('Application-Bug-SXmoke | Reply signed message contains file attachment as signed using conversation view | C1921887 | PREAPPS-2361', async() => {
 		let fileName = 'PPT_Document.ppt';
 		let filePath = path.join(utils.baseDir, '/data/files/' + fileName);
 		let messageObject = await mail.sendMessage(option.O_SIGN, config.user2, false, filePath);

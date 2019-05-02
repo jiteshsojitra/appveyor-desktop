@@ -18,6 +18,7 @@ module.exports = {
 		signInText: 'h1=Sign in',
 		loggedInUser: 'span.zimbra-client_header-actions_headerActionTitle',
 		logoutDropdown: 'div.zimbra-client_header span.zimbra-icon.zimbra-icon-caret-down.blocks_icon_md',
+		logoutOption: 'span=' + option.O_LOGOUT,
 		continueButton: 'button=Continue',
 		dialogCloseButton: 'div[role="dialog"] span.zimbra-icon-close',
 
@@ -28,7 +29,7 @@ module.exports = {
 	},
 
 	async configureDesktopClient() {
-		await this.startApplication();
+		await app.start();
 		await app.client.pause(3000);
 		if (await app.client.isExisting(this.locators.zimbraProxyURL)) {
 			await app.client.setValue(this.locators.zimbraProxyURL, soap.zimbraProxyURL);
@@ -36,29 +37,26 @@ module.exports = {
 			await app.client.pause(2000);
 			await app.client.waitUntil(async () => await app.client.isExisting(this.locators.username), utils.elementExistTimeout);
 		}
-		await this.stopApplication();
+		await app.stop();
 	},
 
 	async loginBeforeTestRun(account) {
 		await this.reloadApp();
-		if (await app.client.isExisting(this.locators.dialogCloseButton)) {
-			await app.client.click(this.locators.dialogCloseButton);
-		}
-
 		if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
-			for (let i=0; i<=2; i++) {
-				await this.coreLogoutFromClient();
-				if (await app.client.isExisting(this.locators.username) === true) {
-					break;
-				} else {
-					await this.reloadApp();
-				}
-			}
+			await this.logoutFromClient();
 		}
+		await this.loginToClient(account);
+	},
 
+	async loginToClient(account) {
 		for (let i=0; i<=2; i++) {
 			if (await app.client.isExisting(this.locators.username) === true) {
-				await this.coreLoginToClient(account);
+				await app.client.setValue(this.locators.username, account);
+				await app.client.setValue(this.locators.password, soap.accountPassword);
+				await app.client.click(this.locators.signInButton);
+				await app.client.waitForExist(this.locators.appTab(button.B_MAIL_APP), utils.elementExistTimeout);
+				await this.navigateApp(button.B_MAIL_APP);
+				await app.client.pause(2000);
 				break;
 			} else {
 				await this.reloadApp();
@@ -66,32 +64,21 @@ module.exports = {
 		}
 	},
 
-	async loginToClient(account) {
-		await app.client.waitUntil(async () => await app.client.isExisting(this.locators.username), utils.elementExistTimeout);
-		await this.coreLoginToClient(account);
-		await app.client.pause(2000);
-	},
-
-	async coreLoginToClient(account) {
-		await app.client.setValue(this.locators.username, account);
-		await app.client.setValue(this.locators.password, soap.accountPassword);
-		await app.client.click(this.locators.signInButton);
-		await app.client.waitForExist(this.locators.appTab(button.B_MAIL_APP), utils.elementExistTimeout);
-		await this.navigateApp(button.B_MAIL_APP);
-	},
-
 	async logoutFromClient() {
-		await app.client.waitForExist(this.locators.logoutDropdown, utils.elementExistTimeout);
-		await this.coreLogoutFromClient();
-	},
-
-	async coreLogoutFromClient() {
-		await app.client.click(this.locators.logoutDropdown).click('span=' + option.O_LOGOUT);
-		await app.client.waitForExist(this.locators.username, utils.elementExistTimeout);
+		for (let i=0; i<=2; i++) {
+			if (await app.client.isExisting(this.locators.logoutDropdown) === true) {
+				await app.client.click(this.locators.logoutDropdown);
+				await app.client.click(this.locators.logoutOption);
+				await app.client.waitForExist(this.locators.username, utils.elementExistTimeout);
+				break;
+			} else {
+				await this.reloadApp();
+			}
+		}
 	},
 
 	async startApplication() {
-		if (IS_LAB_RUN === false || process.env.APPVEYOR) {
+		if (IS_LAB_RUN === false) {
 			if (app.isRunning()) {
 				await app.stop();
 			}
@@ -105,7 +92,7 @@ module.exports = {
 	},
 
 	async stopApplication() {
-		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null || process.env.APPVEYOR) {
+		if (typeof(process.env.TEST_SUITE) === 'undefined' || process.env.TEST_SUITE === null) {
 			await app.stop();
 			if (app.isRunning()) {
 				this.wait(8000);
@@ -149,7 +136,7 @@ module.exports = {
 	async reloadApp() {
 		await app.client.refresh();
 		if (process.env.APPVEYOR) {
-			this.wait(3000);
+			this.wait(2000);
 		} else {
 			this.wait(4000);
 		}

@@ -246,7 +246,7 @@ describe('Draft smime mail', function() {
 	});
 
 
-	it.skip('Functional | Forward message containing attachment as encrypted message, modify draft and send message | C1976614 | PREAPPS-1488', async() => {
+	it('Application-Bug-FXunctional | Forward message containing attachment as encrypted message, modify draft and send message | C1976614 | PREAPPS-1488', async() => {
 		let mimeMessageSubject = 'Single file attachment';
 		let fileName = 'single-file-attachment.txt';
 		let filePath = path.join(utils.baseDir, '/data/mimes/' + fileName);

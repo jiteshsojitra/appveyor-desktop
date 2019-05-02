@@ -57,7 +57,7 @@ describe('Configure desktop client', function() {
 	});
 
 	it('Configure | Start desktop client first time to set up zimbra proxy URL', async() => {
-		console.log('     Setting zimbra proxy URL...'); // eslint-disable-line
+		console.log('     Setting up zimbra proxy URL...'); // eslint-disable-line
 		await common.configureDesktopClient();
 	});
 });
