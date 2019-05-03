@@ -2,7 +2,7 @@
 
 ## Configurations:
 
-Install latest node, npm, spectron and install required packages along with dependencies.
+Install latest node, npm, mocha, spectron and install required packages along with dependencies.
 ```
 cd appveyor-desktop
 npm install
