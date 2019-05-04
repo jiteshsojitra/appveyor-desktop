@@ -136,7 +136,7 @@ test_script:
 
 on_finish:
   - ps: |
-      # Push message
+#      # Push message
 #      $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
 #      if ($IS_TEST_FAILED -contains $true) {
 #        Add-AppveyorMessage $env:TEST_SUITE
@@ -144,13 +144,13 @@ on_finish:
 #        Add-AppveyorMessage $env:TEST_SUITE
 #      }
 
-      # Push test status
-      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
-      $TEXT_REPORT_FILE_CONTENT | foreach {
-        if ($_ -match '^    [0-9]') {
-          Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
-        }
-      }
+#      # Push test status
+#      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+#      $TEXT_REPORT_FILE_CONTENT | foreach {
+#        if ($_ -match '^    [0-9]') {
+#          Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+#        }
+#      }
 
       # Push artifact
       Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
