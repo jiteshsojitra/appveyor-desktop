@@ -142,7 +142,6 @@ on_finish:
       
       # Push artifact
       Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
-      Get-ChildItem $env:HTML_REPORT_PATH\*.* | % { Push-AppveyorArtifact test-reports.zip -FileName test-reports.zip -DeploymentName ${APPVEYOR_BUILD_VERSION} }
       
       # Stop remote desktop connection
       if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
