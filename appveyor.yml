@@ -139,9 +139,9 @@ on_finish:
       # Push message
       $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
       if ($IS_TEST_FAILED -contains $true) {
-        Add-AppveyorMessage ($env:TEST_SUITE + " job failed")
+        Add-AppveyorMessage $env:TEST_SUITE
       } else {
-        Add-AppveyorMessage ($env:TEST_SUITE + " job passed")
+        Add-AppveyorMessage $env:TEST_SUITE
       }
 
       # Push test status
