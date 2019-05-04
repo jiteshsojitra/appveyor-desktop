@@ -136,11 +136,6 @@ test_script:
 
 on_finish:
   - ps: |
-      # Push artifact
-      Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
-      #Get-ChildItem $env:HTML_REPORT_PATH\*.* | % { Push-AppveyorArtifact test-reports.zip -FileName test-reports.zip -DeploymentName ${APPVEYOR_BUILD_VERSION} }
-
-  - ps: |
       # Stop remote desktop connection
       if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Stop remote desktop connection"
