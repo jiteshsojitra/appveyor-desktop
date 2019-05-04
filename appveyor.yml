@@ -115,12 +115,12 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests\calendar -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH
 
-artifacts:
-  # Publish artifact zip
-  - path: test-reports\spectron
-    name: ${APPVEYOR_BUILD_VERSION}
+#artifacts:
+#  # Publish artifact zip
+#  - path: $env:HTML_REPORT_PATH
+#    name: ${APPVEYOR_BUILD_VERSION}
 
 deploy:
   # Deploy artifact to GitHub
@@ -128,7 +128,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: $env:GITHUB_TOKEN
-  artifact: test-reports\spectron
+  artifact: $env:HTML_REPORT_PATH
   draft: false
   prerelease: false
   on:
@@ -139,9 +139,9 @@ on_finish:
       # Push message
       $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
       if ($IS_TEST_FAILED -contains $true) {
-        Add-AppveyorMessage $env:TEST_SUITE + " job failed"
+        Add-AppveyorMessage ($env:TEST_SUITE + " job failed")
       } else {
-        Add-AppveyorMessage $env:TEST_SUITE + " job passed"
+        Add-AppveyorMessage ($env:TEST_SUITE + " job passed")
       }
 
       # Push test status
@@ -154,6 +154,7 @@ on_finish:
 
       # Push artifact
       Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
+      Get-ChildItem $env:HTML_REPORT_PATH\*.* | % { Push-AppveyorArtifact test-reports.zip -FileName test-reports.zip -DeploymentName ${APPVEYOR_BUILD_VERSION} }
 
   - ps: |
       # Stop remote desktop connection
