@@ -115,27 +115,35 @@ test_script:
       Set-Item Env:TEST_SUITE $env:TEST_SUITE ;
       Set-Item Env:HTML_REPORT_PATH $env:HTML_REPORT_PATH ;
       Set-Item Env:TEXT_REPORT_PATH $env:TEXT_REPORT_PATH ;
-      mocha --recursive tests\spectron\tests\calendar -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH
+      mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH
 
-#artifacts:
-#  # Publish artifact zip
-#  - path: $env:HTML_REPORT_PATH
-#    name: ${APPVEYOR_BUILD_VERSION}
-
-#deploy:
-#  # Deploy artifact to GitHub
-#  release: ${APPVEYOR_BUILD_VERSION}
-#  provider: GitHub
-#  auth_token:
-#    secure: $env:GITHUB_TOKEN
-#  artifact: $env:HTML_REPORT_PATH
-#  draft: false
-#  prerelease: false
-#  on:
-#    branch: master
+artifacts:
+  # Publish artifact zip
+  - path: $env:HTML_REPORT_PATH
+    name: ${APPVEYOR_BUILD_VERSION}
 
 on_finish:
   - ps: |
+      # Push message
+      $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
+      if ($IS_TEST_FAILED -contains $true) {
+        Add-AppveyorMessage $env:TEST_SUITE
+      } else {
+        Add-AppveyorMessage $env:TEST_SUITE
+      }
+
+      # Push test status
+      $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
+      $TEXT_REPORT_FILE_CONTENT | foreach {
+        if ($_ -match '^    [0-9]') {
+          Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        }
+      }
+      
+      # Push artifact
+      Push-AppveyorArtifact $env:TEXT_REPORT_PATH -FileName ${APPVEYOR_BUILD_VERSION}.txt
+      Get-ChildItem $env:HTML_REPORT_PATH\*.* | % { Push-AppveyorArtifact test-reports.zip -FileName test-reports.zip -DeploymentName ${APPVEYOR_BUILD_VERSION} }
+      
       # Stop remote desktop connection
       if ($env:APPVEYOR_DEBUG -eq 'TRUE') {
         Add-AppveyorMessage "Stop remote desktop connection"
