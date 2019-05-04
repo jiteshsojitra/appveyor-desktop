@@ -122,17 +122,17 @@ test_script:
 #  - path: $env:HTML_REPORT_PATH
 #    name: ${APPVEYOR_BUILD_VERSION}
 
-deploy:
-  # Deploy artifact to GitHub
-  release: ${APPVEYOR_BUILD_VERSION}
-  provider: GitHub
-  auth_token:
-    secure: $env:GITHUB_TOKEN
-  artifact: $env:HTML_REPORT_PATH
-  draft: false
-  prerelease: false
-  on:
-    branch: master
+#deploy:
+#  # Deploy artifact to GitHub
+#  release: ${APPVEYOR_BUILD_VERSION}
+#  provider: GitHub
+#  auth_token:
+#    secure: $env:GITHUB_TOKEN
+#  artifact: $env:HTML_REPORT_PATH
+#  draft: false
+#  prerelease: false
+#  on:
+#    branch: master
 
 on_finish:
   - ps: |
