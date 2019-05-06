@@ -132,6 +132,8 @@ on_finish:
           Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests passed") -Filename $env:TEXT_REPORT_PATH -Outcome Passed
         } else if ($_ -match '^  [0-9] failing') {
           Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests failed") -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        } else {
+          // else is mandatory in powershell!
         }
       }
       
