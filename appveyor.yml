@@ -130,7 +130,7 @@ on_finish:
           Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
         } elseif ($_ -match '[0-9] passing') {
           $totalTestsPassing = $_.Trim().Split(" ")[0];
-	  $totalTime = $_.Trim().Split(" ")[2].replace("(", "").replace(")", "");
+          $totalTime = $_.Trim().Split(" ")[2].replace("(", "").replace(")", "");
           Add-AppveyorTest -Name ("Total " + $_.Trim()) -Filename $env:TEXT_REPORT_PATH -Outcome Passed
         } elseif ($_ -match '[0-9] failing') {
           Add-AppveyorTest -Name ("Total " + $_.Trim()) -Filename $env:TEXT_REPORT_PATH -Outcome Failed
