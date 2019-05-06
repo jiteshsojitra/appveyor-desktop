@@ -128,10 +128,12 @@ on_finish:
       $TEXT_REPORT_FILE_CONTENT | foreach {
         if ($_ -match '^    [0-9]') {
           Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
-        } elseif ($_ -match '^  [0-9] passing') {
-          Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests passed") -Filename $env:TEXT_REPORT_PATH -Outcome Passed
-        } elseif ($_ -match '^  [0-9] failing') {
-          Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests failed") -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        } elseif ($_ -match '[0-9] passing') {
+          $totalTestsPassing = $_.Trim().Split(" ")[0];
+	        $totalTime = $_.Trim().Split(" ")[2].replace("(", "").replace(")", "");
+          Add-AppveyorTest -Name ("Total " + $_.Trim()) -Filename $env:TEXT_REPORT_PATH -Outcome Passed
+        } elseif ($_ -match '[0-9] failing') {
+          Add-AppveyorTest -Name ("Total " + $_.Trim()) -Filename $env:TEXT_REPORT_PATH -Outcome Failed
         }
       }
       
