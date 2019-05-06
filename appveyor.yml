@@ -118,25 +118,20 @@ test_script:
       mocha --recursive tests\spectron\tests -g $env:TEST_SUITE --retries 1 --reporter mochawesome --reporter-options reportDir=$env:HTML_REPORT_PATH | tee $env:TEXT_REPORT_PATH
 
 artifacts:
-  # Publish artifact zip
   - path: test-reports\spectron
     name: ${APPVEYOR_BUILD_VERSION}
 
 on_finish:
   - ps: |
-      # Push message
-      $IS_TEST_FAILED = $TEXT_REPORT_FILE_CONTENT | %{$_ -match "failing"}
-      if ($IS_TEST_FAILED -contains $true) {
-        Add-AppveyorMessage ($env:TEST_SUITE + " tests failed")
-      } else {
-        Add-AppveyorMessage ($env:TEST_SUITE + " tests passed")
-      }
-
       # Push test status
       $TEXT_REPORT_FILE_CONTENT = Get-Content $env:TEXT_REPORT_PATH
       $TEXT_REPORT_FILE_CONTENT | foreach {
         if ($_ -match '^    [0-9]') {
           Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
+        } else if ($_ -match '^  [0-9] passing') {
+          Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests passed") -Filename $env:TEXT_REPORT_PATH -Outcome Passed
+        } else if ($_ -match '^  [0-9] failing') {
+          Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests failed") -Filename $env:TEXT_REPORT_PATH -Outcome Failed
         }
       }
       
