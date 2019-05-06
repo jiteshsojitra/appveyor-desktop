@@ -128,9 +128,9 @@ on_finish:
       $TEXT_REPORT_FILE_CONTENT | foreach {
         if ($_ -match '^    [0-9]') {
           Add-AppveyorTest -Name $_ -Filename $env:TEXT_REPORT_PATH -Outcome Failed
-        } else if ($_ -match '^  [0-9] passing') {
+        } elseif ($_ -match '^  [0-9] passing') {
           Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests passed") -Filename $env:TEXT_REPORT_PATH -Outcome Passed
-        } else if ($_ -match '^  [0-9] failing') {
+        } elseif ($_ -match '^  [0-9] failing') {
           Add-AppveyorTest -Name ($_.Split(" ")[0] + " tests failed") -Filename $env:TEXT_REPORT_PATH -Outcome Failed
         } else {
           continue;
