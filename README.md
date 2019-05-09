@@ -10,7 +10,7 @@ npm install -g mocha spectron mochawesome
 ```
 
 ## Instructions:
-Pre-requisite to run the ZimbraX Desktop tests on a local machine (Windows/Mac):
+Pre-requisite to run the ZimbraX Desktop app tests on a local machine (Windows/Mac):
 
 1. ZimbraX desktop app is installed on the machine.
 2. S/MIME feature should be enabled for respective user accounts.
